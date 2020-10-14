@@ -66,8 +66,11 @@ dependencies {
     implementation 'org.projectlombok:lombok:1.18.12'
 	annotationProcessor 'org.projectlombok:lombok:1.18.12'
 
+    implementation 'com.google.googlejavaformat:google-java-format:1.9'
+
     implementation 'org.thinkit.api.catalog:catalog-api:v1.0.1'
     implementation 'org.thinkit.common:precondition-validator:v1.0.8'
+    implementation 'org.thinkit.generator.common:generator-commons:v1.0.0-10-g3c865c6'
 }
 
 test {
