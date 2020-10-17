@@ -70,7 +70,7 @@ dependencies {
 
     implementation 'org.thinkit.api.catalog:catalog-api:v1.0.1'
     implementation 'org.thinkit.common:precondition-validator:v1.0.8'
-    implementation 'org.thinkit.generator.common:generator-commons:v1.0.0-10-g3c865c6'
+    implementation 'org.thinkit.generator.common:generator-commons:v1.0.1'
 }
 
 test {
