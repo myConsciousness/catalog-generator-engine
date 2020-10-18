@@ -19,6 +19,15 @@ import org.thinkit.generator.common.factory.resource.Description;
 
 import lombok.NonNull;
 
+/**
+ * カタログクラスのクラスJavadocを生成する処理を定義したファクトリークラスです。
+ * <p>
+ * {@link #createResource()} メソッドを使用することでクラスのJavadocを表現する文字列を取得することができます。
+ *
+ * @author Kato Shinya
+ * @since 1.0
+ * @version 1.0
+ */
 public final class CatalogClassDescription extends ClassDescription {
 
     /**
@@ -26,10 +35,28 @@ public final class CatalogClassDescription extends ClassDescription {
      */
     private static final String INITIAL_VERSION = "1.0";
 
+    /**
+     * 引数として渡された情報を基に {@link CatalogClassDescription} クラスの新しいインスタンスを生成し返却します。
+     *
+     * @param description クラスの説明
+     * @param creator     作成者
+     * @param version     バージョン
+     *
+     * @exception NullPointerException 引数として {@code null} が渡された場合
+     */
     private CatalogClassDescription(@NonNull String description, @NonNull String creator, @NonNull String version) {
         super(description, creator, version);
     }
 
+    /**
+     * 引数として渡された情報を基に {@link CatalogClassDescription} クラスの新しいインスタンスを生成し返却します。
+     *
+     * @param creator 作成者
+     * @param version バージョン
+     * @return {@link CatalogClassDescription} クラスの新しいインスタンス
+     *
+     * @exception NullPointerException 引数として {@code null} が渡された場合
+     */
     public static Description of(@NonNull String creator, @NonNull String version) {
         return new CatalogClassDescription("", creator, version);
     }
@@ -39,6 +66,10 @@ public final class CatalogClassDescription extends ClassDescription {
         return """
                 /**
                  * This catalog class was created using the Catalog Generator.
+                 * <p>
+                 * You may learn more about the Catalog API at
+                 *
+                 *     https://github.com/myConsciousness/catalog-api
                  *
                  * @author %s
                  * @since %s
