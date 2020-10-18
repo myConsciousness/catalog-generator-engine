@@ -18,18 +18,55 @@ import org.thinkit.generator.common.factory.resource.Constructor;
 import org.thinkit.generator.common.factory.resource.FunctionDescription;
 
 import lombok.EqualsAndHashCode;
+import lombok.NonNull;
 import lombok.ToString;
 
+/**
+ * カタログクラスのコンストラクタを生成する処理を定義したファクトリークラスです。
+ * <p>
+ * {@link #createResource()} メソッドを使用することでコンストラクタを表現する文字列を取得することができます。
+ *
+ * @author Kato Shinya
+ * @since 1.0
+ * @version 1.0
+ */
 @ToString
 @EqualsAndHashCode(callSuper = false)
-public class CatalogConstructor extends Constructor {
+public final class CatalogConstructor extends Constructor {
 
-    protected CatalogConstructor(String functionName, FunctionDescription functionDescription) {
+    /**
+     * 引数として渡された {@link CatalogConstructor} クラスの新しいインスタンスを生成し返却します。
+     *
+     * @param functionName        コンストラクタ名
+     * @param functionDescription コンストラクタのJavadoc
+     *
+     * @exception NullPointerException 引数として {@code null} が渡された場合
+     */
+    private CatalogConstructor(@NonNull String functionName, @NonNull FunctionDescription functionDescription) {
         super(functionName, functionDescription);
+    }
+
+    /**
+     * 引数として渡された {@link CatalogConstructor} クラスの新しいインスタンスを生成し返却します。
+     *
+     * @param functionName        コンストラクタ名
+     * @param functionDescription コンストラクタのJavadoc
+     * @return {@link CatalogConstructor} クラスの新しいインスタンス
+     *
+     * @exception NullPointerException 引数として {@code null} が渡された場合
+     */
+    public static Constructor of(@NonNull String functionName, @NonNull FunctionDescription functionDescription) {
+        return new CatalogConstructor(functionName, functionDescription);
     }
 
     @Override
     public String createResource() {
-        return null;
+        return """
+                %s
+                %s(%s) {
+                    %s
+                }
+                """.formatted(super.getFunctionDescription().createResource(), super.getFunctionName(),
+                super.getParameter(), super.getProcess());
     }
 }
