@@ -21,16 +21,29 @@ import lombok.NonNull;
 
 public final class CatalogClassDescription extends ClassDescription {
 
+    /**
+     * 初期バージョン
+     */
+    private static final String INITIAL_VERSION = "1.0";
+
     private CatalogClassDescription(@NonNull String description, @NonNull String creator, @NonNull String version) {
         super(description, creator, version);
     }
 
-    public static Description of(@NonNull String description, @NonNull String creator, @NonNull String version) {
-        return new CatalogClassDescription(description, creator, version);
+    public static Description of(@NonNull String creator, @NonNull String version) {
+        return new CatalogClassDescription("", creator, version);
     }
 
     @Override
     public String createResource() {
-        return null;
+        return """
+                /**
+                 * This catalog class was created using the Catalog Generator.
+                 *
+                 * @author %s
+                 * @since %s
+                 * @version %s
+                 */
+                """.formatted(super.getCreator(), INITIAL_VERSION, super.getVersion());
     }
 }
