@@ -16,7 +16,9 @@ package org.thinkit.generator.catalog.engine.factory;
 
 import org.thinkit.generator.common.factory.resource.Copyright;
 
+import lombok.EqualsAndHashCode;
 import lombok.NonNull;
+import lombok.ToString;
 
 /**
  * カタログクラスの著作権を生成する処理を定義したファクトリークラスです。
@@ -27,6 +29,8 @@ import lombok.NonNull;
  * @since 1.0
  * @version 1.0
  */
+@ToString
+@EqualsAndHashCode(callSuper = false)
 public final class CatalogCopyright extends Copyright {
 
     /**
