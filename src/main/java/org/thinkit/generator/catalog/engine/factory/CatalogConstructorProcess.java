@@ -37,6 +37,7 @@ public final class CatalogConstructorProcess extends ConstructorProcess {
      * 引数として渡された情報を基に {@link CatalogConstructorProcess} クラスの新しいインスタンスを生成し返却します。
      *
      * @param variableName 変数名
+     *
      * @exception NullPointerException 引数として {@code null} が渡された場合
      */
     private CatalogConstructorProcess(@NonNull String variableName) {
@@ -48,22 +49,32 @@ public final class CatalogConstructorProcess extends ConstructorProcess {
      *
      * @param variableName 変数名
      * @param getterName   ゲッター名
+     *
      * @exception NullPointerException 引数として {@code null} が渡された場合
      */
     private CatalogConstructorProcess(@NonNull String variableName, @NonNull String getterName) {
         super(variableName, getterName);
     }
 
+    /**
+     * 引数として渡された情報を基に {@link CatalogConstructorProcess} クラスの新しいインスタンスを生成し返却します。
+     *
+     * @param variableName 変数名
+     * @return {@link CatalogConstructorProcess} クラスの新しいインスタンス
+     *
+     * @exception NullPointerException 引数として {@code null} が渡された場合
+     */
     public static ConstructorProcess of(@NonNull String variableName) {
         return new CatalogConstructorProcess(variableName);
     }
 
-    public static ConstructorProcess of(@NonNull String variableName, @NonNull String getterName) {
-        return new CatalogConstructorProcess(variableName, getterName);
-    }
-
     @Override
     public String createResource() {
-        return null;
+
+        final String variableName = super.getVariableName();
+
+        return """
+                this.%s = %s;
+                """.formatted(variableName, variableName);
     }
 }
