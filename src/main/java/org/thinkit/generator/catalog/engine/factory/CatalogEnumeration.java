@@ -14,7 +14,9 @@
 
 package org.thinkit.generator.catalog.engine.factory;
 
-import org.apache.commons.lang3.StringUtils;
+import org.thinkit.common.catalog.Indentation;
+import org.thinkit.generator.common.factory.resource.Description;
+import org.thinkit.generator.common.factory.resource.EnumDefinition;
 import org.thinkit.generator.common.factory.resource.Enumeration;
 
 import lombok.EqualsAndHashCode;
@@ -35,39 +37,37 @@ import lombok.ToString;
 public final class CatalogEnumeration extends Enumeration {
 
     /**
-     * 引数として渡された情報を基に {@link CatalogEnumeration} クラスの新しいインスタンスを生成し返却します。
+     * 引数として渡された情報を基に {@link CatalogEnumeration} クラスの新しいインスタンスを生成します。
      *
-     * @param literal 列挙定数の名称
+     * @param enumDefinition 列挙子定義
+     * @param description    列挙子の説明
      *
      * @exception NullPointerException 引数として {@code null} が渡された場合
      */
-    private CatalogEnumeration(@NonNull String literal) {
-        super(literal);
+    private CatalogEnumeration(@NonNull EnumDefinition enumDefinition, @NonNull Description description) {
+        super(enumDefinition, description);
     }
 
     /**
      * 引数として渡された情報を基に {@link CatalogEnumeration} クラスの新しいインスタンスを生成し返却します。
      *
-     * @param literal 列挙定数の名称
+     * @param enumDefinition 列挙子定義
+     * @param description    列挙子の説明
      * @return {@link CatalogEnumeration} クラスの新しいインスタンス
      *
      * @exception NullPointerException 引数として {@code null} が渡された場合
      */
-    public static Enumeration of(@NonNull String literal) {
-        return new CatalogEnumeration(literal);
+    public static Enumeration of(@NonNull EnumDefinition enumDefinition, @NonNull Description description) {
+        return new CatalogEnumeration(enumDefinition, description);
     }
 
     @Override
     public String createResource() {
 
-        final String value = super.getCodeValue();
+        final StringBuilder enumeration = new StringBuilder();
+        enumeration.append(super.getDescription().createResource()).append(Indentation.returnCode());
+        enumeration.append(super.getEnumDefinition().createResource());
 
-        if (StringUtils.isEmpty(value)) {
-            return super.getLiteral();
-        }
-
-        return """
-                %s(%s)
-                """.formatted(super.getLiteral(), value);
+        return enumeration.toString();
     }
 }

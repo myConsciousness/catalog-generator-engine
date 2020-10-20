@@ -14,14 +14,13 @@
 
 package org.thinkit.generator.catalog.engine.factory;
 
-import java.util.List;
-
 import org.thinkit.common.catalog.Indentation;
 import org.thinkit.generator.common.factory.resource.Description;
 import org.thinkit.generator.common.factory.resource.Field;
 import org.thinkit.generator.common.factory.resource.FieldDefinition;
 
 import lombok.EqualsAndHashCode;
+import lombok.NonNull;
 import lombok.ToString;
 
 /**
@@ -35,29 +34,40 @@ import lombok.ToString;
  */
 @ToString
 @EqualsAndHashCode(callSuper = false)
-public class CatalogField extends Field {
+public final class CatalogField extends Field {
+
+    /**
+     * 引数として渡された情報を基に {@link CatalogField} クラスの新しいインスタンスを生成します。
+     *
+     * @param fieldDefinition フィールド定義
+     * @param description     フィールドの説明
+     *
+     * @exception NullPointerException 引数として {@code null} が渡された場合
+     */
+    private CatalogField(@NonNull FieldDefinition fieldDefinition, @NonNull Description description) {
+        super(fieldDefinition, description);
+    }
+
+    /**
+     * 引数として渡された情報を基に {@link CatalogField} クラスの新しいインスタンスを生成し返却します。
+     *
+     * @param fieldDefinition フィールド定義
+     * @param description     フィールドの説明
+     * @return {@link CatalogField} クラスの新しいインスタンス
+     *
+     * @exception NullPointerException 引数として {@code null} が渡された場合
+     */
+    public static Field of(@NonNull FieldDefinition fieldDefinition, @NonNull Description description) {
+        return new CatalogField(fieldDefinition, description);
+    }
 
     @Override
     public String createResource() {
 
-        super.validate();
+        final StringBuilder field = new StringBuilder();
+        field.append(super.getDescription().createResource()).append(Indentation.returnCode());
+        field.append(super.getFieldDefinition().createResource());
 
-        final List<Description> descriptions = super.getDescriptions();
-        final List<FieldDefinition> fieldDefinitions = super.getFieldDefinitions();
-
-        final String returnCode = Indentation.returnCode();
-        final StringBuilder fields = new StringBuilder();
-
-        for (int i = 0, size = descriptions.size(); i < size; i++) {
-            final StringBuilder field = new StringBuilder();
-
-            field.append(descriptions.get(i).createResource()).append(returnCode);
-            field.append(fieldDefinitions.get(i).createResource()).append(returnCode);
-            fields.append(field.toString());
-        }
-
-        fields.setLength(fields.length() - returnCode.length());
-
-        return fields.toString();
+        return field.toString();
     }
 }

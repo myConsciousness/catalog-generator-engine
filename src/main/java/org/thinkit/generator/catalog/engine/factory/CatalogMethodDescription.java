@@ -63,11 +63,11 @@ public final class CatalogMethodDescription extends FunctionDescription {
         methodDescription.append("/**");
         methodDescription.append(" * ").append(super.getDescription());
 
-        if (super.hasParamAnnotation()) {
+        if (super.hasAnnotation()) {
             methodDescription.append(" *");
 
-            super.getFunctionParamAnnotations().forEach(functionParamAnnotation -> {
-                methodDescription.append(" * ").append(functionParamAnnotation.createResource());
+            super.getDescriptionTags().forEach(descriptionTag -> {
+                methodDescription.append(" * ").append(descriptionTag.createResource());
             });
         }
 
