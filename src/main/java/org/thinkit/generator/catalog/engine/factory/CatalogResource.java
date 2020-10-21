@@ -25,7 +25,7 @@ import lombok.ToString;
 @EqualsAndHashCode(callSuper = false)
 public final class CatalogResource extends Resource {
 
-    protected CatalogResource(Copyright copyright, String packageName, ClassDescription classDescription,
+    private CatalogResource(Copyright copyright, String packageName, ClassDescription classDescription,
             String resourceName) {
         super(copyright, packageName, classDescription, resourceName);
     }
