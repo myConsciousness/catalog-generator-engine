@@ -57,7 +57,7 @@ public final class CatalogFieldDefinition extends FieldDefinition {
      *
      * @exception NullPointerException 引数として {@code null} が渡された場合
      */
-    public static FieldDefinition of(@NonNull String dataType, @NonNull String variableName) {
+    protected static FieldDefinition of(@NonNull String dataType, @NonNull String variableName) {
         return new CatalogFieldDefinition(dataType, variableName, "");
     }
 

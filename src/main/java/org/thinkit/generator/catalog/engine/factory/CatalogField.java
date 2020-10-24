@@ -57,7 +57,7 @@ public final class CatalogField extends Field {
      *
      * @exception NullPointerException 引数として {@code null} が渡された場合
      */
-    public static Field of(@NonNull FieldDefinition fieldDefinition, @NonNull Description description) {
+    protected static Field of(@NonNull FieldDefinition fieldDefinition, @NonNull Description description) {
         return new CatalogField(fieldDefinition, description);
     }
 

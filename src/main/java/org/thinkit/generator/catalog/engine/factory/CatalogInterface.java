@@ -65,7 +65,7 @@ public final class CatalogInterface extends Interface {
      *
      * @exception NullPointerException 引数として {@code null} が渡された場合
      */
-    public static Interface of(@NonNull String literal) {
+    protected static Interface of(@NonNull String literal) {
         return new CatalogInterface(literal);
     }
 
@@ -78,7 +78,7 @@ public final class CatalogInterface extends Interface {
      *
      * @exception NullPointerException 引数として {@code null} が渡された場合
      */
-    public static Interface of(@NonNull String literal, @NonNull Generics generics) {
+    protected static Interface of(@NonNull String literal, @NonNull Generics generics) {
         return new CatalogInterface(literal, generics);
     }
 

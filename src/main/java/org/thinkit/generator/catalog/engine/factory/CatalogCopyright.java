@@ -63,7 +63,7 @@ public final class CatalogCopyright extends Copyright {
      *
      * @exception NullPointerException 引数として {@code null} が渡された場合
      */
-    public static Copyright of(@NonNull String creator) {
+    protected static Copyright of(@NonNull String creator) {
         return new CatalogCopyright("", "", "", creator, "");
     }
 

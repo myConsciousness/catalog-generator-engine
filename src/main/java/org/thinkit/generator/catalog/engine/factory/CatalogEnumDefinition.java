@@ -53,7 +53,7 @@ public final class CatalogEnumDefinition extends EnumDefinition {
      *
      * @exception NullPointerException 引数として {@code null} が渡された場合
      */
-    public static EnumDefinition of(@NonNull String literal) {
+    protected static EnumDefinition of(@NonNull String literal) {
         return new CatalogEnumDefinition(literal);
     }
 

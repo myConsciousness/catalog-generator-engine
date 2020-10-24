@@ -48,7 +48,7 @@ public final class CatalogGenerics extends Generics {
      *
      * @return {@link CatalogGenerics} クラスの新しいインスタンス
      */
-    public static Generics of() {
+    protected static Generics of() {
         return new CatalogGenerics();
     }
 

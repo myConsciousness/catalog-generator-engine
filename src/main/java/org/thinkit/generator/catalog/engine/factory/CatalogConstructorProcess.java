@@ -64,7 +64,7 @@ public final class CatalogConstructorProcess extends ConstructorProcess {
      *
      * @exception NullPointerException 引数として {@code null} が渡された場合
      */
-    public static ConstructorProcess of(@NonNull String variableName) {
+    protected static ConstructorProcess of(@NonNull String variableName) {
         return new CatalogConstructorProcess(variableName);
     }
 

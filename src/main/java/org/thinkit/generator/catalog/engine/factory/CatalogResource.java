@@ -19,15 +19,21 @@ import org.thinkit.generator.common.factory.resource.Copyright;
 import org.thinkit.generator.common.factory.resource.Resource;
 
 import lombok.EqualsAndHashCode;
+import lombok.NonNull;
 import lombok.ToString;
 
 @ToString
 @EqualsAndHashCode(callSuper = false)
 public final class CatalogResource extends Resource {
 
-    private CatalogResource(Copyright copyright, String packageName, ClassDescription classDescription,
-            String resourceName) {
+    private CatalogResource(@NonNull Copyright copyright, @NonNull String packageName,
+            @NonNull ClassDescription classDescription, @NonNull String resourceName) {
         super(copyright, packageName, classDescription, resourceName);
+    }
+
+    protected static Resource of(@NonNull Copyright copyright, @NonNull String packageName,
+            @NonNull ClassDescription classDescription, @NonNull String resourceName) {
+        return new CatalogResource(copyright, packageName, classDescription, resourceName);
     }
 
     @Override

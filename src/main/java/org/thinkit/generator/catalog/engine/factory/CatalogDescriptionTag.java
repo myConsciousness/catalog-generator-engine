@@ -58,7 +58,7 @@ public final class CatalogDescriptionTag extends DescriptionTag {
      *
      * @exception NullPointerException 引数として {@code null} が渡された場合
      */
-    public static DescriptionTag of(@NonNull String variableName, @NonNull String description,
+    protected static DescriptionTag of(@NonNull String variableName, @NonNull String description,
             @NonNull Annotation annotation) {
         return new CatalogDescriptionTag(variableName, description, annotation);
     }

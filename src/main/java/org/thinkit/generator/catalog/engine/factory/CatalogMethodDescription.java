@@ -52,7 +52,7 @@ public final class CatalogMethodDescription extends FunctionDescription {
      *
      * @exception NullPointerException 引数として {@code null} が渡された場合
      */
-    public static FunctionDescription of(@NonNull String description) {
+    protected static FunctionDescription of(@NonNull String description) {
         return new CatalogMethodDescription(description);
     }
 

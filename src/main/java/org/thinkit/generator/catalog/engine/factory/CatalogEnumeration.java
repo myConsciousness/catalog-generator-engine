@@ -57,7 +57,7 @@ public final class CatalogEnumeration extends Enumeration {
      *
      * @exception NullPointerException 引数として {@code null} が渡された場合
      */
-    public static Enumeration of(@NonNull EnumDefinition enumDefinition, @NonNull Description description) {
+    protected static Enumeration of(@NonNull EnumDefinition enumDefinition, @NonNull Description description) {
         return new CatalogEnumeration(enumDefinition, description);
     }
 

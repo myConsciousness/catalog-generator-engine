@@ -61,7 +61,7 @@ public final class CatalogClassDescription extends ClassDescription {
      *
      * @exception NullPointerException 引数として {@code null} が渡された場合
      */
-    public static Description of(@NonNull String creator, @NonNull String version) {
+    protected static Description of(@NonNull String creator, @NonNull String version) {
         return new CatalogClassDescription("", creator, version);
     }
 

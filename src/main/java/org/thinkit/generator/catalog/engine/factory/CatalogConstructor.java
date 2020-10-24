@@ -55,7 +55,7 @@ public final class CatalogConstructor extends Constructor {
      *
      * @exception NullPointerException 引数として {@code null} が渡された場合
      */
-    public static Constructor of(@NonNull String functionName, @NonNull FunctionDescription functionDescription) {
+    protected static Constructor of(@NonNull String functionName, @NonNull FunctionDescription functionDescription) {
         return new CatalogConstructor(functionName, functionDescription);
     }
 

@@ -54,7 +54,7 @@ public final class CatalogParameter extends Parameter {
      *
      * @exception NullPointerException 引数として {@code null} が渡された場合
      */
-    public static Parameter of(@NonNull String dataType, @NonNull String variableName) {
+    protected static Parameter of(@NonNull String dataType, @NonNull String variableName) {
         return new CatalogParameter(dataType, variableName);
     }
 

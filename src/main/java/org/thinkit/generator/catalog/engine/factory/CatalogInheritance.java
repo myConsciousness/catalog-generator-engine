@@ -65,7 +65,7 @@ public final class CatalogInheritance extends Inheritance {
      *
      * @exception NullPointerException 引数として {@code null} が渡された場合
      */
-    public static Inheritance of(@NonNull String literal) {
+    protected static Inheritance of(@NonNull String literal) {
         return new CatalogInheritance(literal);
     }
 
@@ -78,7 +78,7 @@ public final class CatalogInheritance extends Inheritance {
      *
      * @exception NullPointerException 引数として {@code null} が渡された場合
      */
-    public static Inheritance of(@NonNull String literal, @NonNull Generics generics) {
+    protected static Inheritance of(@NonNull String literal, @NonNull Generics generics) {
         return new CatalogInheritance(literal, generics);
     }
 
