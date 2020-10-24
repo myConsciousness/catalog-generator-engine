@@ -15,7 +15,6 @@
 package org.thinkit.generator.catalog.engine.factory;
 
 import org.thinkit.generator.common.factory.resource.ClassDescription;
-import org.thinkit.generator.common.factory.resource.Description;
 
 import lombok.EqualsAndHashCode;
 import lombok.NonNull;
@@ -42,14 +41,13 @@ public final class CatalogClassDescription extends ClassDescription {
     /**
      * 引数として渡された情報を基に {@link CatalogClassDescription} クラスの新しいインスタンスを生成し返却します。
      *
-     * @param description クラスの説明
-     * @param creator     作成者
-     * @param version     バージョン
+     * @param creator 作成者
+     * @param version バージョン
      *
      * @exception NullPointerException 引数として {@code null} が渡された場合
      */
-    private CatalogClassDescription(@NonNull String description, @NonNull String creator, @NonNull String version) {
-        super(description, creator, version);
+    private CatalogClassDescription(@NonNull String creator, @NonNull String version) {
+        super(creator, version);
     }
 
     /**
@@ -61,8 +59,8 @@ public final class CatalogClassDescription extends ClassDescription {
      *
      * @exception NullPointerException 引数として {@code null} が渡された場合
      */
-    protected static Description of(@NonNull String creator, @NonNull String version) {
-        return new CatalogClassDescription("", creator, version);
+    protected static ClassDescription of(@NonNull String creator, @NonNull String version) {
+        return new CatalogClassDescription(creator, version);
     }
 
     @Override

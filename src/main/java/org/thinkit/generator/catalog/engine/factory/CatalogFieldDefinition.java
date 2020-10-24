@@ -38,13 +38,11 @@ public final class CatalogFieldDefinition extends FieldDefinition {
      *
      * @param dataType     データ型
      * @param variableName 変数名
-     * @param initialValue 初期値
      *
      * @exception NullPointerException 引数として {@code null} が渡された場合
      */
-    private CatalogFieldDefinition(@NonNull String dataType, @NonNull String variableName,
-            @NonNull String initialValue) {
-        super(dataType, variableName, initialValue);
+    private CatalogFieldDefinition(@NonNull String dataType, @NonNull String variableName) {
+        super(dataType, variableName);
     }
 
     /**
@@ -52,19 +50,18 @@ public final class CatalogFieldDefinition extends FieldDefinition {
      *
      * @param dataType     データ型
      * @param variableName 変数名
-     * @param initialValue 初期値
      * @return {@link CatalogFieldDefinition} クラスの新しいインスタンス
      *
      * @exception NullPointerException 引数として {@code null} が渡された場合
      */
     protected static FieldDefinition of(@NonNull String dataType, @NonNull String variableName) {
-        return new CatalogFieldDefinition(dataType, variableName, "");
+        return new CatalogFieldDefinition(dataType, variableName);
     }
 
     @Override
     public String createResource() {
         return """
                 private %s %s;
-                    """.formatted(super.getDataType(), super.getVariableName());
+                """.formatted(super.getDataType(), super.getVariableName());
     }
 }

@@ -42,17 +42,12 @@ public final class CatalogCopyright extends Copyright {
     /**
      * 引数として与えられた情報を基に {@link CatalogCopyright} クラスの新しいインスタンスを生成します。
      *
-     * @param projectName  プロジェクト名
-     * @param fileName     ファイル名
-     * @param encoding     文字コード
-     * @param creator      作成者
-     * @param creationDate 作成日付
+     * @param creator 作成者
      *
      * @exception NullPointerException 引数として {@code null} が渡された場合
      */
-    private CatalogCopyright(@NonNull String projectName, @NonNull String fileName, @NonNull String encoding,
-            @NonNull String creator, @NonNull String creationDate) {
-        super(projectName, fileName, encoding, creator, creationDate);
+    private CatalogCopyright(@NonNull String creator) {
+        super(creator);
     }
 
     /**
@@ -64,14 +59,14 @@ public final class CatalogCopyright extends Copyright {
      * @exception NullPointerException 引数として {@code null} が渡された場合
      */
     protected static Copyright of(@NonNull String creator) {
-        return new CatalogCopyright("", "", "", creator, "");
+        return new CatalogCopyright(creator);
     }
 
     @Override
     public String createResource() {
         return """
                 /*
-                 * Copyright 2020 %s.
+                 * Copyright %s %s.
                  *
                  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
                  * in compliance with the License. You may obtain a copy of the License at
@@ -83,6 +78,6 @@ public final class CatalogCopyright extends Copyright {
                  * or implied. See the License for the specific language governing permissions and limitations under
                  * the License.
                  */
-                """.formatted(super.getCreator());
+                """.formatted(super.getCreationYear(), super.getCreator());
     }
 }

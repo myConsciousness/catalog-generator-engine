@@ -68,6 +68,6 @@ public final class CatalogEnumDefinition extends EnumDefinition {
 
         return """
                 %s(%s)
-                    """.formatted(super.getLiteral(), codeValue);
+                """.formatted(super.getLiteral(), codeValue);
     }
 }

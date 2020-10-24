@@ -14,6 +14,7 @@
 
 package org.thinkit.generator.catalog.engine.factory;
 
+import org.thinkit.generator.common.catalog.Annotation;
 import org.thinkit.generator.common.factory.resource.ClassDescription;
 import org.thinkit.generator.common.factory.resource.Constructor;
 import org.thinkit.generator.common.factory.resource.ConstructorProcess;
@@ -47,6 +48,11 @@ import lombok.ToString;
 public final class CatalogResourceFactory extends ResourceFactory {
 
     /**
+     * サポート外メッセージ
+     */
+    private static final String UNSUPPORTED_MESSAGE = "This method is not supposed to be called when Catalog class is created";
+
+    /**
      * デフォルトコンストラクタ
      */
     private CatalogResourceFactory() {
@@ -74,97 +80,123 @@ public final class CatalogResourceFactory extends ResourceFactory {
     }
 
     @Override
-    public Copyright createCopyright(@NonNull String projectName, @NonNull String fileName, @NonNull String encoding,
-            @NonNull String creator, @NonNull String creationDate) {
-        return null;
+    public Copyright createCopyright(@NonNull String creator) {
+        return CatalogCopyright.of(creator);
     }
 
     @Override
+    @Deprecated
+    public Copyright createCopyright(@NonNull String projectName, @NonNull String fileName, @NonNull String encoding,
+            @NonNull String creator, @NonNull String creationDate) {
+        throw new UnsupportedOperationException(UNSUPPORTED_MESSAGE);
+    }
+
+    @Override
+    public ClassDescription createClassDescription(@NonNull String creator, @NonNull String version) {
+        return CatalogClassDescription.of(creator, version);
+    }
+
+    @Override
+    @Deprecated
     public ClassDescription createClassDescription(@NonNull String description, @NonNull String creator,
             @NonNull String version) {
-        return null;
+        throw new UnsupportedOperationException(UNSUPPORTED_MESSAGE);
     }
 
     @Override
     public Description createDescription(@NonNull String description) {
-        return null;
+        return CatalogDescription.of(description);
     }
 
     @Override
     public Inheritance createInheritance(@NonNull String literal) {
-        return null;
+        return CatalogInheritance.of(literal);
     }
 
     @Override
     public Inheritance createInheritance(@NonNull String literal, @NonNull Generics generics) {
-        return null;
+        return CatalogInheritance.of(literal, generics);
     }
 
     @Override
     public Interface createInterface(@NonNull String literal) {
-        return null;
+        return CatalogInterface.of(literal);
     }
 
     @Override
     public Interface createInterface(@NonNull String literal, @NonNull Generics generics) {
-        return null;
+        return CatalogInterface.of(literal, generics);
     }
 
     @Override
     public Generics createGenerics() {
-        return null;
+        return CatalogGenerics.of();
     }
 
     @Override
     public EnumDefinition createEnumDefinition(@NonNull String literal) {
-        return null;
+        return CatalogEnumDefinition.of(literal);
     }
 
     @Override
     public Enumeration createEnumeration(@NonNull EnumDefinition enumDefinition, @NonNull Description description) {
-        return null;
+        return CatalogEnumeration.of(enumDefinition, description);
     }
 
     @Override
+    public FieldDefinition createFieldDefinition(@NonNull String dataType, @NonNull String variableName) {
+        return CatalogFieldDefinition.of(dataType, variableName);
+    }
+
+    @Override
+    @Deprecated
     public FieldDefinition createFieldDefinition(@NonNull String dataType, @NonNull String variableName,
             @NonNull String initialValue) {
-        return null;
+        throw new UnsupportedOperationException(UNSUPPORTED_MESSAGE);
     }
 
     @Override
     public FunctionDescription createFunctionDescription(@NonNull String description) {
-        return null;
+        return CatalogMethodDescription.of(description);
     }
 
     @Override
+    @Deprecated
     public DescriptionTag createDescriptionTag(@NonNull String variableName, @NonNull String description) {
-        return null;
+        throw new UnsupportedOperationException(UNSUPPORTED_MESSAGE);
+    }
+
+    @Override
+    public DescriptionTag createDescriptionTag(@NonNull String variableName, @NonNull String description,
+            @NonNull Annotation annotation) {
+        return CatalogDescriptionTag.of(variableName, description, annotation);
     }
 
     @Override
     public Constructor createConstructor(@NonNull String functionName,
             @NonNull FunctionDescription functionDescription) {
-        return null;
+        return CatalogConstructor.of(functionName, functionDescription);
     }
 
     @Override
     public Parameter createParameter(@NonNull String dataType, @NonNull String variableName) {
-        return null;
+        return CatalogParameter.of(dataType, variableName);
     }
 
     @Override
     public ConstructorProcess createConstructorProcess(String variableName) {
-        return null;
+        return CatalogConstructorProcess.of(variableName);
     }
 
     @Override
+    @Deprecated
     public ConstructorProcess createConstructorProcess(@NonNull String variableName, @NonNull String getterName) {
-        return null;
+        throw new UnsupportedOperationException(UNSUPPORTED_MESSAGE);
     }
 
     @Override
     public Resource createResource(@NonNull Copyright copyright, @NonNull String packageName,
             @NonNull ClassDescription classDescription, @NonNull String resourceName) {
-        return null;
+        return CatalogResource.of(copyright, packageName, classDescription, resourceName);
     }
 }
