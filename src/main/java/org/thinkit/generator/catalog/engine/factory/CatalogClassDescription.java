@@ -69,7 +69,7 @@ public final class CatalogClassDescription extends ClassDescription {
     public String createResource() {
         return """
                 /**
-                 * This catalog class was created using the Catalog Generator.
+                 * This catalog class was created by Catalog Generator.
                  * <p>
                  * You may learn more about the Catalog API at
                  *
