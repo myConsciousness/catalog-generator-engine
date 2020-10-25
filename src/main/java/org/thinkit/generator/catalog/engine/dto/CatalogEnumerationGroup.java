@@ -16,7 +16,6 @@ package org.thinkit.generator.catalog.engine.dto;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 import lombok.EqualsAndHashCode;
 import lombok.NonNull;
@@ -72,7 +71,7 @@ public final class CatalogEnumerationGroup extends ArrayList<CatalogEnumeration>
      *
      * @return {@link CatalogEnumerationGroup} クラスの新しいインスタンス
      */
-    public static List<CatalogEnumeration> of() {
+    public static CatalogEnumerationGroup of() {
         return new CatalogEnumerationGroup();
     }
 
@@ -84,7 +83,7 @@ public final class CatalogEnumerationGroup extends ArrayList<CatalogEnumeration>
      *
      * @throws IllegalArgumentException 初期容量が負数の場合
      */
-    public static List<CatalogEnumeration> of(int initialCapacity) {
+    public static CatalogEnumerationGroup of(int initialCapacity) {
         return new CatalogEnumerationGroup(initialCapacity);
     }
 
@@ -96,7 +95,7 @@ public final class CatalogEnumerationGroup extends ArrayList<CatalogEnumeration>
      *
      * @throws NullPointerException 引数として {@code null} が渡された場合
      */
-    public static List<CatalogEnumeration> of(@NonNull Collection<? extends CatalogEnumeration> collection) {
+    public static CatalogEnumerationGroup of(@NonNull Collection<? extends CatalogEnumeration> collection) {
         return new CatalogEnumerationGroup(collection);
     }
 }

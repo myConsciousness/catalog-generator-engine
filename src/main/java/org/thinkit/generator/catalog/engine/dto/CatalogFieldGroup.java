@@ -16,7 +16,6 @@ package org.thinkit.generator.catalog.engine.dto;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 import lombok.EqualsAndHashCode;
 import lombok.NonNull;
@@ -72,7 +71,7 @@ public final class CatalogFieldGroup extends ArrayList<CatalogField> {
      *
      * @return {@link CatalogFieldGroup} クラスの新しいインスタンス
      */
-    public static List<CatalogField> of() {
+    public static CatalogFieldGroup of() {
         return new CatalogFieldGroup();
     }
 
@@ -84,7 +83,7 @@ public final class CatalogFieldGroup extends ArrayList<CatalogField> {
      *
      * @throws IllegalArgumentException 初期容量が負数の場合
      */
-    public static List<CatalogField> of(int initialCapacity) {
+    public static CatalogFieldGroup of(int initialCapacity) {
         return new CatalogFieldGroup(initialCapacity);
     }
 
@@ -96,7 +95,7 @@ public final class CatalogFieldGroup extends ArrayList<CatalogField> {
      *
      * @throws NullPointerException 引数として {@code null} が渡された場合
      */
-    public static List<CatalogField> of(@NonNull Collection<? extends CatalogField> collection) {
+    public static CatalogFieldGroup of(@NonNull Collection<? extends CatalogField> collection) {
         return new CatalogFieldGroup(collection);
     }
 }
