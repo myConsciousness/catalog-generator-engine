@@ -35,13 +35,7 @@ public final class CatalogMeta implements Serializable {
     /**
      * シリアルバージョンUID
      */
-    private static final long serialVersionUID = -4003157077912803348L;
-
-    /**
-     * パッケージ名
-     */
-    @Getter
-    private String packageName;
+    private static final long serialVersionUID = -7534436501941612324L;
 
     /**
      * タグのデータ型
@@ -58,13 +52,12 @@ public final class CatalogMeta implements Serializable {
     /**
      * 引数として渡された情報を基に {@link CatalogMeta} クラスの新しいインスタンスを生成します。
      *
-     * @param packageName パッケージ名
      * @param tagDataType タグのデータ型
      *
      * @exception NullPointerException 引数として {@code null} が渡された場合
      */
-    private CatalogMeta(@NonNull String packageName, @NonNull String tagDataType) {
-        this.packageName = packageName;
+    private CatalogMeta(@NonNull String tagDataType) {
+        this.tagDataType = tagDataType;
     }
 
     /**
@@ -75,21 +68,19 @@ public final class CatalogMeta implements Serializable {
      * @exception NullPointerException 引数として {@code null} が渡された場合
      */
     private CatalogMeta(@NonNull CatalogMeta catalogMeta) {
-        this.packageName = catalogMeta.getPackageName();
         this.tagDataType = catalogMeta.getTagDataType();
     }
 
     /**
      * 引数として渡された情報を基に {@link CatalogMeta} クラスの新しいインスタンスを生成し返却します。
      *
-     * @param packageName パッケージ名
      * @param tagDataType タグのデータ型
      * @return {@link CatalogMeta} クラスの新しいインスタンス
      *
      * @exception NullPointerException 引数として {@code null} が渡された場合
      */
-    public static CatalogMeta of(@NonNull String packageName, @NonNull String tagDataType) {
-        return new CatalogMeta(packageName, tagDataType);
+    public static CatalogMeta of(@NonNull String tagDataType) {
+        return new CatalogMeta(tagDataType);
     }
 
     /**
