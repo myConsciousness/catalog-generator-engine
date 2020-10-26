@@ -14,14 +14,28 @@
 
 package org.thinkit.generator.catalog.engine.dto;
 
+import java.io.Serializable;
+
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.ToString;
 
+/**
+ * カタログクラスのマトリクスを管理するデータクラスです。
+ *
+ * @author Kato Shinya
+ * @since 1.0
+ * @version 1.0
+ */
 @ToString
 @EqualsAndHashCode
-public final class CatalogMatrix {
+public final class CatalogMatrix implements Serializable {
+
+    /**
+     * シリアルバージョンUID
+     */
+    private static final long serialVersionUID = 3155441729723636825L;
 
     /**
      * カタログメタ
@@ -41,9 +55,21 @@ public final class CatalogMatrix {
     @Getter
     private CatalogDefinitionGroup catalogDefinitionGroup;
 
+    /**
+     * デフォルトコンストラクタ
+     */
     private CatalogMatrix() {
     }
 
+    /**
+     * 引数として渡された情報を基に {@link CatalogMatrix} クラスの新しいインスタンスを生成します。
+     *
+     * @param catalogMeta            カタログメタ
+     * @param catalogCreator         カタログ作成者
+     * @param catalogDefinitionGroup カタログ定義グループ
+     *
+     * @exception NullPointerException 引数として {@code null} が渡された場合
+     */
     private CatalogMatrix(@NonNull CatalogMeta catalogMeta, @NonNull CatalogCreator catalogCreator,
             @NonNull CatalogDefinitionGroup catalogDefinitionGroup) {
         this.catalogMeta = catalogMeta;
@@ -51,21 +77,42 @@ public final class CatalogMatrix {
         this.catalogDefinitionGroup = catalogDefinitionGroup;
     }
 
+    /**
+     * 引数として渡された情報を基に {@link CatalogMatrix} クラスの新しいインスタンスを生成します。
+     *
+     * @param catalogMatrix カタログマトリクス
+     *
+     * @exception NullPointerException 引数として {@code null} が渡された場合
+     */
     private CatalogMatrix(@NonNull CatalogMatrix catalogMatrix) {
         this.catalogMeta = CatalogMeta.of(catalogMatrix.getCatalogMeta());
         this.catalogCreator = CatalogCreator.of(catalogMatrix.getCatalogCreator());
         this.catalogDefinitionGroup = CatalogDefinitionGroup.of(catalogMatrix.getCatalogDefinitionGroup());
     }
 
-    public static CatalogMatrix of() {
-        return new CatalogMatrix();
-    }
-
+    /**
+     * 引数として渡された情報を基に {@link CatalogMatrix} クラスの新しいインスタンスを生成します。
+     *
+     * @param catalogMeta            カタログメタ
+     * @param catalogCreator         カタログ作成者
+     * @param catalogDefinitionGroup カタログ定義グループ
+     * @return {@link CatalogMatrix} クラスの新しいインスタンス
+     *
+     * @exception NullPointerException 引数として {@code null} が渡された場合
+     */
     public static CatalogMatrix of(@NonNull CatalogMeta catalogMeta, @NonNull CatalogCreator catalogCreator,
             @NonNull CatalogDefinitionGroup catalogDefinitionGroup) {
         return new CatalogMatrix(catalogMeta, catalogCreator, catalogDefinitionGroup);
     }
 
+    /**
+     * 引数として渡された情報を基に {@link CatalogMatrix} クラスの新しいインスタンスを生成します。
+     *
+     * @param catalogMatrix カタログマトリクス
+     * @return {@link CatalogMatrix} クラスの新しいインスタンス
+     *
+     * @exception NullPointerException 引数として {@code null} が渡された場合
+     */
     public static CatalogMatrix of(@NonNull CatalogMatrix catalogMatrix) {
         return new CatalogMatrix(catalogMatrix);
     }
