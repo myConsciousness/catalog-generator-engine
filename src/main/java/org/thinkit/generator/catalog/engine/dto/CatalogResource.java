@@ -14,6 +14,8 @@
 
 package org.thinkit.generator.catalog.engine.dto;
 
+import java.io.Serializable;
+
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NonNull;
@@ -28,7 +30,12 @@ import lombok.ToString;
  */
 @ToString
 @EqualsAndHashCode
-public final class CatalogResource {
+public final class CatalogResource implements Serializable {
+
+    /**
+     * シリアルバージョンUID
+     */
+    private static final long serialVersionUID = 2931361227819156382L;
 
     /**
      * パッケージ名
