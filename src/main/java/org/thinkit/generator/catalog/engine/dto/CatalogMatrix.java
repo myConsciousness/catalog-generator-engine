@@ -78,7 +78,7 @@ public final class CatalogMatrix implements Serializable {
     }
 
     /**
-     * 引数として渡された情報を基に {@link CatalogMatrix} クラスの新しいインスタンスを生成します。
+     * 引数として渡されたカタログマトリクスをコピーした {@link CatalogMatrix} クラスの新しいインスタンスを生成します。
      *
      * @param catalogMatrix カタログマトリクス
      *
@@ -91,7 +91,7 @@ public final class CatalogMatrix implements Serializable {
     }
 
     /**
-     * 引数として渡された情報を基に {@link CatalogMatrix} クラスの新しいインスタンスを生成します。
+     * 引数として渡された情報を基に {@link CatalogMatrix} クラスの新しいインスタンスを生成し返却します。
      *
      * @param catalogMeta            カタログメタ
      * @param catalogCreator         カタログ作成者
@@ -106,7 +106,7 @@ public final class CatalogMatrix implements Serializable {
     }
 
     /**
-     * 引数として渡された情報を基に {@link CatalogMatrix} クラスの新しいインスタンスを生成します。
+     * 引数として渡されたカタログマトリクスの情報をコピーした {@link CatalogMatrix} クラスの新しいインスタンスを生成し返却します。
      *
      * @param catalogMatrix カタログマトリクス
      * @return {@link CatalogMatrix} クラスの新しいインスタンス
