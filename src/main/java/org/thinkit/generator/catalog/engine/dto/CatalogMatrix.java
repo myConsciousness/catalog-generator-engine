@@ -16,6 +16,7 @@ package org.thinkit.generator.catalog.engine.dto;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NonNull;
 import lombok.ToString;
 
 @ToString
@@ -39,4 +40,33 @@ public final class CatalogMatrix {
      */
     @Getter
     private CatalogDefinitionGroup catalogDefinitionGroup;
+
+    private CatalogMatrix() {
+    }
+
+    private CatalogMatrix(@NonNull CatalogMeta catalogMeta, @NonNull CatalogCreator catalogCreator,
+            @NonNull CatalogDefinitionGroup catalogDefinitionGroup) {
+        this.catalogMeta = catalogMeta;
+        this.catalogCreator = catalogCreator;
+        this.catalogDefinitionGroup = catalogDefinitionGroup;
+    }
+
+    private CatalogMatrix(@NonNull CatalogMatrix catalogMatrix) {
+        this.catalogMeta = CatalogMeta.of(catalogMatrix.getCatalogMeta());
+        this.catalogCreator = CatalogCreator.of(catalogMatrix.getCatalogCreator());
+        this.catalogDefinitionGroup = CatalogDefinitionGroup.of(catalogMatrix.getCatalogDefinitionGroup());
+    }
+
+    public static CatalogMatrix of() {
+        return new CatalogMatrix();
+    }
+
+    public static CatalogMatrix of(@NonNull CatalogMeta catalogMeta, @NonNull CatalogCreator catalogCreator,
+            @NonNull CatalogDefinitionGroup catalogDefinitionGroup) {
+        return new CatalogMatrix(catalogMeta, catalogCreator, catalogDefinitionGroup);
+    }
+
+    public static CatalogMatrix of(@NonNull CatalogMatrix catalogMatrix) {
+        return new CatalogMatrix(catalogMatrix);
+    }
 }
