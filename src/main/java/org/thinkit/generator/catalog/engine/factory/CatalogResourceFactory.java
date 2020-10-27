@@ -29,6 +29,8 @@ import org.thinkit.generator.common.factory.resource.FunctionDescription;
 import org.thinkit.generator.common.factory.resource.Generics;
 import org.thinkit.generator.common.factory.resource.Inheritance;
 import org.thinkit.generator.common.factory.resource.Interface;
+import org.thinkit.generator.common.factory.resource.Method;
+import org.thinkit.generator.common.factory.resource.MethodProcess;
 import org.thinkit.generator.common.factory.resource.Parameter;
 import org.thinkit.generator.common.factory.resource.Resource;
 import org.thinkit.generator.common.factory.resource.ResourceFactory;
@@ -198,6 +200,16 @@ public final class CatalogResourceFactory extends ResourceFactory {
     @Deprecated
     public ConstructorProcess createConstructorProcess(@NonNull String variableName, @NonNull String getterName) {
         throw new UnsupportedOperationException(UNSUPPORTED_MESSAGE);
+    }
+
+    @Override
+    public Method createMethod(@NonNull String methodName, @NonNull FunctionDescription methodDescription) {
+        return CatalogMethod.of(methodName, methodDescription);
+    }
+
+    @Override
+    public MethodProcess createMethodProcess(@NonNull String variableName) {
+        return CatalogMethodProcess.of(variableName);
     }
 
     @Override
