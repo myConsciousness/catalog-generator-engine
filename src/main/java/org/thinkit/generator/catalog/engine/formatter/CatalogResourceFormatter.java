@@ -14,8 +14,14 @@
 
 package org.thinkit.generator.catalog.engine.formatter;
 
+import org.thinkit.generator.catalog.engine.dto.CatalogCreator;
 import org.thinkit.generator.catalog.engine.dto.CatalogMatrix;
+import org.thinkit.generator.catalog.engine.dto.CatalogResource;
 import org.thinkit.generator.catalog.engine.dto.CatalogResourceGroup;
+import org.thinkit.generator.catalog.engine.factory.CatalogResourceFactory;
+import org.thinkit.generator.common.factory.resource.Copyright;
+import org.thinkit.generator.common.factory.resource.Resource;
+import org.thinkit.generator.common.factory.resource.ResourceFactory;
 import org.thinkit.generator.common.formatter.ResourceFormatter;
 
 import lombok.EqualsAndHashCode;
@@ -68,6 +74,28 @@ public final class CatalogResourceFormatter implements ResourceFormatter<Catalog
 
     @Override
     public CatalogResourceGroup format(@NonNull CatalogMatrix catalogMatrix) {
-        return CatalogResourceGroup.of();
+
+        catalogMatrix.getCatalogMeta();
+
+        final CatalogCreator catalogCreator = catalogMatrix.getCatalogCreator();
+        final String creator = catalogCreator.getCreator();
+
+        final ResourceFactory factory = CatalogResourceFactory.getInstance();
+        final Copyright copyright = factory.createCopyright(creator);
+
+        final CatalogResourceGroup catalogResourceGroup = CatalogResourceGroup.of();
+
+        catalogMatrix.getCatalogDefinitionGroup().forEach(catalogDefinition -> {
+
+            final String packageName = catalogDefinition.getPackageName();
+            final String className = catalogDefinition.getClassName();
+
+            final Resource resource = factory.createResource(copyright, packageName, factory.createClassDescription(
+                    creator, catalogDefinition.getPackageName(), catalogDefinition.getVersion()), className);
+
+            catalogResourceGroup.add(CatalogResource.of(packageName, className, resource.createResource()));
+        });
+
+        return catalogResourceGroup;
     }
 }
