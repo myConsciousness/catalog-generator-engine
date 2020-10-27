@@ -14,12 +14,17 @@
 
 package org.thinkit.generator.catalog.engine.formatter;
 
+import org.thinkit.generator.catalog.engine.catalog.CatalogType;
 import org.thinkit.generator.catalog.engine.dto.CatalogCreator;
+import org.thinkit.generator.catalog.engine.dto.CatalogDefinition;
 import org.thinkit.generator.catalog.engine.dto.CatalogMatrix;
+import org.thinkit.generator.catalog.engine.dto.CatalogMeta;
 import org.thinkit.generator.catalog.engine.dto.CatalogResource;
 import org.thinkit.generator.catalog.engine.dto.CatalogResourceGroup;
 import org.thinkit.generator.catalog.engine.factory.CatalogResourceFactory;
 import org.thinkit.generator.common.factory.resource.Copyright;
+import org.thinkit.generator.common.factory.resource.Generics;
+import org.thinkit.generator.common.factory.resource.Interface;
 import org.thinkit.generator.common.factory.resource.Resource;
 import org.thinkit.generator.common.factory.resource.ResourceFactory;
 import org.thinkit.generator.common.formatter.ResourceFormatter;
@@ -75,7 +80,7 @@ public final class CatalogResourceFormatter implements ResourceFormatter<Catalog
     @Override
     public CatalogResourceGroup format(@NonNull CatalogMatrix catalogMatrix) {
 
-        catalogMatrix.getCatalogMeta();
+        final CatalogMeta catalogMeta = catalogMatrix.getCatalogMeta();
 
         final CatalogCreator catalogCreator = catalogMatrix.getCatalogCreator();
         final String creator = catalogCreator.getCreator();
@@ -92,10 +97,50 @@ public final class CatalogResourceFormatter implements ResourceFormatter<Catalog
 
             final Resource resource = factory.createResource(copyright, packageName, factory.createClassDescription(
                     creator, catalogDefinition.getPackageName(), catalogDefinition.getVersion()), className);
+            resource.add(this.createInterface(catalogMeta.getCatalogType(), catalogDefinition));
+
+            catalogDefinition.getCatalogEnumerationGroup().forEach(catalogEnumeration -> {
+
+            });
+
+            catalogDefinition.getCatalogFieldGroup().forEach(catalogField -> {
+                // TODO: フィールド定義
+
+                // TODO: コンストラクタ
+
+                // TODO: Getter メソッド
+            });
 
             catalogResourceGroup.add(CatalogResource.of(packageName, className, resource.createResource()));
         });
 
         return catalogResourceGroup;
+    }
+
+    /**
+     * 引数として渡された {@code catalogType} のカタログ種別から対応するインターフェースの定義オブジェクトを生成し返却します。
+     *
+     * @param catalogType       カタログ種別
+     * @param catalogDefinition カタログ定義
+     * @return {@code catalogType} のカタログ種別に対応するインターフェースの定義オブジェクト
+     *
+     * @exception NullPointerException 引数として {@code null} が渡された場合
+     */
+    private Interface createInterface(@NonNull CatalogType catalogType, @NonNull CatalogDefinition catalogDefinition) {
+
+        final ResourceFactory factory = CatalogResourceFactory.getInstance();
+
+        return switch (catalogType) {
+            case CATALOG -> {
+                final Generics generics = factory.createGenerics().add(catalogDefinition.getClassName());
+                yield factory.createInterface(catalogType.getTag(), generics);
+            }
+
+            case BI_CATALOG -> {
+                final Generics generics = factory.createGenerics().add(catalogDefinition.getClassName())
+                        .add(catalogDefinition.getTagDataType());
+                yield factory.createInterface(catalogType.getTag(), generics);
+            }
+        };
     }
 }
