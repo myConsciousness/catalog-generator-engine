@@ -17,6 +17,8 @@ package org.thinkit.generator.catalog.engine.dto;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import org.thinkit.generator.common.dto.Resource;
+
 import lombok.EqualsAndHashCode;
 import lombok.NonNull;
 import lombok.ToString;
@@ -30,12 +32,12 @@ import lombok.ToString;
  */
 @ToString
 @EqualsAndHashCode(callSuper = false)
-public final class CatalogResourceGroup extends ArrayList<CatalogResource> {
+public final class CatalogResourceGroup extends ArrayList<CatalogResource> implements Resource {
 
     /**
      * シリアルバージョンUID
      */
-    private static final long serialVersionUID = 4183573508097156047L;
+    private static final long serialVersionUID = 6678075433686071344L;
 
     /**
      * 初期容量が {@code 10} で設定された空のリストを生成します。
