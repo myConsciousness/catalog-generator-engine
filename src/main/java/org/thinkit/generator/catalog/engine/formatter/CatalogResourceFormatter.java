@@ -18,14 +18,18 @@ import org.thinkit.generator.catalog.engine.catalog.CatalogType;
 import org.thinkit.generator.catalog.engine.dto.CatalogCreator;
 import org.thinkit.generator.catalog.engine.dto.CatalogDefinition;
 import org.thinkit.generator.catalog.engine.dto.CatalogEnumeration;
+import org.thinkit.generator.catalog.engine.dto.CatalogField;
 import org.thinkit.generator.catalog.engine.dto.CatalogMatrix;
 import org.thinkit.generator.catalog.engine.dto.CatalogMeta;
 import org.thinkit.generator.catalog.engine.dto.CatalogResource;
 import org.thinkit.generator.catalog.engine.dto.CatalogResourceGroup;
 import org.thinkit.generator.catalog.engine.factory.CatalogResourceFactory;
+import org.thinkit.generator.common.factory.resource.Constructor;
 import org.thinkit.generator.common.factory.resource.Copyright;
 import org.thinkit.generator.common.factory.resource.EnumDefinition;
 import org.thinkit.generator.common.factory.resource.Enumeration;
+import org.thinkit.generator.common.factory.resource.Field;
+import org.thinkit.generator.common.factory.resource.FieldDefinition;
 import org.thinkit.generator.common.factory.resource.Generics;
 import org.thinkit.generator.common.factory.resource.Interface;
 import org.thinkit.generator.common.factory.resource.Resource;
@@ -108,7 +112,7 @@ public final class CatalogResourceFormatter implements ResourceFormatter<Catalog
             });
 
             catalogDefinition.getCatalogFieldGroup().forEach(catalogField -> {
-                // TODO: フィールド定義
+                resource.add(this.createField(catalogField));
 
                 // TODO: コンストラクタ
 
@@ -177,5 +181,26 @@ public final class CatalogResourceFormatter implements ResourceFormatter<Catalog
                         factory.createDescription(catalogEnumeration.getDescription()));
             }
         };
+    }
+
+    /**
+     * {@link CatalogField} クラスに格納されたリソース情報を基にカタログクラスのフィールドの定義オブジェクトを生成し返却します。
+     *
+     * @param catalogField カタログフィールド
+     * @return フィールドオブジェクト
+     *
+     * @exception NullPointerException 引数として {@code null} が渡された場合
+     */
+    private Field createField(@NonNull CatalogField catalogField) {
+
+        final ResourceFactory factory = CatalogResourceFactory.getInstance();
+        final FieldDefinition fieldDefinition = factory.createFieldDefinition(catalogField.getDataType(),
+                catalogField.getVariableName());
+
+        return factory.createField(fieldDefinition, factory.createDescription(catalogField.getDescription()));
+    }
+
+    private Constructor createConstructor(@NonNull CatalogField catalogField) {
+        return null;
     }
 }
