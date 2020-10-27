@@ -74,6 +74,11 @@ import lombok.ToString;
 public final class CatalogResourceFormatter implements ResourceFormatter<CatalogMatrix, CatalogResourceGroup> {
 
     /**
+     * コンストラクタの説明
+     */
+    private static final String CONSTRUCTOR_DESCRIPTION = "A constructor that generates the catalog {@link %s} .";
+
+    /**
      * デフォルトコンストラクタ
      */
     private CatalogResourceFormatter() {
@@ -116,7 +121,7 @@ public final class CatalogResourceFormatter implements ResourceFormatter<Catalog
             });
 
             final Constructor constructor = factory.createConstructor(className,
-                    factory.createFunctionDescription("Constructor"));
+                    factory.createFunctionDescription(String.format(CONSTRUCTOR_DESCRIPTION, className)));
 
             catalogDefinition.getCatalogFieldGroup().forEach(catalogField -> {
                 resource.add(this.createField(catalogField));
