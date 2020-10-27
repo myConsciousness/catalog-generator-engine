@@ -23,6 +23,7 @@ import org.thinkit.generator.common.factory.resource.Description;
 import org.thinkit.generator.common.factory.resource.DescriptionTag;
 import org.thinkit.generator.common.factory.resource.EnumDefinition;
 import org.thinkit.generator.common.factory.resource.Enumeration;
+import org.thinkit.generator.common.factory.resource.Field;
 import org.thinkit.generator.common.factory.resource.FieldDefinition;
 import org.thinkit.generator.common.factory.resource.FunctionDescription;
 import org.thinkit.generator.common.factory.resource.Generics;
@@ -153,6 +154,11 @@ public final class CatalogResourceFactory extends ResourceFactory {
     public FieldDefinition createFieldDefinition(@NonNull String dataType, @NonNull String variableName,
             @NonNull String initialValue) {
         throw new UnsupportedOperationException(UNSUPPORTED_MESSAGE);
+    }
+
+    @Override
+    public Field createField(@NonNull FieldDefinition fieldDefinition, @NonNull Description description) {
+        return CatalogField.of(fieldDefinition, description);
     }
 
     @Override
