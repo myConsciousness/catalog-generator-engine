@@ -17,12 +17,15 @@ package org.thinkit.generator.catalog.engine.formatter;
 import org.thinkit.generator.catalog.engine.catalog.CatalogType;
 import org.thinkit.generator.catalog.engine.dto.CatalogCreator;
 import org.thinkit.generator.catalog.engine.dto.CatalogDefinition;
+import org.thinkit.generator.catalog.engine.dto.CatalogEnumeration;
 import org.thinkit.generator.catalog.engine.dto.CatalogMatrix;
 import org.thinkit.generator.catalog.engine.dto.CatalogMeta;
 import org.thinkit.generator.catalog.engine.dto.CatalogResource;
 import org.thinkit.generator.catalog.engine.dto.CatalogResourceGroup;
 import org.thinkit.generator.catalog.engine.factory.CatalogResourceFactory;
 import org.thinkit.generator.common.factory.resource.Copyright;
+import org.thinkit.generator.common.factory.resource.EnumDefinition;
+import org.thinkit.generator.common.factory.resource.Enumeration;
 import org.thinkit.generator.common.factory.resource.Generics;
 import org.thinkit.generator.common.factory.resource.Interface;
 import org.thinkit.generator.common.factory.resource.Resource;
@@ -89,6 +92,7 @@ public final class CatalogResourceFormatter implements ResourceFormatter<Catalog
         final Copyright copyright = factory.createCopyright(creator);
 
         final CatalogResourceGroup catalogResourceGroup = CatalogResourceGroup.of();
+        final CatalogType catalogType = catalogMeta.getCatalogType();
 
         catalogMatrix.getCatalogDefinitionGroup().forEach(catalogDefinition -> {
 
@@ -97,10 +101,10 @@ public final class CatalogResourceFormatter implements ResourceFormatter<Catalog
 
             final Resource resource = factory.createResource(copyright, packageName, factory.createClassDescription(
                     creator, catalogDefinition.getPackageName(), catalogDefinition.getVersion()), className);
-            resource.add(this.createInterface(catalogMeta.getCatalogType(), catalogDefinition));
+            resource.add(this.createInterface(catalogType, catalogDefinition));
 
             catalogDefinition.getCatalogEnumerationGroup().forEach(catalogEnumeration -> {
-
+                resource.add(this.createEnumeration(catalogType, catalogEnumeration));
             });
 
             catalogDefinition.getCatalogFieldGroup().forEach(catalogField -> {
@@ -140,6 +144,37 @@ public final class CatalogResourceFormatter implements ResourceFormatter<Catalog
                 final Generics generics = factory.createGenerics().add(catalogDefinition.getClassName())
                         .add(catalogDefinition.getTagDataType());
                 yield factory.createInterface(catalogType.getTag(), generics);
+            }
+        };
+    }
+
+    /**
+     * 引数として渡された {@code catalogType} のカタログ種別から対応する列挙子の定義オブジェクトを生成し返却します。
+     *
+     * @param catalogType        カタログ種別
+     * @param catalogEnumeration カタログ列挙子
+     * @return {@code catalogType} のカタログ種別に対応する列挙子の定義オブジェクト
+     *
+     * @exception NullPointerException 引数として {@code null} が渡された場合
+     */
+    private Enumeration createEnumeration(@NonNull CatalogType catalogType,
+            @NonNull CatalogEnumeration catalogEnumeration) {
+
+        final ResourceFactory factory = CatalogResourceFactory.getInstance();
+
+        return switch (catalogType) {
+            case CATALOG -> {
+                final EnumDefinition enumDefinition = factory.createEnumDefinition(catalogEnumeration.getLiteral())
+                        .add(catalogEnumeration.getCode());
+                yield factory.createEnumeration(enumDefinition,
+                        factory.createDescription(catalogEnumeration.getDescription()));
+            }
+
+            case BI_CATALOG -> {
+                final EnumDefinition enumDefinition = factory.createEnumDefinition(catalogEnumeration.getLiteral())
+                        .add(catalogEnumeration.getCode()).add(catalogEnumeration.getTag());
+                yield factory.createEnumeration(enumDefinition,
+                        factory.createDescription(catalogEnumeration.getDescription()));
             }
         };
     }
