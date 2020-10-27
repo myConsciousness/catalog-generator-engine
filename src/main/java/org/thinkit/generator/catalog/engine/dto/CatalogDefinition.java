@@ -35,7 +35,7 @@ public final class CatalogDefinition implements Serializable {
     /**
      * シリアルバージョンUID
      */
-    private static final long serialVersionUID = -6472692198538121666L;
+    private static final long serialVersionUID = 1501015289762242952L;
 
     /**
      * パッケージ名
@@ -54,6 +54,12 @@ public final class CatalogDefinition implements Serializable {
      */
     @Getter
     private String className;
+
+    /**
+     * タグのデータ型
+     */
+    @Getter
+    private String tagDataType;
 
     /**
      * 列挙子グループ
@@ -79,13 +85,15 @@ public final class CatalogDefinition implements Serializable {
      * @param packageName             パッケージ名
      * @param version                 バージョン
      * @param className               クラス名
+     * @param tagDataType             タグのデータ型
      * @param catalogEnumerationGroup カタログ列挙子グループ
      * @param catalogFieldGroup       カタログフィールドグループ
      *
      * @exception NullPointerException 引数として {@code null} が渡された場合
      */
     private CatalogDefinition(@NonNull String packageName, @NonNull String version, @NonNull String className,
-            @NonNull CatalogEnumerationGroup catalogEnumerationGroup, @NonNull CatalogFieldGroup catalogFieldGroup) {
+            @NonNull String tagDataType, @NonNull CatalogEnumerationGroup catalogEnumerationGroup,
+            @NonNull CatalogFieldGroup catalogFieldGroup) {
         this.packageName = packageName;
         this.version = version;
         this.className = className;
@@ -104,6 +112,7 @@ public final class CatalogDefinition implements Serializable {
         this.packageName = catalogDefinition.getPackageName();
         this.version = catalogDefinition.getVersion();
         this.className = catalogDefinition.getClassName();
+        this.tagDataType = catalogDefinition.getTagDataType();
         this.catalogEnumerationGroup = CatalogEnumerationGroup.of(catalogDefinition.getCatalogEnumerationGroup());
         this.catalogFieldGroup = CatalogFieldGroup.of(catalogDefinition.getCatalogFieldGroup());
     }
@@ -114,6 +123,7 @@ public final class CatalogDefinition implements Serializable {
      * @param packageName             パッケージ名
      * @param version                 バージョン
      * @param className               クラス名
+     * @param tagDataType             タグのデータ型
      * @param catalogEnumerationGroup カタログ列挙子グループ
      * @param catalogFieldGroup       カタログフィールドグループ
      * @return {@link CatalogDefinition} クラスの新しいインスタンス
@@ -121,8 +131,10 @@ public final class CatalogDefinition implements Serializable {
      * @exception NullPointerException 引数として {@code null} が渡された場合
      */
     public static CatalogDefinition of(@NonNull String packageName, @NonNull String version, @NonNull String className,
-            @NonNull CatalogEnumerationGroup catalogEnumerationGroup, @NonNull CatalogFieldGroup catalogFieldGroup) {
-        return new CatalogDefinition(packageName, version, className, catalogEnumerationGroup, catalogFieldGroup);
+            @NonNull String tagDataType, @NonNull CatalogEnumerationGroup catalogEnumerationGroup,
+            @NonNull CatalogFieldGroup catalogFieldGroup) {
+        return new CatalogDefinition(packageName, version, className, tagDataType, catalogEnumerationGroup,
+                catalogFieldGroup);
     }
 
     /**
