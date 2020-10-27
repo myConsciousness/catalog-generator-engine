@@ -16,6 +16,8 @@ package org.thinkit.generator.catalog.engine.dto;
 
 import java.io.Serializable;
 
+import org.thinkit.generator.catalog.engine.catalog.CatalogType;
+
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NonNull;
@@ -35,7 +37,13 @@ public final class CatalogMeta implements Serializable {
     /**
      * シリアルバージョンUID
      */
-    private static final long serialVersionUID = -7534436501941612324L;
+    private static final long serialVersionUID = 7002661472169390803L;
+
+    /**
+     * カタログ種別
+     */
+    @Getter
+    private CatalogType catalogType;
 
     /**
      * タグのデータ型
@@ -52,11 +60,13 @@ public final class CatalogMeta implements Serializable {
     /**
      * 引数として渡された情報を基に {@link CatalogMeta} クラスの新しいインスタンスを生成します。
      *
+     * @param catalogType カタログ種別
      * @param tagDataType タグのデータ型
      *
      * @exception NullPointerException 引数として {@code null} が渡された場合
      */
-    private CatalogMeta(@NonNull String tagDataType) {
+    private CatalogMeta(@NonNull CatalogType catalogType, @NonNull String tagDataType) {
+        this.catalogType = catalogType;
         this.tagDataType = tagDataType;
     }
 
@@ -68,19 +78,21 @@ public final class CatalogMeta implements Serializable {
      * @exception NullPointerException 引数として {@code null} が渡された場合
      */
     private CatalogMeta(@NonNull CatalogMeta catalogMeta) {
+        this.catalogType = catalogMeta.getCatalogType();
         this.tagDataType = catalogMeta.getTagDataType();
     }
 
     /**
      * 引数として渡された情報を基に {@link CatalogMeta} クラスの新しいインスタンスを生成し返却します。
      *
+     * @param catalogType カタログ種別
      * @param tagDataType タグのデータ型
      * @return {@link CatalogMeta} クラスの新しいインスタンス
      *
      * @exception NullPointerException 引数として {@code null} が渡された場合
      */
-    public static CatalogMeta of(@NonNull String tagDataType) {
-        return new CatalogMeta(tagDataType);
+    public static CatalogMeta of(@NonNull CatalogType catalogType, @NonNull String tagDataType) {
+        return new CatalogMeta(catalogType, tagDataType);
     }
 
     /**
