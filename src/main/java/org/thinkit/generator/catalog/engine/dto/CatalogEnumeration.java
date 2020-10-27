@@ -35,7 +35,7 @@ public final class CatalogEnumeration implements Serializable {
     /**
      * シリアルバージョンUID
      */
-    private static final long serialVersionUID = -3482303920040136521L;
+    private static final long serialVersionUID = 4143684643475167418L;
 
     /**
      * 列挙子リテラル
@@ -56,6 +56,12 @@ public final class CatalogEnumeration implements Serializable {
     private String tag;
 
     /**
+     * 説明
+     */
+    @Getter
+    private String description;
+
+    /**
      * デフォルトコンストラクタ
      */
     private CatalogEnumeration() {
@@ -64,16 +70,18 @@ public final class CatalogEnumeration implements Serializable {
     /**
      * 引数として渡された情報を基に {@link CatalogEnumeration} クラスの新しいインスタンスを生成します。
      *
-     * @param literal 列挙子リテラル
-     * @param code    コード値
-     * @param tag     タグ
+     * @param literal     列挙子リテラル
+     * @param code        コード値
+     * @param tag         タグ
+     * @param description 説明
      *
      * @exception NullPointerException 引数として {@code null} が渡された場合
      */
-    private CatalogEnumeration(@NonNull String literal, int code, @NonNull String tag) {
+    private CatalogEnumeration(@NonNull String literal, int code, @NonNull String tag, @NonNull String description) {
         this.literal = literal;
         this.code = code;
         this.tag = tag;
+        this.description = description;
     }
 
     /**
@@ -87,20 +95,23 @@ public final class CatalogEnumeration implements Serializable {
         this.literal = catalogEnumeration.getLiteral();
         this.code = catalogEnumeration.getCode();
         this.tag = catalogEnumeration.getTag();
+        this.description = catalogEnumeration.getDescription();
     }
 
     /**
      * 引数として渡された情報を基に {@link CatalogEnumeration} クラスの新しいインスタンスを生成し返却します。
      *
-     * @param literal 列挙子リテラル
-     * @param code    コード値
-     * @param tag     タグ
+     * @param literal     列挙子リテラル
+     * @param code        コード値
+     * @param tag         タグ
+     * @param description 説明
      * @return {@link CatalogEnumeration} クラスの新しいインスタンス
      *
      * @exception NullPointerException 引数として {@code null} が渡された場合
      */
-    public static CatalogEnumeration of(@NonNull String literal, int code, @NonNull String tag) {
-        return new CatalogEnumeration(literal, code, tag);
+    public static CatalogEnumeration of(@NonNull String literal, int code, @NonNull String tag,
+            @NonNull String description) {
+        return new CatalogEnumeration(literal, code, tag, description);
     }
 
     /**
