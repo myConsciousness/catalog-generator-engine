@@ -24,14 +24,18 @@ import org.thinkit.generator.catalog.engine.dto.CatalogMeta;
 import org.thinkit.generator.catalog.engine.dto.CatalogResource;
 import org.thinkit.generator.catalog.engine.dto.CatalogResourceGroup;
 import org.thinkit.generator.catalog.engine.factory.CatalogResourceFactory;
+import org.thinkit.generator.common.catalog.Annotation;
 import org.thinkit.generator.common.factory.resource.Constructor;
+import org.thinkit.generator.common.factory.resource.ConstructorProcess;
 import org.thinkit.generator.common.factory.resource.Copyright;
+import org.thinkit.generator.common.factory.resource.DescriptionTag;
 import org.thinkit.generator.common.factory.resource.EnumDefinition;
 import org.thinkit.generator.common.factory.resource.Enumeration;
 import org.thinkit.generator.common.factory.resource.Field;
 import org.thinkit.generator.common.factory.resource.FieldDefinition;
 import org.thinkit.generator.common.factory.resource.Generics;
 import org.thinkit.generator.common.factory.resource.Interface;
+import org.thinkit.generator.common.factory.resource.Parameter;
 import org.thinkit.generator.common.factory.resource.Resource;
 import org.thinkit.generator.common.factory.resource.ResourceFactory;
 import org.thinkit.generator.common.formatter.ResourceFormatter;
@@ -111,13 +115,20 @@ public final class CatalogResourceFormatter implements ResourceFormatter<Catalog
                 resource.add(this.createEnumeration(catalogType, catalogEnumeration));
             });
 
+            final Constructor constructor = factory.createConstructor(className,
+                    factory.createFunctionDescription("Constructor"));
+
             catalogDefinition.getCatalogFieldGroup().forEach(catalogField -> {
                 resource.add(this.createField(catalogField));
 
-                // TODO: コンストラクタ
+                constructor.add(this.createDescriptionTag(catalogField));
+                constructor.add(this.createParameter(catalogField));
+                constructor.add(this.createConstructorProcess(catalogField));
 
                 // TODO: Getter メソッド
             });
+
+            resource.add(constructor);
 
             catalogResourceGroup.add(CatalogResource.of(packageName, className, resource.createResource()));
         });
@@ -200,7 +211,41 @@ public final class CatalogResourceFormatter implements ResourceFormatter<Catalog
         return factory.createField(fieldDefinition, factory.createDescription(catalogField.getDescription()));
     }
 
-    private Constructor createConstructor(@NonNull CatalogField catalogField) {
-        return null;
+    /**
+     * {@link CatalogField} クラスに格納されたリソース情報を基にコンストラクタの引数アノテーション定義オブジェクトを生成し返却します。
+     *
+     * @param catalogField カタログフィールド
+     * @return 引数アノテーションオブジェクト
+     *
+     * @exception NullPointerException 引数として {@code null} が渡された場合
+     */
+    private DescriptionTag createDescriptionTag(@NonNull CatalogField catalogField) {
+        return CatalogResourceFactory.getInstance().createDescriptionTag(catalogField.getVariableName(),
+                catalogField.getDescription(), Annotation.PARAM);
+    }
+
+    /**
+     * {@link CatalogField} クラスに格納されたリソース情報を基に引数オブジェクトを生成し返却します。
+     *
+     * @param catalogField カタログフィールド
+     * @return 引数オブジェクト
+     *
+     * @exception NullPointerException 引数として {@code null} が渡された場合
+     */
+    private Parameter createParameter(@NonNull CatalogField catalogField) {
+        return CatalogResourceFactory.getInstance().createParameter(catalogField.getDataType(),
+                catalogField.getVariableName());
+    }
+
+    /**
+     * {@link CatalogField} クラスに格納されたリソース情報を基にコンストラクタの処理定義オブジェクトを生成し返却します。
+     *
+     * @param catalogField カタログフィールド
+     * @return コンストラクタ処理オブジェクト
+     *
+     * @exception NullPointerException 引数として {@code null} が渡された場合
+     */
+    private ConstructorProcess createConstructorProcess(@NonNull CatalogField catalogField) {
+        return CatalogResourceFactory.getInstance().createConstructorProcess(catalogField.getVariableName());
     }
 }
