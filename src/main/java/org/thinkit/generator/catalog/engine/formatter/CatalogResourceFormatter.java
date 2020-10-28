@@ -35,6 +35,7 @@ import org.thinkit.generator.common.factory.resource.Field;
 import org.thinkit.generator.common.factory.resource.FieldDefinition;
 import org.thinkit.generator.common.factory.resource.Generics;
 import org.thinkit.generator.common.factory.resource.Interface;
+import org.thinkit.generator.common.factory.resource.Method;
 import org.thinkit.generator.common.factory.resource.Parameter;
 import org.thinkit.generator.common.factory.resource.Resource;
 import org.thinkit.generator.common.factory.resource.ResourceFactory;
@@ -74,9 +75,19 @@ import lombok.ToString;
 public final class CatalogResourceFormatter implements ResourceFormatter<CatalogMatrix, CatalogResourceGroup> {
 
     /**
-     * コンストラクタの説明
+     * 雛形 : コンストラクタの説明
      */
-    private static final String CONSTRUCTOR_DESCRIPTION = "A constructor that generates the catalog {@link %s} .";
+    private static final String FMT_CONSTRUCTOR_DESCRIPTION = "A constructor that generates the catalog {@link %s} .";
+
+    /**
+     * 雛形 : Getterメソッドの説明
+     */
+    private static final String FMT_GETTER_DESCRIPTION = "Returns the field {@link #%s}.";
+
+    /**
+     * 雛形 : Getterメソッドの名称
+     */
+    private static final String FMT_GETTER_NAME = "get%s";
 
     /**
      * デフォルトコンストラクタ
@@ -121,7 +132,7 @@ public final class CatalogResourceFormatter implements ResourceFormatter<Catalog
             });
 
             final Constructor constructor = factory.createConstructor(className,
-                    factory.createFunctionDescription(String.format(CONSTRUCTOR_DESCRIPTION, className)));
+                    factory.createFunctionDescription(String.format(FMT_CONSTRUCTOR_DESCRIPTION, className)));
 
             catalogDefinition.getCatalogFieldGroup().forEach(catalogField -> {
                 resource.add(this.createField(catalogField));
@@ -131,6 +142,11 @@ public final class CatalogResourceFormatter implements ResourceFormatter<Catalog
                 constructor.add(this.createConstructorProcess(catalogField));
 
                 // TODO: Getter メソッド
+
+                final Method getterMethod = factory.createMethod(String.format(FMT_GETTER_NAME),
+                        factory.createFunctionDescription(
+                                String.format(FMT_GETTER_DESCRIPTION, catalogField.getVariableName())));
+
             });
 
             resource.add(constructor);
