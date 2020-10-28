@@ -20,7 +20,6 @@ import org.thinkit.generator.catalog.engine.dto.CatalogDefinition;
 import org.thinkit.generator.catalog.engine.dto.CatalogEnumeration;
 import org.thinkit.generator.catalog.engine.dto.CatalogField;
 import org.thinkit.generator.catalog.engine.dto.CatalogMatrix;
-import org.thinkit.generator.catalog.engine.dto.CatalogMeta;
 import org.thinkit.generator.catalog.engine.dto.CatalogResource;
 import org.thinkit.generator.catalog.engine.dto.CatalogResourceGroup;
 import org.thinkit.generator.catalog.engine.factory.CatalogResourceFactory;
@@ -108,8 +107,6 @@ public final class CatalogResourceFormatter implements ResourceFormatter<Catalog
     @Override
     public CatalogResourceGroup format(@NonNull CatalogMatrix catalogMatrix) {
 
-        final CatalogMeta catalogMeta = catalogMatrix.getCatalogMeta();
-
         final CatalogCreator catalogCreator = catalogMatrix.getCatalogCreator();
         final String creator = catalogCreator.getCreator();
 
@@ -117,48 +114,57 @@ public final class CatalogResourceFormatter implements ResourceFormatter<Catalog
         final Copyright copyright = factory.createCopyright(creator);
 
         final CatalogResourceGroup catalogResourceGroup = CatalogResourceGroup.of();
-        final CatalogType catalogType = catalogMeta.getCatalogType();
+        final CatalogType catalogType = catalogMatrix.getCatalogMeta().getCatalogType();
 
         catalogMatrix.getCatalogDefinitionGroup().forEach(catalogDefinition -> {
-
-            final String packageName = catalogDefinition.getPackageName();
-            final String className = catalogDefinition.getClassName();
-
-            final Resource resource = factory.createResource(copyright, packageName, factory.createClassDescription(
-                    creator, catalogDefinition.getPackageName(), catalogDefinition.getVersion()), className);
-            resource.add(this.createInterface(catalogType, catalogDefinition));
-
-            catalogDefinition.getCatalogEnumerationGroup().forEach(catalogEnumeration -> {
-                resource.add(this.createEnumeration(catalogType, catalogEnumeration));
-            });
-
-            final Constructor constructor = factory.createConstructor(className,
-                    factory.createFunctionDescription(String.format(FMT_CONSTRUCTOR_DESCRIPTION, className)));
-
-            catalogDefinition.getCatalogFieldGroup().forEach(catalogField -> {
-                resource.add(this.createField(catalogField));
-
-                constructor.add(this.createDescriptionTag(catalogField));
-                constructor.add(this.createParameter(catalogField));
-                constructor.add(this.createConstructorProcess(catalogField));
-
-                final FunctionDescription methodDescription = factory.createFunctionDescription(
-                        String.format(FMT_GETTER_DESCRIPTION, catalogField.getVariableName()));
-                final Method getterMethod = factory.createMethod(String.format(FMT_GETTER_NAME), methodDescription);
-
-                getterMethod.add(factory.createDescriptionTag("", catalogField.getDescription()));
-                getterMethod.add(factory.createParameter(catalogField.getDataType(), catalogField.getVariableName()));
-                getterMethod.add(factory.createMethodProcess(catalogField.getVariableName()).toGetter());
-
-                resource.add(getterMethod);
-            });
-
-            resource.add(constructor);
-
-            catalogResourceGroup.add(CatalogResource.of(packageName, className, resource.createResource()));
+            catalogResourceGroup.add(this.createCatalogResource(catalogType, copyright, creator, catalogDefinition));
         });
 
         return catalogResourceGroup;
+    }
+
+    /**
+     * 引数として渡された情報を基にカタログクラスのリソースを生成し、生成されたリソースをデータクラス {@link CatalogResource}
+     * に格納し返却します。
+     *
+     * @param catalogType       カタログ種別
+     * @param copyright         著作権
+     * @param creator           作成者
+     * @param catalogDefinition カタログ定義
+     * @return 生成されたカタログクラスのリソースが格納された {@link CatalogResource} オブジェクト
+     *
+     * @exception NullPointerException 引数として {@code null} が渡された場合
+     */
+    private CatalogResource createCatalogResource(@NonNull CatalogType catalogType, @NonNull Copyright copyright,
+            @NonNull String creator, @NonNull CatalogDefinition catalogDefinition) {
+
+        final String packageName = catalogDefinition.getPackageName();
+        final String className = catalogDefinition.getClassName();
+
+        final ResourceFactory factory = CatalogResourceFactory.getInstance();
+        final Resource resource = factory.createResource(copyright, packageName, factory.createClassDescription(creator,
+                catalogDefinition.getPackageName(), catalogDefinition.getVersion()), className);
+        resource.add(this.createInterface(catalogType, catalogDefinition));
+
+        catalogDefinition.getCatalogEnumerationGroup().forEach(catalogEnumeration -> {
+            resource.add(this.createEnumeration(catalogType, catalogEnumeration));
+        });
+
+        final Constructor constructor = factory.createConstructor(className,
+                factory.createFunctionDescription(String.format(FMT_CONSTRUCTOR_DESCRIPTION, className)));
+
+        catalogDefinition.getCatalogFieldGroup().forEach(catalogField -> {
+            resource.add(this.createField(catalogField));
+            resource.add(this.createGetterMethod(catalogField));
+
+            constructor.add(this.createDescriptionTag(catalogField));
+            constructor.add(this.createParameter(catalogField));
+            constructor.add(this.createConstructorProcess(catalogField));
+        });
+
+        resource.add(constructor);
+
+        return CatalogResource.of(packageName, className, resource.createResource());
     }
 
     /**
@@ -272,5 +278,29 @@ public final class CatalogResourceFormatter implements ResourceFormatter<Catalog
      */
     private ConstructorProcess createConstructorProcess(@NonNull CatalogField catalogField) {
         return CatalogResourceFactory.getInstance().createConstructorProcess(catalogField.getVariableName());
+    }
+
+    /**
+     * {@link CatalogField} クラスに格納されたリソース情報を基にGetterメソッドの定義オブジェクトを生成し返却します。
+     *
+     * @param catalogField カタログフィールド
+     * @return Getterメソッドオブジェクト
+     *
+     * @exception NullPointerException 引数として {@code null} が渡された場合
+     */
+    private Method createGetterMethod(@NonNull CatalogField catalogField) {
+
+        final ResourceFactory factory = CatalogResourceFactory.getInstance();
+        final String variableName = catalogField.getVariableName();
+
+        final FunctionDescription methodDescription = factory
+                .createFunctionDescription(String.format(FMT_GETTER_DESCRIPTION, variableName));
+        final Method getterMethod = factory.createMethod(String.format(FMT_GETTER_NAME), methodDescription);
+
+        getterMethod.add(factory.createDescriptionTag("", catalogField.getDescription()));
+        getterMethod.add(factory.createParameter(catalogField.getDataType(), variableName));
+        getterMethod.add(factory.createMethodProcess(variableName).toGetter());
+
+        return getterMethod;
     }
 }
