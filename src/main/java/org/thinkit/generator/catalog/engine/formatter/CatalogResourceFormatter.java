@@ -33,6 +33,7 @@ import org.thinkit.generator.common.factory.resource.EnumDefinition;
 import org.thinkit.generator.common.factory.resource.Enumeration;
 import org.thinkit.generator.common.factory.resource.Field;
 import org.thinkit.generator.common.factory.resource.FieldDefinition;
+import org.thinkit.generator.common.factory.resource.FunctionDescription;
 import org.thinkit.generator.common.factory.resource.Generics;
 import org.thinkit.generator.common.factory.resource.Interface;
 import org.thinkit.generator.common.factory.resource.Method;
@@ -141,12 +142,15 @@ public final class CatalogResourceFormatter implements ResourceFormatter<Catalog
                 constructor.add(this.createParameter(catalogField));
                 constructor.add(this.createConstructorProcess(catalogField));
 
-                // TODO: Getter メソッド
+                final FunctionDescription methodDescription = factory.createFunctionDescription(
+                        String.format(FMT_GETTER_DESCRIPTION, catalogField.getVariableName()));
+                final Method getterMethod = factory.createMethod(String.format(FMT_GETTER_NAME), methodDescription);
 
-                final Method getterMethod = factory.createMethod(String.format(FMT_GETTER_NAME),
-                        factory.createFunctionDescription(
-                                String.format(FMT_GETTER_DESCRIPTION, catalogField.getVariableName())));
+                getterMethod.add(factory.createDescriptionTag("", catalogField.getDescription()));
+                getterMethod.add(factory.createParameter(catalogField.getDataType(), catalogField.getVariableName()));
+                getterMethod.add(factory.createMethodProcess(catalogField.getVariableName()).toGetter());
 
+                resource.add(getterMethod);
             });
 
             resource.add(constructor);
