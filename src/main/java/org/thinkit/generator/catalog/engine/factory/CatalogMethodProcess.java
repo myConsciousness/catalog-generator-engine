@@ -33,10 +33,25 @@ import lombok.ToString;
 @EqualsAndHashCode(callSuper = false)
 public final class CatalogMethodProcess extends MethodProcess {
 
+    /**
+     * 引数として渡された情報を基に {@link CatalogMethodProcess} クラスの新しいインスタンスを生成します。
+     *
+     * @param variableName 変数名
+     *
+     * @exception NullPointerException 引数として {@code null} が渡された場合
+     */
     private CatalogMethodProcess(@NonNull String variableName) {
         super(variableName);
     }
 
+    /**
+     * 引数として渡された情報を基に {@link CatalogMethodProcess} クラスの新しいインスタンスを生成し返却します。
+     *
+     * @param variableName 変数名
+     * @return {@link CatalogMethodProcess} クラスの新しいインスタンス
+     *
+     * @exception NullPointerException 引数として {@code null} が渡された場合
+     */
     protected static MethodProcess of(@NonNull String variableName) {
         return new CatalogMethodProcess(variableName);
     }
