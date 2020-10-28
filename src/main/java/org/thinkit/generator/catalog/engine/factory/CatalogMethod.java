@@ -61,6 +61,12 @@ public final class CatalogMethod extends Method {
 
     @Override
     public String createResource() {
-        return null;
+        return """
+                %s
+                %s(%s) {
+                    %s
+                }
+                """.formatted(super.getFunctionDescription().createResource(), super.getFunctionName(),
+                super.getParameter(), super.getProcess());
     }
 }

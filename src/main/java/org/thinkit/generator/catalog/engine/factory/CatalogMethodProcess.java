@@ -14,6 +14,8 @@
 
 package org.thinkit.generator.catalog.engine.factory;
 
+import org.thinkit.generator.catalog.engine.factory.strategy.CatalogGetterMethodProcess;
+import org.thinkit.generator.catalog.engine.factory.strategy.CatalogMethodProcessContext;
 import org.thinkit.generator.common.factory.resource.MethodProcess;
 
 import lombok.EqualsAndHashCode;
@@ -58,6 +60,13 @@ public final class CatalogMethodProcess extends MethodProcess {
 
     @Override
     public String createResource() {
-        return null;
+        return switch (super.getMethodType()) {
+            case DEFAULT -> throw new UnsupportedOperationException(
+                    "This operation is not supported for generating catalog classes.");
+            case SETTER -> throw new UnsupportedOperationException(
+                    "This operation is not supported for generating catalog classes.");
+            case GETTER -> new CatalogMethodProcessContext(new CatalogGetterMethodProcess())
+                    .toProcess(super.getVariableName());
+        };
     }
 }
