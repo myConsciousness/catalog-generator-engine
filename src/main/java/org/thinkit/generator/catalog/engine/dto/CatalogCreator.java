@@ -35,19 +35,13 @@ public final class CatalogCreator implements Serializable {
     /**
      * シリアルバージョンUID
      */
-    private static final long serialVersionUID = 3754816327953418053L;
+    private static final long serialVersionUID = 2199009491477939717L;
 
     /**
      * 作成者
      */
     @Getter
     private String creator;
-
-    /**
-     * 作成日付
-     */
-    @Getter
-    private String creationDate;
 
     /**
      * デフォルトコンストラクタ
@@ -58,14 +52,12 @@ public final class CatalogCreator implements Serializable {
     /**
      * 引数として渡された情報を基に {@link CatalogCreator} クラスの新しいインスタンスを生成します。
      *
-     * @param creator      作成者
-     * @param creationDate 作成日付
+     * @param creator 作成者
      *
      * @exception NullPointerException 引数として {@code null} が渡された場合
      */
-    private CatalogCreator(@NonNull String creator, @NonNull String creationDate) {
+    private CatalogCreator(@NonNull String creator) {
         this.creator = creator;
-        this.creationDate = creationDate;
     }
 
     /**
@@ -77,20 +69,18 @@ public final class CatalogCreator implements Serializable {
      */
     private CatalogCreator(@NonNull CatalogCreator catalogCreator) {
         this.creator = catalogCreator.getCreator();
-        this.creationDate = catalogCreator.getCreationDate();
     }
 
     /**
      * 引数として渡された情報を基に {@link CatalogCreator} クラスの新しいインスタンスを生成し返却します。
      *
-     * @param creator      作成者
-     * @param creationDate 作成日付
+     * @param creator 作成者
      * @return {@link CatalogCreator} クラスの新しいインスタンス
      *
      * @exception NullPointerException 引数として {@code null} が渡された場合
      */
-    public static CatalogCreator of(@NonNull String creator, @NonNull String creationDate) {
-        return new CatalogCreator(creator, creationDate);
+    public static CatalogCreator of(@NonNull String creator) {
+        return new CatalogCreator(creator);
     }
 
     /**
