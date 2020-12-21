@@ -16,6 +16,7 @@ package org.thinkit.generator.catalog.engine.dto;
 
 import java.io.Serializable;
 
+import org.thinkit.framework.envali.entity.ValidatableEntity;
 import org.thinkit.generator.catalog.engine.catalog.CatalogType;
 
 import lombok.EqualsAndHashCode;
@@ -32,7 +33,7 @@ import lombok.ToString;
  */
 @ToString
 @EqualsAndHashCode
-public final class CatalogMeta implements Serializable {
+public final class CatalogMeta implements ValidatableEntity, Serializable {
 
     /**
      * シリアルバージョンUID

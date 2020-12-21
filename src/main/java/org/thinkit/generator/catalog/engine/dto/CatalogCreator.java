@@ -16,6 +16,9 @@ package org.thinkit.generator.catalog.engine.dto;
 
 import java.io.Serializable;
 
+import org.thinkit.framework.envali.annotation.RequireNonEmpty;
+import org.thinkit.framework.envali.entity.ValidatableEntity;
+
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NonNull;
@@ -30,7 +33,7 @@ import lombok.ToString;
  */
 @ToString
 @EqualsAndHashCode
-public final class CatalogCreator implements Serializable {
+public final class CatalogCreator implements ValidatableEntity, Serializable {
 
     /**
      * シリアルバージョンUID
@@ -41,6 +44,7 @@ public final class CatalogCreator implements Serializable {
      * 作成者
      */
     @Getter
+    @RequireNonEmpty
     private String creator;
 
     /**

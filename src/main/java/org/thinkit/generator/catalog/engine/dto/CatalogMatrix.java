@@ -15,7 +15,11 @@
 package org.thinkit.generator.catalog.engine.dto;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
+import org.thinkit.framework.envali.annotation.NestedEntity;
+import org.thinkit.framework.envali.entity.ValidatableEntity;
 import org.thinkit.generator.common.dto.ResourceMatrix;
 
 import lombok.EqualsAndHashCode;
@@ -32,7 +36,7 @@ import lombok.ToString;
  */
 @ToString
 @EqualsAndHashCode
-public final class CatalogMatrix implements ResourceMatrix, Serializable {
+public final class CatalogMatrix implements ResourceMatrix, ValidatableEntity, Serializable {
 
     /**
      * シリアルバージョンUID
@@ -43,19 +47,22 @@ public final class CatalogMatrix implements ResourceMatrix, Serializable {
      * カタログメタ
      */
     @Getter
+    @NestedEntity
     private CatalogMeta catalogMeta;
 
     /**
      * カタログ作成者
      */
     @Getter
+    @NestedEntity
     private CatalogCreator catalogCreator;
 
     /**
      * カタログ定義グループ
      */
     @Getter
-    private CatalogDefinitionGroup catalogDefinitionGroup;
+    @NestedEntity
+    private List<CatalogDefinition> catalogDefinitions;
 
     /**
      * デフォルトコンストラクタ
@@ -66,17 +73,17 @@ public final class CatalogMatrix implements ResourceMatrix, Serializable {
     /**
      * 引数として渡された情報を基に {@link CatalogMatrix} クラスの新しいインスタンスを生成します。
      *
-     * @param catalogMeta            カタログメタ
-     * @param catalogCreator         カタログ作成者
-     * @param catalogDefinitionGroup カタログ定義グループ
+     * @param catalogMeta        カタログメタ
+     * @param catalogCreator     カタログ作成者
+     * @param catalogDefinitions カタログ定義グループ
      *
      * @exception NullPointerException 引数として {@code null} が渡された場合
      */
     private CatalogMatrix(@NonNull CatalogMeta catalogMeta, @NonNull CatalogCreator catalogCreator,
-            @NonNull CatalogDefinitionGroup catalogDefinitionGroup) {
+            @NonNull List<CatalogDefinition> catalogDefinitions) {
         this.catalogMeta = catalogMeta;
         this.catalogCreator = catalogCreator;
-        this.catalogDefinitionGroup = catalogDefinitionGroup;
+        this.catalogDefinitions = catalogDefinitions;
     }
 
     /**
@@ -89,22 +96,22 @@ public final class CatalogMatrix implements ResourceMatrix, Serializable {
     private CatalogMatrix(@NonNull CatalogMatrix catalogMatrix) {
         this.catalogMeta = CatalogMeta.of(catalogMatrix.getCatalogMeta());
         this.catalogCreator = CatalogCreator.of(catalogMatrix.getCatalogCreator());
-        this.catalogDefinitionGroup = CatalogDefinitionGroup.of(catalogMatrix.getCatalogDefinitionGroup());
+        this.catalogDefinitions = new ArrayList<>(catalogMatrix.getCatalogDefinitions());
     }
 
     /**
      * 引数として渡された情報を基に {@link CatalogMatrix} クラスの新しいインスタンスを生成し返却します。
      *
-     * @param catalogMeta            カタログメタ
-     * @param catalogCreator         カタログ作成者
-     * @param catalogDefinitionGroup カタログ定義グループ
+     * @param catalogMeta        カタログメタ
+     * @param catalogCreator     カタログ作成者
+     * @param catalogDefinitions カタログ定義グループ
      * @return {@link CatalogMatrix} クラスの新しいインスタンス
      *
      * @exception NullPointerException 引数として {@code null} が渡された場合
      */
     public static CatalogMatrix of(@NonNull CatalogMeta catalogMeta, @NonNull CatalogCreator catalogCreator,
-            @NonNull CatalogDefinitionGroup catalogDefinitionGroup) {
-        return new CatalogMatrix(catalogMeta, catalogCreator, catalogDefinitionGroup);
+            @NonNull List<CatalogDefinition> catalogDefinitions) {
+        return new CatalogMatrix(catalogMeta, catalogCreator, catalogDefinitions);
     }
 
     /**

@@ -15,6 +15,12 @@
 package org.thinkit.generator.catalog.engine.dto;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.thinkit.framework.envali.annotation.NestedEntity;
+import org.thinkit.framework.envali.annotation.RequireNonEmpty;
+import org.thinkit.framework.envali.entity.ValidatableEntity;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -30,7 +36,7 @@ import lombok.ToString;
  */
 @ToString
 @EqualsAndHashCode
-public final class CatalogDefinition implements Serializable {
+public final class CatalogDefinition implements ValidatableEntity, Serializable {
 
     /**
      * シリアルバージョンUID
@@ -41,18 +47,21 @@ public final class CatalogDefinition implements Serializable {
      * パッケージ名
      */
     @Getter
+    @RequireNonEmpty
     private String packageName;
 
     /**
      * バージョン
      */
     @Getter
+    @RequireNonEmpty
     private String version;
 
     /**
      * クラス名
      */
     @Getter
+    @RequireNonEmpty
     private String className;
 
     /**
@@ -65,13 +74,17 @@ public final class CatalogDefinition implements Serializable {
      * 列挙子グループ
      */
     @Getter
-    private CatalogEnumerationGroup catalogEnumerationGroup;
+    @RequireNonEmpty
+    @NestedEntity
+    private List<CatalogEnumeration> catalogEnumerations;
 
     /**
      * フィールドグループ
      */
     @Getter
-    private CatalogFieldGroup catalogFieldGroup;
+    @RequireNonEmpty
+    @NestedEntity
+    private List<CatalogField> catalogFields;
 
     /**
      * デフォルトコンストラクタ
@@ -82,23 +95,23 @@ public final class CatalogDefinition implements Serializable {
     /**
      * 引数として渡された情報を基に {@link CatalogDefinition} クラスの新しいインスタンスを生成します。
      *
-     * @param packageName             パッケージ名
-     * @param version                 バージョン
-     * @param className               クラス名
-     * @param tagDataType             タグのデータ型
-     * @param catalogEnumerationGroup カタログ列挙子グループ
-     * @param catalogFieldGroup       カタログフィールドグループ
+     * @param packageName         パッケージ名
+     * @param version             バージョン
+     * @param className           クラス名
+     * @param tagDataType         タグのデータ型
+     * @param catalogEnumerations カタログ列挙子グループ
+     * @param catalogFields       カタログフィールドグループ
      *
      * @exception NullPointerException 引数として {@code null} が渡された場合
      */
     private CatalogDefinition(@NonNull String packageName, @NonNull String version, @NonNull String className,
-            @NonNull String tagDataType, @NonNull CatalogEnumerationGroup catalogEnumerationGroup,
-            @NonNull CatalogFieldGroup catalogFieldGroup) {
+            @NonNull String tagDataType, @NonNull List<CatalogEnumeration> catalogEnumerations,
+            @NonNull List<CatalogField> catalogFields) {
         this.packageName = packageName;
         this.version = version;
         this.className = className;
-        this.catalogEnumerationGroup = catalogEnumerationGroup;
-        this.catalogFieldGroup = catalogFieldGroup;
+        this.catalogEnumerations = catalogEnumerations;
+        this.catalogFields = catalogFields;
     }
 
     /**
@@ -113,28 +126,27 @@ public final class CatalogDefinition implements Serializable {
         this.version = catalogDefinition.getVersion();
         this.className = catalogDefinition.getClassName();
         this.tagDataType = catalogDefinition.getTagDataType();
-        this.catalogEnumerationGroup = CatalogEnumerationGroup.of(catalogDefinition.getCatalogEnumerationGroup());
-        this.catalogFieldGroup = CatalogFieldGroup.of(catalogDefinition.getCatalogFieldGroup());
+        this.catalogEnumerations = new ArrayList<>(catalogDefinition.getCatalogEnumerations());
+        this.catalogFields = new ArrayList<>(catalogDefinition.getCatalogFields());
     }
 
     /**
      * 引数として渡された情報を基に {@link CatalogDefinition} クラスの新しいインスタンスを生成し返却します。
      *
-     * @param packageName             パッケージ名
-     * @param version                 バージョン
-     * @param className               クラス名
-     * @param tagDataType             タグのデータ型
-     * @param catalogEnumerationGroup カタログ列挙子グループ
-     * @param catalogFieldGroup       カタログフィールドグループ
+     * @param packageName         パッケージ名
+     * @param version             バージョン
+     * @param className           クラス名
+     * @param tagDataType         タグのデータ型
+     * @param catalogEnumerations カタログ列挙子グループ
+     * @param catalogFields       カタログフィールドグループ
      * @return {@link CatalogDefinition} クラスの新しいインスタンス
      *
      * @exception NullPointerException 引数として {@code null} が渡された場合
      */
     public static CatalogDefinition of(@NonNull String packageName, @NonNull String version, @NonNull String className,
-            @NonNull String tagDataType, @NonNull CatalogEnumerationGroup catalogEnumerationGroup,
-            @NonNull CatalogFieldGroup catalogFieldGroup) {
-        return new CatalogDefinition(packageName, version, className, tagDataType, catalogEnumerationGroup,
-                catalogFieldGroup);
+            @NonNull String tagDataType, @NonNull List<CatalogEnumeration> catalogEnumerations,
+            @NonNull List<CatalogField> catalogFields) {
+        return new CatalogDefinition(packageName, version, className, tagDataType, catalogEnumerations, catalogFields);
     }
 
     /**

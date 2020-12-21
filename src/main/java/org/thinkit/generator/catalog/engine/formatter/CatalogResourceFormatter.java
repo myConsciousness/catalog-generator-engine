@@ -58,7 +58,7 @@ import lombok.ToString;
  * 操作例:
  * <code>
  * CatalogResourceFormatter.newInstance().format(catalogMatrix).foreach(catalogResource -> {
- *      // do something like
+ *      * // do something like
  *      catalogResource.getPackageName();
  *      catalogResource.getClassName();
  *      catalogResource.getResource();
@@ -116,7 +116,7 @@ public final class CatalogResourceFormatter implements ResourceFormatter<Catalog
         final CatalogResourceGroup catalogResourceGroup = CatalogResourceGroup.of();
         final CatalogType catalogType = catalogMatrix.getCatalogMeta().getCatalogType();
 
-        catalogMatrix.getCatalogDefinitionGroup().forEach(catalogDefinition -> {
+        catalogMatrix.getCatalogDefinitions().forEach(catalogDefinition -> {
             catalogResourceGroup.add(this.createCatalogResource(catalogType, copyright, creator, catalogDefinition));
         });
 
@@ -146,14 +146,14 @@ public final class CatalogResourceFormatter implements ResourceFormatter<Catalog
                 catalogDefinition.getPackageName(), catalogDefinition.getVersion()), className);
         resource.add(this.createInterface(catalogType, catalogDefinition));
 
-        catalogDefinition.getCatalogEnumerationGroup().forEach(catalogEnumeration -> {
+        catalogDefinition.getCatalogEnumerations().forEach(catalogEnumeration -> {
             resource.add(this.createEnumeration(catalogType, catalogEnumeration));
         });
 
         final Constructor constructor = factory.createConstructor(className,
                 factory.createFunctionDescription(String.format(FMT_CONSTRUCTOR_DESCRIPTION, className)));
 
-        catalogDefinition.getCatalogFieldGroup().forEach(catalogField -> {
+        catalogDefinition.getCatalogFields().forEach(catalogField -> {
             resource.add(this.createField(catalogField));
             resource.add(this.createGetterMethod(catalogField));
 

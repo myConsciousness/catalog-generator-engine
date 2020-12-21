@@ -16,6 +16,9 @@ package org.thinkit.generator.catalog.engine.dto;
 
 import java.io.Serializable;
 
+import org.thinkit.framework.envali.annotation.RequireNonEmpty;
+import org.thinkit.framework.envali.entity.ValidatableEntity;
+
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NonNull;
@@ -30,7 +33,7 @@ import lombok.ToString;
  */
 @ToString
 @EqualsAndHashCode
-public final class CatalogField implements Serializable {
+public final class CatalogField implements ValidatableEntity, Serializable {
 
     /**
      * シリアルバージョンUID
@@ -41,18 +44,21 @@ public final class CatalogField implements Serializable {
      * 変数名
      */
     @Getter
+    @RequireNonEmpty
     private String variableName;
 
     /**
      * データ型
      */
     @Getter
+    @RequireNonEmpty
     private String dataType;
 
     /**
      * 説明
      */
     @Getter
+    @RequireNonEmpty
     private String description;
 
     /**
