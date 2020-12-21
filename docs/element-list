@@ -1,0 +1,5 @@
+org.thinkit.generator.catalog.engine.catalog
+org.thinkit.generator.catalog.engine.dto
+org.thinkit.generator.catalog.engine.factory
+org.thinkit.generator.catalog.engine.factory.strategy
+org.thinkit.generator.catalog.engine.formatter
