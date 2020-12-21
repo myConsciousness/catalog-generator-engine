@@ -1,5 +1,12 @@
+![Latest Version](https://img.shields.io/badge/Latest_Version-v1.0.0-27ae60.svg?style=for-the-badge)
+![License](https://img.shields.io/badge/License-Apache_2.0-e74c3c.svg?style=for-the-badge)</br>
+![Java CI with Gradle](https://github.com/myConsciousness/catalog-generator-engine/workflows/Java%20CI%20with%20Gradle/badge.svg?branch=main)
+
+# Catalog Generator Engine
+
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
 **Table of Contents**
 
 - [Catalog Generator Engine](#catalog-generator-engine)
@@ -11,12 +18,6 @@
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-![Latest Version](https://img.shields.io/badge/Latest_Version-v1.0.0-27ae60.svg?style=for-the-badge)
-![License](https://img.shields.io/badge/License-Apache_2.0-e74c3c.svg?style=for-the-badge)</br>
-![Java CI with Gradle](https://github.com/myConsciousness/catalog-generator-engine/workflows/Java%20CI%20with%20Gradle/badge.svg?branch=main)
-
-# Catalog Generator Engine
-
 ## What is it?
 
 Catalog Generator Engine main repository.
@@ -25,7 +26,7 @@ Catalog Generator Engine main repository.
 
 ### 1. Add the dependencies
 
-> **_Note:_**<br>
+> **_Note:_**</br>
 > Replace version you want to use. Check the latest [Packages](https://github.com/myConsciousness/catalog-generator-engine/packages).</br>
 > Please contact me for a token to download the package.
 
