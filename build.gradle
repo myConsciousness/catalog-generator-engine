@@ -73,7 +73,6 @@ dependencies {
     implementation 'org.thinkit.common:dev-utils:v1.0.2'
     implementation 'org.thinkit.generator.common:generator-commons:v1.0.16'
     implementation 'org.thinkit.api.catalog:catalog-api:v1.0.2'
-    implementation 'org.thinkit.common:precondition-validator:v1.1.0'
     implementation 'org.thinkit.framework.envali:entity-validator:v1.0.2'
 }
 
