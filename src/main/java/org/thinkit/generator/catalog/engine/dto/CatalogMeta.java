@@ -16,6 +16,7 @@ package org.thinkit.generator.catalog.engine.dto;
 
 import java.io.Serializable;
 
+import org.thinkit.framework.envali.annotation.RequireNonEmpty;
 import org.thinkit.framework.envali.entity.ValidatableEntity;
 import org.thinkit.generator.catalog.engine.catalog.CatalogType;
 
@@ -41,6 +42,13 @@ public final class CatalogMeta implements ValidatableEntity, Serializable {
     private static final long serialVersionUID = 4542966670384352515L;
 
     /**
+     * バージョン
+     */
+    @Getter
+    @RequireNonEmpty
+    private String version;
+
+    /**
      * カタログ種別
      */
     @Getter
@@ -55,11 +63,13 @@ public final class CatalogMeta implements ValidatableEntity, Serializable {
     /**
      * 引数として渡された情報を基に {@link CatalogMeta} クラスの新しいインスタンスを生成します。
      *
+     * @param version     バージョン
      * @param catalogType カタログ種別
      *
      * @exception NullPointerException 引数として {@code null} が渡された場合
      */
-    private CatalogMeta(@NonNull CatalogType catalogType) {
+    private CatalogMeta(@NonNull String version, @NonNull CatalogType catalogType) {
+        this.version = version;
         this.catalogType = catalogType;
     }
 
@@ -71,19 +81,21 @@ public final class CatalogMeta implements ValidatableEntity, Serializable {
      * @exception NullPointerException 引数として {@code null} が渡された場合
      */
     private CatalogMeta(@NonNull CatalogMeta catalogMeta) {
+        this.version = catalogMeta.getVersion();
         this.catalogType = catalogMeta.getCatalogType();
     }
 
     /**
      * 引数として渡された情報を基に {@link CatalogMeta} クラスの新しいインスタンスを生成し返却します。
      *
+     * @param version     バージョン
      * @param catalogType カタログ種別
      * @return {@link CatalogMeta} クラスの新しいインスタンス
      *
      * @exception NullPointerException 引数として {@code null} が渡された場合
      */
-    public static CatalogMeta of(@NonNull CatalogType catalogType) {
-        return new CatalogMeta(catalogType);
+    public static CatalogMeta of(@NonNull String version, @NonNull CatalogType catalogType) {
+        return new CatalogMeta(version, catalogType);
     }
 
     /**

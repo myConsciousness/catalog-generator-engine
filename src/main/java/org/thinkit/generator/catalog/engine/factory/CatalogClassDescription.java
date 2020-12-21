@@ -34,11 +34,6 @@ import lombok.ToString;
 public final class CatalogClassDescription extends ClassDescription {
 
     /**
-     * 初期バージョン
-     */
-    private static final String INITIAL_VERSION = "1.0";
-
-    /**
      * 引数として渡された情報を基に {@link CatalogClassDescription} クラスの新しいインスタンスを生成し返却します。
      *
      * @param creator 作成者
@@ -75,8 +70,7 @@ public final class CatalogClassDescription extends ClassDescription {
                  *
                  * @author %s
                  * @since %s
-                 * @version %s
                  */
-                """.formatted(super.getCreator(), INITIAL_VERSION, super.getVersion());
+                """.formatted(super.getCreator(), super.getVersion());
     }
 }

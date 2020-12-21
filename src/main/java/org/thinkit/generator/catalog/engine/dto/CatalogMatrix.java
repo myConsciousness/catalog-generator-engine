@@ -44,13 +44,6 @@ public final class CatalogMatrix implements ResourceMatrix, ValidatableEntity, S
     private static final long serialVersionUID = -2514600086374154281L;
 
     /**
-     * カタログメタ
-     */
-    @Getter
-    @NestedEntity
-    private CatalogMeta catalogMeta;
-
-    /**
      * カタログ作成者
      */
     @Getter
@@ -73,15 +66,12 @@ public final class CatalogMatrix implements ResourceMatrix, ValidatableEntity, S
     /**
      * 引数として渡された情報を基に {@link CatalogMatrix} クラスの新しいインスタンスを生成します。
      *
-     * @param catalogMeta        カタログメタ
      * @param catalogCreator     カタログ作成者
      * @param catalogDefinitions カタログ定義グループ
      *
      * @exception NullPointerException 引数として {@code null} が渡された場合
      */
-    private CatalogMatrix(@NonNull CatalogMeta catalogMeta, @NonNull CatalogCreator catalogCreator,
-            @NonNull List<CatalogDefinition> catalogDefinitions) {
-        this.catalogMeta = catalogMeta;
+    private CatalogMatrix(@NonNull CatalogCreator catalogCreator, @NonNull List<CatalogDefinition> catalogDefinitions) {
         this.catalogCreator = catalogCreator;
         this.catalogDefinitions = catalogDefinitions;
     }
@@ -94,7 +84,6 @@ public final class CatalogMatrix implements ResourceMatrix, ValidatableEntity, S
      * @exception NullPointerException 引数として {@code null} が渡された場合
      */
     private CatalogMatrix(@NonNull CatalogMatrix catalogMatrix) {
-        this.catalogMeta = CatalogMeta.of(catalogMatrix.getCatalogMeta());
         this.catalogCreator = CatalogCreator.of(catalogMatrix.getCatalogCreator());
         this.catalogDefinitions = new ArrayList<>(catalogMatrix.getCatalogDefinitions());
     }
@@ -102,16 +91,15 @@ public final class CatalogMatrix implements ResourceMatrix, ValidatableEntity, S
     /**
      * 引数として渡された情報を基に {@link CatalogMatrix} クラスの新しいインスタンスを生成し返却します。
      *
-     * @param catalogMeta        カタログメタ
      * @param catalogCreator     カタログ作成者
      * @param catalogDefinitions カタログ定義グループ
      * @return {@link CatalogMatrix} クラスの新しいインスタンス
      *
      * @exception NullPointerException 引数として {@code null} が渡された場合
      */
-    public static CatalogMatrix of(@NonNull CatalogMeta catalogMeta, @NonNull CatalogCreator catalogCreator,
+    public static CatalogMatrix of(@NonNull CatalogCreator catalogCreator,
             @NonNull List<CatalogDefinition> catalogDefinitions) {
-        return new CatalogMatrix(catalogMeta, catalogCreator, catalogDefinitions);
+        return new CatalogMatrix(catalogCreator, catalogDefinitions);
     }
 
     /**

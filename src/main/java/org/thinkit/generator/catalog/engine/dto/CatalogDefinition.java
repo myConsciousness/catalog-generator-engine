@@ -44,18 +44,18 @@ public final class CatalogDefinition implements ValidatableEntity, Serializable 
     private static final long serialVersionUID = 1501015289762242952L;
 
     /**
+     * カタログメタ
+     */
+    @Getter
+    @NestedEntity
+    private CatalogMeta catalogMeta;
+
+    /**
      * パッケージ名
      */
     @Getter
     @RequireNonEmpty
     private String packageName;
-
-    /**
-     * バージョン
-     */
-    @Getter
-    @RequireNonEmpty
-    private String version;
 
     /**
      * クラス名
@@ -95,8 +95,8 @@ public final class CatalogDefinition implements ValidatableEntity, Serializable 
     /**
      * 引数として渡された情報を基に {@link CatalogDefinition} クラスの新しいインスタンスを生成します。
      *
+     * @param catalogMeta         カタログメタ
      * @param packageName         パッケージ名
-     * @param version             バージョン
      * @param className           クラス名
      * @param tagDataType         タグのデータ型
      * @param catalogEnumerations カタログ列挙子グループ
@@ -104,11 +104,11 @@ public final class CatalogDefinition implements ValidatableEntity, Serializable 
      *
      * @exception NullPointerException 引数として {@code null} が渡された場合
      */
-    private CatalogDefinition(@NonNull String packageName, @NonNull String version, @NonNull String className,
+    private CatalogDefinition(@NonNull CatalogMeta catalogMeta, @NonNull String packageName, @NonNull String className,
             @NonNull String tagDataType, @NonNull List<CatalogEnumeration> catalogEnumerations,
             @NonNull List<CatalogField> catalogFields) {
+        this.catalogMeta = catalogMeta;
         this.packageName = packageName;
-        this.version = version;
         this.className = className;
         this.catalogEnumerations = catalogEnumerations;
         this.catalogFields = catalogFields;
@@ -122,8 +122,8 @@ public final class CatalogDefinition implements ValidatableEntity, Serializable 
      * @exception NullPointerException 引数として {@code null} が渡された場合
      */
     private CatalogDefinition(@NonNull CatalogDefinition catalogDefinition) {
+        this.catalogMeta = CatalogMeta.of(catalogDefinition.getCatalogMeta());
         this.packageName = catalogDefinition.getPackageName();
-        this.version = catalogDefinition.getVersion();
         this.className = catalogDefinition.getClassName();
         this.tagDataType = catalogDefinition.getTagDataType();
         this.catalogEnumerations = new ArrayList<>(catalogDefinition.getCatalogEnumerations());
@@ -133,8 +133,8 @@ public final class CatalogDefinition implements ValidatableEntity, Serializable 
     /**
      * 引数として渡された情報を基に {@link CatalogDefinition} クラスの新しいインスタンスを生成し返却します。
      *
+     * @param catalogMeta         カタログメタ
      * @param packageName         パッケージ名
-     * @param version             バージョン
      * @param className           クラス名
      * @param tagDataType         タグのデータ型
      * @param catalogEnumerations カタログ列挙子グループ
@@ -143,10 +143,11 @@ public final class CatalogDefinition implements ValidatableEntity, Serializable 
      *
      * @exception NullPointerException 引数として {@code null} が渡された場合
      */
-    public static CatalogDefinition of(@NonNull String packageName, @NonNull String version, @NonNull String className,
-            @NonNull String tagDataType, @NonNull List<CatalogEnumeration> catalogEnumerations,
-            @NonNull List<CatalogField> catalogFields) {
-        return new CatalogDefinition(packageName, version, className, tagDataType, catalogEnumerations, catalogFields);
+    public static CatalogDefinition of(@NonNull CatalogMeta catalogMeta, @NonNull String packageName,
+            @NonNull String className, @NonNull String tagDataType,
+            @NonNull List<CatalogEnumeration> catalogEnumerations, @NonNull List<CatalogField> catalogFields) {
+        return new CatalogDefinition(catalogMeta, packageName, className, tagDataType, catalogEnumerations,
+                catalogFields);
     }
 
     /**

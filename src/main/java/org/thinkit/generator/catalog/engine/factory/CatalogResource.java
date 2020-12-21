@@ -14,6 +14,7 @@
 
 package org.thinkit.generator.catalog.engine.factory;
 
+import org.thinkit.common.catalog.Indentation;
 import org.thinkit.generator.common.factory.resource.ClassDescription;
 import org.thinkit.generator.common.factory.resource.Copyright;
 import org.thinkit.generator.common.factory.resource.Resource;
@@ -38,6 +39,21 @@ public final class CatalogResource extends Resource {
 
     @Override
     public String createResource() {
-        return null;
+
+        final StringBuilder resource = new StringBuilder();
+
+        resource.append(super.getCopyright().createResource());
+        resource.append(Indentation.RETURN.getTag());
+
+        resource.append(super.getPackageName());
+        resource.append(Indentation.RETURN.getTag());
+
+        resource.append(super.getClassDescription().createResource());
+        resource.append(Indentation.RETURN.getTag());
+
+        resource.append(String.format("public enum %s implements %s {", super.getResourceName(),
+                super.getInterfaces().get(0).createResource()));
+
+        return resource.toString();
     }
 }

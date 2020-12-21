@@ -14,6 +14,8 @@
 
 package org.thinkit.generator.catalog.engine.formatter;
 
+import org.apache.commons.lang3.StringUtils;
+import org.thinkit.framework.envali.Envali;
 import org.thinkit.generator.catalog.engine.catalog.CatalogType;
 import org.thinkit.generator.catalog.engine.dto.CatalogCreator;
 import org.thinkit.generator.catalog.engine.dto.CatalogDefinition;
@@ -106,6 +108,7 @@ public final class CatalogResourceFormatter implements ResourceFormatter<Catalog
 
     @Override
     public CatalogResourceGroup format(@NonNull CatalogMatrix catalogMatrix) {
+        Envali.validate(catalogMatrix);
 
         final CatalogCreator catalogCreator = catalogMatrix.getCatalogCreator();
         final String creator = catalogCreator.getCreator();
@@ -113,14 +116,14 @@ public final class CatalogResourceFormatter implements ResourceFormatter<Catalog
         final ResourceFactory factory = CatalogResourceFactory.getInstance();
         final Copyright copyright = factory.createCopyright(creator);
 
-        final CatalogResourceGroup catalogResourceGroup = CatalogResourceGroup.of();
-        final CatalogType catalogType = catalogMatrix.getCatalogMeta().getCatalogType();
+        final CatalogResourceGroup resources = CatalogResourceGroup.of();
 
         catalogMatrix.getCatalogDefinitions().forEach(catalogDefinition -> {
-            catalogResourceGroup.add(this.createCatalogResource(catalogType, copyright, creator, catalogDefinition));
+            resources.add(this.createCatalogResource(catalogDefinition.getCatalogMeta().getCatalogType(), copyright,
+                    creator, catalogDefinition));
         });
 
-        return catalogResourceGroup;
+        return resources;
     }
 
     /**
@@ -142,8 +145,8 @@ public final class CatalogResourceFormatter implements ResourceFormatter<Catalog
         final String className = catalogDefinition.getClassName();
 
         final ResourceFactory factory = CatalogResourceFactory.getInstance();
-        final Resource resource = factory.createResource(copyright, packageName, factory.createClassDescription(creator,
-                catalogDefinition.getPackageName(), catalogDefinition.getVersion()), className);
+        final Resource resource = factory.createResource(copyright, packageName,
+                factory.createClassDescription(creator, catalogDefinition.getCatalogMeta().getVersion()), className);
         resource.add(this.createInterface(catalogType, catalogDefinition));
 
         catalogDefinition.getCatalogEnumerations().forEach(catalogEnumeration -> {
@@ -295,12 +298,26 @@ public final class CatalogResourceFormatter implements ResourceFormatter<Catalog
 
         final FunctionDescription methodDescription = factory
                 .createFunctionDescription(String.format(FMT_GETTER_DESCRIPTION, variableName));
-        final Method getterMethod = factory.createMethod(String.format(FMT_GETTER_NAME), methodDescription);
+        final Method getterMethod = factory
+                .createMethod(String.format(FMT_GETTER_NAME, this.toInitialUpperCase(variableName)), methodDescription);
 
-        getterMethod.add(factory.createDescriptionTag("", catalogField.getDescription()));
+        getterMethod.add(factory.createDescriptionTag("", catalogField.getDescription(), Annotation.RETURN));
         getterMethod.add(factory.createParameter(catalogField.getDataType(), variableName));
         getterMethod.add(factory.createMethodProcess(variableName).toGetter());
 
         return getterMethod;
+    }
+
+    private String toInitialUpperCase(String literal) {
+
+        if (StringUtils.isEmpty(literal)) {
+            return "";
+        }
+
+        if (literal.length() == 1) {
+            return literal.toUpperCase();
+        }
+
+        return literal.substring(0, 1).toUpperCase() + literal.substring(1);
     }
 }
