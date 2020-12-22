@@ -62,7 +62,6 @@ public final class CatalogConstructorProcess extends ConstructorProcess {
         final String variableName = super.getVariableName();
 
         return """
-                this.%s = %s;
-                """.formatted(variableName, variableName);
+                this.%s = %s;""".formatted(variableName, variableName);
     }
 }

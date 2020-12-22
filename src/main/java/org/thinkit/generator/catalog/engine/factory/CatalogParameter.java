@@ -61,7 +61,6 @@ public final class CatalogParameter extends Parameter {
     @Override
     public String createResource() {
         return """
-                %s %s
-                """.formatted(super.getDataType(), super.getVariableName());
+                %s %s""".formatted(super.getDataType(), super.getVariableName());
     }
 }

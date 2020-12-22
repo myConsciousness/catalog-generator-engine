@@ -14,6 +14,7 @@
 
 package org.thinkit.generator.catalog.engine.factory;
 
+import org.thinkit.generator.common.catalog.Modifier;
 import org.thinkit.generator.common.factory.resource.FunctionDescription;
 import org.thinkit.generator.common.factory.resource.Method;
 
@@ -37,36 +38,56 @@ public final class CatalogMethod extends Method {
     /**
      * 引数として渡された情報を基に {@link CatalogMethod} クラスの新しいインスタンスを生成します。
      *
+     * @param modifier          アクセス修飾子
+     * @param returnType        返却型
      * @param methodName        メソッド名
      * @param methodDescription メソッドの説明
      *
      * @exception NullPointerException 引数として {@code null} が渡された場合
      */
-    private CatalogMethod(@NonNull String methodName, @NonNull FunctionDescription methodDescription) {
-        super(methodName, methodDescription);
+    private CatalogMethod(@NonNull Modifier modifier, @NonNull String returnType, @NonNull String methodName,
+            @NonNull FunctionDescription methodDescription) {
+        super(modifier, returnType, methodName, methodDescription);
     }
 
     /**
      * 引数として渡された情報を基に {@link CatalogMethod} クラスの新しいインスタンスを生成し返却します。
      *
+     * @param modifier          アクセス修飾子
+     * @param returnType        返却型
      * @param methodName        メソッド名
      * @param methodDescription メソッドの説明
      * @return {@link CatalogMethod} クラスの新しいインスタンス
      *
      * @exception NullPointerException 引数として {@code null} が渡された場合
      */
-    protected static Method of(@NonNull String methodName, @NonNull FunctionDescription methodDescription) {
-        return new CatalogMethod(methodName, methodDescription);
+    protected static Method of(@NonNull Modifier modifier, @NonNull String returnType, @NonNull String methodName,
+            @NonNull FunctionDescription methodDescription) {
+        return new CatalogMethod(modifier, returnType, methodName, methodDescription);
     }
 
     @Override
     public String createResource() {
         return """
                 %s
-                %s(%s) {
+                @Override
+                %s %s %s(%s) {
                     %s
-                }
-                """.formatted(super.getFunctionDescription().createResource(), super.getFunctionName(),
-                super.getParameter(), super.getProcess());
+                }""".formatted(super.getFunctionDescription().createResource(), this.getAccessLevel(),
+                super.getReturnType(), super.getFunctionName(), super.getParameter(), super.getProcess());
+    }
+
+    /**
+     * アクセス修飾子に応じてアクセスレベルを表現する文字列を返却します。
+     *
+     * @return アクセス修飾子を表現する文字列
+     */
+    private String getAccessLevel() {
+        return switch (super.getModifier()) {
+            case PUBLIC -> "public";
+            case PROTECTED -> "protected";
+            case PRIVATE -> "private";
+            case PACKAGE, NONE -> "";
+        };
     }
 }

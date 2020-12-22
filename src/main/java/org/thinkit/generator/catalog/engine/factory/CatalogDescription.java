@@ -61,7 +61,6 @@ public final class CatalogDescription extends Description {
         return """
                 /**
                  * %s
-                 */
-                """.formatted(super.getDescription());
+                 */""".formatted(super.getDescription());
     }
 }

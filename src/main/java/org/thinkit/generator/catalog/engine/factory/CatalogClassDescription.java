@@ -70,7 +70,6 @@ public final class CatalogClassDescription extends ClassDescription {
                  *
                  * @author %s
                  * @since %s
-                 */
-                """.formatted(super.getCreator(), super.getVersion());
+                 */""".formatted(super.getCreator(), super.getVersion());
     }
 }

@@ -55,7 +55,6 @@ public final class CatalogGenerics extends Generics {
     @Override
     public String createResource() {
         return """
-                <%s>
-                """.formatted(String.join(GENERICS_DELIMITER, super.getGenerics()));
+                <%s>""".formatted(String.join(GENERICS_DELIMITER, super.getGenerics()));
     }
 }

@@ -15,6 +15,7 @@
 package org.thinkit.generator.catalog.engine.factory;
 
 import org.thinkit.generator.common.catalog.Annotation;
+import org.thinkit.generator.common.catalog.Modifier;
 import org.thinkit.generator.common.factory.resource.ClassDescription;
 import org.thinkit.generator.common.factory.resource.Constructor;
 import org.thinkit.generator.common.factory.resource.ConstructorProcess;
@@ -203,8 +204,9 @@ public final class CatalogResourceFactory extends ResourceFactory {
     }
 
     @Override
-    public Method createMethod(@NonNull String methodName, @NonNull FunctionDescription methodDescription) {
-        return CatalogMethod.of(methodName, methodDescription);
+    public Method createMethod(@NonNull Modifier modifier, @NonNull String returnType, @NonNull String methodName,
+            @NonNull FunctionDescription methodDescription) {
+        return CatalogMethod.of(modifier, returnType, methodName, methodDescription);
     }
 
     @Override

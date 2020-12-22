@@ -26,6 +26,7 @@ import org.thinkit.generator.catalog.engine.dto.CatalogResource;
 import org.thinkit.generator.catalog.engine.dto.CatalogResourceGroup;
 import org.thinkit.generator.catalog.engine.factory.CatalogResourceFactory;
 import org.thinkit.generator.common.catalog.Annotation;
+import org.thinkit.generator.common.catalog.Modifier;
 import org.thinkit.generator.common.factory.resource.Constructor;
 import org.thinkit.generator.common.factory.resource.ConstructorProcess;
 import org.thinkit.generator.common.factory.resource.Copyright;
@@ -298,8 +299,8 @@ public final class CatalogResourceFormatter implements ResourceFormatter<Catalog
 
         final FunctionDescription methodDescription = factory
                 .createFunctionDescription(String.format(FMT_GETTER_DESCRIPTION, variableName));
-        final Method getterMethod = factory
-                .createMethod(String.format(FMT_GETTER_NAME, this.toInitialUpperCase(variableName)), methodDescription);
+        final Method getterMethod = factory.createMethod(Modifier.PUBLIC, "int",
+                String.format(FMT_GETTER_NAME, this.toInitialUpperCase(variableName)), methodDescription);
 
         getterMethod.add(factory.createDescriptionTag("", catalogField.getDescription(), Annotation.RETURN));
         getterMethod.add(factory.createParameter(catalogField.getDataType(), variableName));

@@ -14,6 +14,7 @@
 
 package org.thinkit.generator.catalog.engine.factory;
 
+import org.thinkit.common.catalog.Indentation;
 import org.thinkit.generator.common.factory.resource.FunctionDescription;
 
 import lombok.EqualsAndHashCode;
@@ -60,15 +61,20 @@ public final class CatalogMethodDescription extends FunctionDescription {
     public String createResource() {
 
         final StringBuilder methodDescription = new StringBuilder();
-        methodDescription.append("/**");
-        methodDescription.append(" * ").append(super.getDescription());
+        final String returnCode = Indentation.RETURN.getTag();
+
+        methodDescription.append("/**").append(returnCode);
+        methodDescription.append(" * ").append(super.getDescription()).append(returnCode);
 
         if (super.hasAnnotation()) {
-            methodDescription.append(" *");
+            methodDescription.append(" *").append(returnCode);
 
             super.getDescriptionTags().forEach(descriptionTag -> {
                 methodDescription.append(" * ").append(descriptionTag.createResource());
+                methodDescription.append(returnCode);
             });
+
+            methodDescription.setLength(methodDescription.length() - returnCode.length());
         }
 
         methodDescription.append(" */");

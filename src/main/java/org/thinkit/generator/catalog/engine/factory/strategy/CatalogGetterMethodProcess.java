@@ -33,6 +33,6 @@ public final class CatalogGetterMethodProcess extends MethodProcessStrategy {
 
     @Override
     public String toProcess(@NonNull String variableName) {
-        return String.format("return %s;", variableName);
+        return String.format("return this.%s;", variableName);
     }
 }
