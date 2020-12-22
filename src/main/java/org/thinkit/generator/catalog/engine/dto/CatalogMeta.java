@@ -15,6 +15,8 @@
 package org.thinkit.generator.catalog.engine.dto;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.thinkit.framework.envali.annotation.RequireNonEmpty;
 import org.thinkit.framework.envali.entity.ValidatableEntity;
@@ -55,6 +57,12 @@ public final class CatalogMeta implements ValidatableEntity, Serializable {
     private CatalogType catalogType;
 
     /**
+     * 依存パッケージリスト
+     */
+    @Getter
+    private List<String> dependentPackages = new ArrayList<>(0);
+
+    /**
      * デフォルトコンストラクタ
      */
     private CatalogMeta() {
@@ -63,14 +71,17 @@ public final class CatalogMeta implements ValidatableEntity, Serializable {
     /**
      * 引数として渡された情報を基に {@link CatalogMeta} クラスの新しいインスタンスを生成します。
      *
-     * @param version     バージョン
-     * @param catalogType カタログ種別
+     * @param version           バージョン
+     * @param catalogType       カタログ種別
+     * @param dependentPackages 依存パッケージリスト
      *
      * @exception NullPointerException 引数として {@code null} が渡された場合
      */
-    private CatalogMeta(@NonNull String version, @NonNull CatalogType catalogType) {
+    private CatalogMeta(@NonNull String version, @NonNull CatalogType catalogType,
+            @NonNull List<String> dependentPackages) {
         this.version = version;
         this.catalogType = catalogType;
+        this.dependentPackages = dependentPackages;
     }
 
     /**
@@ -83,19 +94,22 @@ public final class CatalogMeta implements ValidatableEntity, Serializable {
     private CatalogMeta(@NonNull CatalogMeta catalogMeta) {
         this.version = catalogMeta.getVersion();
         this.catalogType = catalogMeta.getCatalogType();
+        this.dependentPackages = new ArrayList<>(catalogMeta.getDependentPackages());
     }
 
     /**
      * 引数として渡された情報を基に {@link CatalogMeta} クラスの新しいインスタンスを生成し返却します。
      *
-     * @param version     バージョン
-     * @param catalogType カタログ種別
+     * @param version           バージョン
+     * @param catalogType       カタログ種別
+     * @param dependentPackages 依存パッケージリスト
      * @return {@link CatalogMeta} クラスの新しいインスタンス
      *
      * @exception NullPointerException 引数として {@code null} が渡された場合
      */
-    public static CatalogMeta of(@NonNull String version, @NonNull CatalogType catalogType) {
-        return new CatalogMeta(version, catalogType);
+    public static CatalogMeta of(@NonNull String version, @NonNull CatalogType catalogType,
+            @NonNull List<String> dependentPackages) {
+        return new CatalogMeta(version, catalogType, dependentPackages);
     }
 
     /**
