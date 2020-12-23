@@ -110,6 +110,7 @@ public final class CatalogDefinition implements ValidatableEntity, Serializable 
         this.catalogMeta = catalogMeta;
         this.packageName = packageName;
         this.className = className;
+        this.tagDataType = tagDataType;
         this.catalogEnumerations = catalogEnumerations;
         this.catalogFields = catalogFields;
     }

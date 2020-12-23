@@ -112,11 +112,23 @@ public final class CatalogPackageLoader implements Content<CatalogPackage> {
         /**
          * カタログ種別コード
          */
-        CATALOG_TYPE_CODE;
+        CATALOG_TYPE_CODE(Key.catalogTypeCode);
+
+        /**
+         * 検索キー
+         */
+        private final Key key;
 
         @Override
         public String getString() {
-            return this.name();
+            return this.key.name();
+        }
+
+        /**
+         * キー要素
+         */
+        private enum Key {
+            catalogTypeCode;
         }
     }
 
