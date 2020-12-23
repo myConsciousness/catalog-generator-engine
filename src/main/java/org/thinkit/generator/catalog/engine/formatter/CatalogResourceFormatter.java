@@ -146,7 +146,7 @@ public final class CatalogResourceFormatter implements ResourceFormatter<Catalog
         final String className = catalogDefinition.getClassName();
 
         final ResourceFactory factory = CatalogResourceFactory.getInstance();
-        final Resource resource = factory.createResource(copyright, packageName,
+        final Resource resource = factory.createResource(copyright, factory.createPackage(packageName),
                 factory.createClassDescription(creator, catalogDefinition.getCatalogMeta().getVersion()), className);
         resource.add(this.createInterface(catalogType, catalogDefinition));
 

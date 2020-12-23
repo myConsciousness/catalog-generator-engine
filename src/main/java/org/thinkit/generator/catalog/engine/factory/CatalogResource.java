@@ -22,6 +22,7 @@ import com.google.googlejavaformat.java.JavaFormatterOptions.Style;
 import org.thinkit.common.catalog.Indentation;
 import org.thinkit.generator.common.factory.resource.ClassDescription;
 import org.thinkit.generator.common.factory.resource.Copyright;
+import org.thinkit.generator.common.factory.resource.Package;
 import org.thinkit.generator.common.factory.resource.Resource;
 
 import lombok.EqualsAndHashCode;
@@ -32,12 +33,12 @@ import lombok.ToString;
 @EqualsAndHashCode(callSuper = false)
 public final class CatalogResource extends Resource {
 
-    private CatalogResource(@NonNull Copyright copyright, @NonNull String packageName,
+    private CatalogResource(@NonNull Copyright copyright, @NonNull Package packageName,
             @NonNull ClassDescription classDescription, @NonNull String resourceName) {
         super(copyright, packageName, classDescription, resourceName);
     }
 
-    protected static Resource of(@NonNull Copyright copyright, @NonNull String packageName,
+    protected static Resource of(@NonNull Copyright copyright, @NonNull Package packageName,
             @NonNull ClassDescription classDescription, @NonNull String resourceName) {
         return new CatalogResource(copyright, packageName, classDescription, resourceName);
     }
@@ -51,7 +52,7 @@ public final class CatalogResource extends Resource {
         resource.append(super.getCopyright().createResource());
         resource.append(returnCode);
 
-        resource.append(String.format("package %s;", super.getPackageName()));
+        resource.append(super.getPackageName().createResource());
         resource.append(returnCode).append(returnCode);
 
         resource.append(super.getClassDescription().createResource());

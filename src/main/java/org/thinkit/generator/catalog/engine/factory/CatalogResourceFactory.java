@@ -20,6 +20,7 @@ import org.thinkit.generator.common.factory.resource.ClassDescription;
 import org.thinkit.generator.common.factory.resource.Constructor;
 import org.thinkit.generator.common.factory.resource.ConstructorProcess;
 import org.thinkit.generator.common.factory.resource.Copyright;
+import org.thinkit.generator.common.factory.resource.DependentPackage;
 import org.thinkit.generator.common.factory.resource.Description;
 import org.thinkit.generator.common.factory.resource.DescriptionTag;
 import org.thinkit.generator.common.factory.resource.EnumDefinition;
@@ -32,6 +33,7 @@ import org.thinkit.generator.common.factory.resource.Inheritance;
 import org.thinkit.generator.common.factory.resource.Interface;
 import org.thinkit.generator.common.factory.resource.Method;
 import org.thinkit.generator.common.factory.resource.MethodProcess;
+import org.thinkit.generator.common.factory.resource.Package;
 import org.thinkit.generator.common.factory.resource.Parameter;
 import org.thinkit.generator.common.factory.resource.Resource;
 import org.thinkit.generator.common.factory.resource.ResourceFactory;
@@ -215,7 +217,17 @@ public final class CatalogResourceFactory extends ResourceFactory {
     }
 
     @Override
-    public Resource createResource(@NonNull Copyright copyright, @NonNull String packageName,
+    public DependentPackage createDependentPackage(@NonNull String dependentPackage) {
+        return CatalogDependentPackage.of(dependentPackage);
+    }
+
+    @Override
+    public Package createPackage(@NonNull String packageName) {
+        return CatalogPackage.of(packageName);
+    }
+
+    @Override
+    public Resource createResource(@NonNull Copyright copyright, @NonNull Package packageName,
             @NonNull ClassDescription classDescription, @NonNull String resourceName) {
         return CatalogResource.of(copyright, packageName, classDescription, resourceName);
     }
