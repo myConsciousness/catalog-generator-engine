@@ -86,27 +86,72 @@ public final class CatalogResource extends Resource {
 
         this.createCopyright(resource);
         this.createPackage(resource);
+        this.createDependentPackage(resource);
         this.createClassDescription(resource);
         this.createClassBody(resource);
 
         return this.format(resource);
     }
 
+    /**
+     * 著作権を表現する文字列リソースを生成しカタログリソースへ追加します。
+     *
+     * @param resource カタログリソース
+     *
+     * @exception NullPointerException 引数として {@code null} が渡された場合
+     */
     private void createCopyright(@NonNull StringBuilder resource) {
         resource.append(super.getCopyright().createResource());
         resource.append(RETURN_CODE);
     }
 
+    /**
+     * パッケージを表現する文字列リソースを生成しカタログリソースへ追加します。
+     *
+     * @param resource カタログリソース
+     *
+     * @exception NullPointerException 引数として {@code null} が渡された場合
+     */
     private void createPackage(@NonNull StringBuilder resource) {
         resource.append(super.getPackageName().createResource());
         resource.append(RETURN_CODE).append(RETURN_CODE);
     }
 
+    /**
+     * 依存パッケージを表現する文字列リソースを生成しカタログリソースへ追加します。
+     *
+     * @param resource カタログリソース
+     *
+     * @exception NullPointerException 引数として {@code null} が渡された場合
+     */
+    private void createDependentPackage(@NonNull StringBuilder resource) {
+        super.getDependentPackages().forEach(dependentPackage -> {
+            resource.append(dependentPackage.createResource());
+            resource.append(RETURN_CODE);
+        });
+
+        resource.append(RETURN_CODE);
+    }
+
+    /**
+     * クラスの説明を表現する文字列リソースを生成しカタログリソースへ追加します。
+     *
+     * @param resource カタログリソース
+     *
+     * @exception NullPointerException 引数として {@code null} が渡された場合
+     */
     private void createClassDescription(@NonNull StringBuilder resource) {
         resource.append(super.getClassDescription().createResource());
         resource.append(RETURN_CODE);
     }
 
+    /**
+     * クラスのボディ部を表現する文字列リソースを生成しカタログリソースへ追加します。
+     *
+     * @param resource カタログリソース
+     *
+     * @exception NullPointerException 引数として {@code null} が渡された場合
+     */
     private void createClassBody(@NonNull StringBuilder resource) {
 
         resource.append(String.format("public enum %s implements %s {", super.getResourceName(),
@@ -122,6 +167,13 @@ public final class CatalogResource extends Resource {
         resource.append(RETURN_CODE);
     }
 
+    /**
+     * 列挙子を表現する文字列リソースを生成しカタログリソースへ追加します。
+     *
+     * @param resource カタログリソース
+     *
+     * @exception NullPointerException 引数として {@code null} が渡された場合
+     */
     private void createEnumeration(@NonNull StringBuilder resource) {
         super.getEnumerations().forEach(enumeration -> {
             resource.append(String.format("%s,", enumeration.createResource()));
@@ -133,6 +185,13 @@ public final class CatalogResource extends Resource {
         resource.append(RETURN_CODE).append(RETURN_CODE);
     }
 
+    /**
+     * フィールドを表現する文字列リソースを生成しカタログリソースへ追加します。
+     *
+     * @param resource カタログリソース
+     *
+     * @exception NullPointerException 引数として {@code null} が渡された場合
+     */
     private void createField(@NonNull StringBuilder resource) {
         super.getFields().forEach(field -> {
             resource.append(field.createResource());
@@ -142,6 +201,13 @@ public final class CatalogResource extends Resource {
         resource.setLength(resource.length() - RETURN_CODE.length());
     }
 
+    /**
+     * コンストラクタを表現する文字列リソースを生成しカタログリソースへ追加します。
+     *
+     * @param resource カタログリソース
+     *
+     * @exception NullPointerException 引数として {@code null} が渡された場合
+     */
     private void createConstructor(@NonNull StringBuilder resource) {
         super.getConstructors().forEach(constructor -> {
             resource.append(constructor.createResource());
@@ -151,6 +217,13 @@ public final class CatalogResource extends Resource {
         resource.setLength(resource.length() - RETURN_CODE.length());
     }
 
+    /**
+     * メソッドを表現する文字列リソースを生成しカタログリソースへ追加します。
+     *
+     * @param resource カタログリソース
+     *
+     * @exception NullPointerException 引数として {@code null} が渡された場合
+     */
     private void createMethod(@NonNull StringBuilder resource) {
         super.getMethods().forEach(method -> {
             resource.append(method.createResource());
@@ -160,6 +233,16 @@ public final class CatalogResource extends Resource {
         resource.setLength(resource.length() - RETURN_CODE.length());
     }
 
+    /**
+     * 引数として渡されたカタログリソースを整形した結果を返却します。
+     * <p>
+     * 生成されたカタログリソースに文法エラーが存在する場合は実行時に {@link IllegalStateException} が発生します。
+     *
+     * @param resource カタログリソース
+     * @return 整形されたカタログリソース
+     *
+     * @exception NullPointerException 引数として {@code null} が渡された場合
+     */
     private String format(@NonNull StringBuilder resource) {
         try {
             return new Formatter(JavaFormatterOptions.builder().style(Style.AOSP).build())

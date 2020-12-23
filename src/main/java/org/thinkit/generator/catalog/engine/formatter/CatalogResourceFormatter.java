@@ -15,8 +15,11 @@
 package org.thinkit.generator.catalog.engine.formatter;
 
 import org.apache.commons.lang3.StringUtils;
+import org.thinkit.framework.content.ContentInvoker;
 import org.thinkit.framework.envali.Envali;
 import org.thinkit.generator.catalog.engine.catalog.CatalogType;
+import org.thinkit.generator.catalog.engine.content.CatalogPackageLoader;
+import org.thinkit.generator.catalog.engine.content.entity.CatalogPackage;
 import org.thinkit.generator.catalog.engine.dto.CatalogCreator;
 import org.thinkit.generator.catalog.engine.dto.CatalogDefinition;
 import org.thinkit.generator.catalog.engine.dto.CatalogEnumeration;
@@ -149,6 +152,10 @@ public final class CatalogResourceFormatter implements ResourceFormatter<Catalog
         final Resource resource = factory.createResource(copyright, factory.createPackage(packageName),
                 factory.createClassDescription(creator, catalogDefinition.getCatalogMeta().getVersion()), className);
         resource.add(this.createInterface(catalogType, catalogDefinition));
+
+        final CatalogPackage catalogPackage = ContentInvoker.of(CatalogPackageLoader.of(catalogType)).invoke();
+
+        resource.add(factory.createDependentPackage(catalogPackage.getPackageName()));
 
         catalogDefinition.getCatalogEnumerations().forEach(catalogEnumeration -> {
             resource.add(this.createEnumeration(catalogType, catalogEnumeration));
