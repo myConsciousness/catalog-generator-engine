@@ -19,6 +19,8 @@ import com.google.googlejavaformat.java.FormatterException;
 import com.google.googlejavaformat.java.JavaFormatterOptions;
 import com.google.googlejavaformat.java.JavaFormatterOptions.Style;
 
+import org.thinkit.common.catalog.Brace;
+import org.thinkit.common.catalog.Delimiter;
 import org.thinkit.common.catalog.Indentation;
 import org.thinkit.generator.common.factory.resource.ClassDescription;
 import org.thinkit.generator.common.factory.resource.Copyright;
@@ -29,15 +31,49 @@ import lombok.EqualsAndHashCode;
 import lombok.NonNull;
 import lombok.ToString;
 
+/**
+ * カタログクラスのリソースを生成するファクトリークラスです。
+ * <p>
+ * {@link #createResource()} メソッドを使用することでカタログクラスのリソースを表現した文字列を取得することができます。
+ *
+ * @author Kato Shinya
+ * @since 1.0.0
+ */
 @ToString
 @EqualsAndHashCode(callSuper = false)
 public final class CatalogResource extends Resource {
 
+    /**
+     * 改行コード
+     */
+    private static final String RETURN_CODE = Indentation.RETURN.getTag();
+
+    /**
+     * コンストラクタ
+     *
+     * @param copyright        著作権定義
+     * @param packageName      パッケージ定義
+     * @param classDescription クラスの説明定義
+     * @param resourceName     カタログのクラス名
+     *
+     * @exception NullPointerException 引数として {@code null} が渡された場合
+     */
     private CatalogResource(@NonNull Copyright copyright, @NonNull Package packageName,
             @NonNull ClassDescription classDescription, @NonNull String resourceName) {
         super(copyright, packageName, classDescription, resourceName);
     }
 
+    /**
+     * 引数として渡された情報を基に {@link CatalogResource} クラスの新しいインスタンスを生成し返却します。
+     *
+     * @param copyright        著作権定義
+     * @param packageName      パッケージ定義
+     * @param classDescription クラスの説明定義
+     * @param resourceName     カタログのクラス名
+     * @return {@link CatalogResource} クラスの新しいインスタンス
+     *
+     * @exception NullPointerException 引数として {@code null} が渡された場合
+     */
     protected static Resource of(@NonNull Copyright copyright, @NonNull Package packageName,
             @NonNull ClassDescription classDescription, @NonNull String resourceName) {
         return new CatalogResource(copyright, packageName, classDescription, resourceName);
@@ -47,54 +83,84 @@ public final class CatalogResource extends Resource {
     public String createResource() {
 
         final StringBuilder resource = new StringBuilder();
-        final String returnCode = Indentation.RETURN.getTag();
 
+        this.createCopyright(resource);
+        this.createPackage(resource);
+        this.createClassDescription(resource);
+        this.createClassBody(resource);
+
+        return this.format(resource);
+    }
+
+    private void createCopyright(@NonNull StringBuilder resource) {
         resource.append(super.getCopyright().createResource());
-        resource.append(returnCode);
+        resource.append(RETURN_CODE);
+    }
 
+    private void createPackage(@NonNull StringBuilder resource) {
         resource.append(super.getPackageName().createResource());
-        resource.append(returnCode).append(returnCode);
+        resource.append(RETURN_CODE).append(RETURN_CODE);
+    }
 
+    private void createClassDescription(@NonNull StringBuilder resource) {
         resource.append(super.getClassDescription().createResource());
-        resource.append(returnCode);
+        resource.append(RETURN_CODE);
+    }
+
+    private void createClassBody(@NonNull StringBuilder resource) {
 
         resource.append(String.format("public enum %s implements %s {", super.getResourceName(),
                 super.getInterfaces().get(0).createResource()));
-        resource.append(returnCode).append(returnCode);
+        resource.append(RETURN_CODE).append(RETURN_CODE);
 
+        this.createEnumeration(resource);
+        this.createField(resource);
+        this.createConstructor(resource);
+        this.createMethod(resource);
+
+        resource.append(Brace.END.getTag());
+        resource.append(RETURN_CODE);
+    }
+
+    private void createEnumeration(@NonNull StringBuilder resource) {
         super.getEnumerations().forEach(enumeration -> {
             resource.append(String.format("%s,", enumeration.createResource()));
-            resource.append(returnCode).append(returnCode);
+            resource.append(RETURN_CODE).append(RETURN_CODE);
         });
 
-        resource.setLength(resource.length() - (1 + returnCode.length() * 2));
-        resource.append(";");
-        resource.append(returnCode).append(returnCode);
+        resource.setLength(resource.length() - (1 + RETURN_CODE.length() * 2));
+        resource.append(Delimiter.SEMICOLON.getTag());
+        resource.append(RETURN_CODE).append(RETURN_CODE);
+    }
 
+    private void createField(@NonNull StringBuilder resource) {
         super.getFields().forEach(field -> {
             resource.append(field.createResource());
-            resource.append(returnCode).append(returnCode);
+            resource.append(RETURN_CODE).append(RETURN_CODE);
         });
 
-        resource.setLength(resource.length() - returnCode.length());
+        resource.setLength(resource.length() - RETURN_CODE.length());
+    }
 
+    private void createConstructor(@NonNull StringBuilder resource) {
         super.getConstructors().forEach(constructor -> {
             resource.append(constructor.createResource());
-            resource.append(returnCode).append(returnCode);
+            resource.append(RETURN_CODE).append(RETURN_CODE);
         });
 
-        resource.setLength(resource.length() - returnCode.length());
+        resource.setLength(resource.length() - RETURN_CODE.length());
+    }
 
+    private void createMethod(@NonNull StringBuilder resource) {
         super.getMethods().forEach(method -> {
             resource.append(method.createResource());
-            resource.append(returnCode).append(returnCode);
+            resource.append(RETURN_CODE).append(RETURN_CODE);
         });
 
-        resource.setLength(resource.length() - returnCode.length());
+        resource.setLength(resource.length() - RETURN_CODE.length());
+    }
 
-        resource.append("}");
-        resource.append(returnCode);
-
+    private String format(@NonNull StringBuilder resource) {
         try {
             return new Formatter(JavaFormatterOptions.builder().style(Style.AOSP).build())
                     .formatSource(resource.toString());
