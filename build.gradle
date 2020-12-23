@@ -74,6 +74,7 @@ dependencies {
     implementation 'org.thinkit.generator.common:generator-commons:v1.1.0'
     implementation 'org.thinkit.api.catalog:catalog-api:v1.0.2'
     implementation 'org.thinkit.framework.envali:entity-validator:v1.0.2'
+    implementation 'org.thinkit.framework.content:content-framework:v1.0.4'
 }
 
 test {
