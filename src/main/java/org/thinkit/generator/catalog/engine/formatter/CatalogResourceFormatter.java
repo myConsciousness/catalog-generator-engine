@@ -309,8 +309,6 @@ public final class CatalogResourceFormatter implements ResourceFormatter<Catalog
         final Method getterMethod = factory.createMethod(Modifier.PUBLIC, "int",
                 String.format(FMT_GETTER_NAME, this.toInitialUpperCase(variableName)), methodDescription);
 
-        getterMethod.add(factory.createDescriptionTag("", catalogField.getDescription(), Annotation.RETURN));
-        getterMethod.add(factory.createParameter(catalogField.getDataType(), variableName));
         getterMethod.add(factory.createMethodProcess(variableName).toGetter());
 
         return getterMethod;
