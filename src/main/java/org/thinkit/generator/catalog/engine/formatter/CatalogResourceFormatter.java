@@ -38,7 +38,6 @@ import org.thinkit.generator.common.factory.resource.EnumDefinition;
 import org.thinkit.generator.common.factory.resource.Enumeration;
 import org.thinkit.generator.common.factory.resource.Field;
 import org.thinkit.generator.common.factory.resource.FieldDefinition;
-import org.thinkit.generator.common.factory.resource.FunctionDescription;
 import org.thinkit.generator.common.factory.resource.Generics;
 import org.thinkit.generator.common.factory.resource.Interface;
 import org.thinkit.generator.common.factory.resource.Method;
@@ -84,16 +83,6 @@ public final class CatalogResourceFormatter implements ResourceFormatter<Catalog
      * 雛形 : コンストラクタの説明
      */
     private static final String FMT_CONSTRUCTOR_DESCRIPTION = "A constructor that generates the catalog {@link %s} .";
-
-    /**
-     * 雛形 : Getterメソッドの説明
-     */
-    private static final String FMT_GETTER_DESCRIPTION = "Returns the field {@link #%s}.";
-
-    /**
-     * 雛形 : Getterメソッドの名称
-     */
-    private static final String FMT_GETTER_NAME = "get%s";
 
     /**
      * デフォルトコンストラクタ
@@ -304,10 +293,8 @@ public final class CatalogResourceFormatter implements ResourceFormatter<Catalog
         final ResourceFactory factory = CatalogResourceFactory.getInstance();
         final String variableName = catalogField.getVariableName();
 
-        final FunctionDescription methodDescription = factory
-                .createFunctionDescription(String.format(FMT_GETTER_DESCRIPTION, variableName));
-        final Method getterMethod = factory.createMethod(Modifier.PUBLIC, "int",
-                String.format(FMT_GETTER_NAME, this.toInitialUpperCase(variableName)), methodDescription);
+        final Method getterMethod = factory.createMethod(Modifier.PUBLIC, catalogField.getDataType(),
+                String.format("get%s", this.toInitialUpperCase(variableName)), factory.createFunctionDescription(""));
 
         getterMethod.add(factory.createMethodProcess(variableName).toGetter());
 
