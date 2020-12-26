@@ -16,6 +16,7 @@ package org.thinkit.generator.catalog.engine.content;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.thinkit.framework.content.Attribute;
 import org.thinkit.framework.content.Condition;
@@ -135,7 +136,7 @@ public final class CatalogPackageLoader implements Content<CatalogPackage> {
     @Override
     public CatalogPackage execute() {
 
-        final List<Map<String, String>> content = loadContent(this.getClass());
+        final List<Map<String, String>> content = this.loadContent(this);
 
         if (content.isEmpty()) {
             throw new IllegalStateException();
@@ -145,8 +146,8 @@ public final class CatalogPackageLoader implements Content<CatalogPackage> {
     }
 
     @Override
-    public List<Attribute> getAttributes() {
-        return List.of(ContentAttribute.CATALOG_PACKAGE);
+    public Set<Attribute> getAttributes() {
+        return Set.of(ContentAttribute.CATALOG_PACKAGE);
     }
 
     @Override
