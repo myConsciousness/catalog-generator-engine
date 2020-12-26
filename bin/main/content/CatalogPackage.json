@@ -1,0 +1,55 @@
+{
+  "metadata": {
+    "author": "Kato Shinya",
+    "since": "1.0.0",
+    "creationDate": "2020/12/23",
+    "encoding": "UTF-8",
+    "description": "カタログタイプ毎のパッケージを管理するコンテンツです。"
+  },
+
+  "selectionNodes": [
+    {
+      "node": {
+        "conditionId": "0",
+        "catalogPackage": "org.thinkit.api.catalog.Catalog"
+      }
+    },
+
+    {
+        "node": {
+          "conditionId": "1",
+          "catalogPackage": "org.thinkit.api.catalog.BiCatalog"
+        }
+    }
+  ],
+
+  "conditionNodes": [
+    {
+      "node": {
+        "conditionId": "0",
+        "exclude": false,
+        "conditions": [
+          {
+            "keyName": "catalogTypeCode",
+            "operator": "=",
+            "operand": "0"
+          }
+        ]
+      }
+    },
+
+    {
+      "node": {
+        "conditionId": "1",
+        "exclude": false,
+        "conditions": [
+          {
+            "keyName": "catalogTypeCode",
+            "operator": "=",
+            "operand": "1"
+          }
+        ]
+      }
+    }
+  ]
+}
