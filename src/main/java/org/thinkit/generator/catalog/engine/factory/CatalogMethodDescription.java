@@ -16,7 +16,7 @@ package org.thinkit.generator.catalog.engine.factory;
 
 import org.apache.commons.lang3.StringUtils;
 import org.thinkit.common.catalog.Indentation;
-import org.thinkit.generator.common.factory.resource.FunctionDescription;
+import org.thinkit.generator.common.duke.factory.FunctionDescription;
 
 import lombok.EqualsAndHashCode;
 import lombok.NonNull;

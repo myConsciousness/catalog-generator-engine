@@ -14,9 +14,9 @@
 
 package org.thinkit.generator.catalog.engine.factory;
 
-import org.thinkit.generator.catalog.engine.factory.strategy.CatalogGetterMethodProcess;
-import org.thinkit.generator.catalog.engine.factory.strategy.CatalogMethodProcessContext;
-import org.thinkit.generator.common.factory.resource.MethodProcess;
+import org.thinkit.generator.catalog.engine.strategy.CatalogGetterMethodProcess;
+import org.thinkit.generator.catalog.engine.strategy.CatalogMethodProcessContext;
+import org.thinkit.generator.common.duke.factory.MethodProcess;
 
 import lombok.EqualsAndHashCode;
 import lombok.NonNull;

@@ -22,10 +22,10 @@ import com.google.googlejavaformat.java.JavaFormatterOptions.Style;
 import org.thinkit.common.catalog.Brace;
 import org.thinkit.common.catalog.Delimiter;
 import org.thinkit.common.catalog.Indentation;
-import org.thinkit.generator.common.factory.resource.ClassDescription;
-import org.thinkit.generator.common.factory.resource.Copyright;
-import org.thinkit.generator.common.factory.resource.Package;
-import org.thinkit.generator.common.factory.resource.Resource;
+import org.thinkit.generator.common.duke.factory.ClassDescription;
+import org.thinkit.generator.common.duke.factory.Copyright;
+import org.thinkit.generator.common.duke.factory.Package;
+import org.thinkit.generator.common.duke.factory.Resource;
 
 import lombok.EqualsAndHashCode;
 import lombok.NonNull;

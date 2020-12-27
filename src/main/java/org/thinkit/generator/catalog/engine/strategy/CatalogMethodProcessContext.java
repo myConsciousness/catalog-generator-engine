@@ -12,10 +12,10 @@
  * the License.
  */
 
-package org.thinkit.generator.catalog.engine.factory.strategy;
+package org.thinkit.generator.catalog.engine.strategy;
 
-import org.thinkit.generator.common.factory.resource.strategy.MethodProcessContext;
-import org.thinkit.generator.common.factory.resource.strategy.MethodProcessStrategy;
+import org.thinkit.generator.common.duke.strategy.MethodProcessContext;
+import org.thinkit.generator.common.duke.strategy.MethodProcessStrategy;
 
 import lombok.EqualsAndHashCode;
 import lombok.NonNull;

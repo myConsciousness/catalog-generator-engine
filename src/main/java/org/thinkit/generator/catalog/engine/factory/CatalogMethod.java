@@ -14,9 +14,9 @@
 
 package org.thinkit.generator.catalog.engine.factory;
 
-import org.thinkit.generator.common.catalog.Modifier;
-import org.thinkit.generator.common.factory.resource.FunctionDescription;
-import org.thinkit.generator.common.factory.resource.Method;
+import org.thinkit.generator.common.duke.catalog.Modifier;
+import org.thinkit.generator.common.duke.factory.FunctionDescription;
+import org.thinkit.generator.common.duke.factory.Method;
 
 import lombok.EqualsAndHashCode;
 import lombok.NonNull;

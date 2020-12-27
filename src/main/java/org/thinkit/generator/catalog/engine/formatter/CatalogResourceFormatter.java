@@ -28,23 +28,23 @@ import org.thinkit.generator.catalog.engine.dto.CatalogMatrix;
 import org.thinkit.generator.catalog.engine.dto.CatalogResource;
 import org.thinkit.generator.catalog.engine.dto.CatalogResourceGroup;
 import org.thinkit.generator.catalog.engine.factory.CatalogResourceFactory;
-import org.thinkit.generator.common.catalog.Annotation;
-import org.thinkit.generator.common.catalog.Modifier;
-import org.thinkit.generator.common.factory.resource.Constructor;
-import org.thinkit.generator.common.factory.resource.ConstructorProcess;
-import org.thinkit.generator.common.factory.resource.Copyright;
-import org.thinkit.generator.common.factory.resource.DescriptionTag;
-import org.thinkit.generator.common.factory.resource.EnumDefinition;
-import org.thinkit.generator.common.factory.resource.Enumeration;
-import org.thinkit.generator.common.factory.resource.Field;
-import org.thinkit.generator.common.factory.resource.FieldDefinition;
-import org.thinkit.generator.common.factory.resource.Generics;
-import org.thinkit.generator.common.factory.resource.Interface;
-import org.thinkit.generator.common.factory.resource.Method;
-import org.thinkit.generator.common.factory.resource.Parameter;
-import org.thinkit.generator.common.factory.resource.Resource;
-import org.thinkit.generator.common.factory.resource.ResourceFactory;
-import org.thinkit.generator.common.formatter.ResourceFormatter;
+import org.thinkit.generator.common.duke.catalog.Annotation;
+import org.thinkit.generator.common.duke.catalog.Modifier;
+import org.thinkit.generator.common.duke.factory.Constructor;
+import org.thinkit.generator.common.duke.factory.ConstructorProcess;
+import org.thinkit.generator.common.duke.factory.Copyright;
+import org.thinkit.generator.common.duke.factory.DescriptionTag;
+import org.thinkit.generator.common.duke.factory.EnumDefinition;
+import org.thinkit.generator.common.duke.factory.Enumeration;
+import org.thinkit.generator.common.duke.factory.Field;
+import org.thinkit.generator.common.duke.factory.FieldDefinition;
+import org.thinkit.generator.common.duke.factory.Generics;
+import org.thinkit.generator.common.duke.factory.Interface;
+import org.thinkit.generator.common.duke.factory.Method;
+import org.thinkit.generator.common.duke.factory.Parameter;
+import org.thinkit.generator.common.duke.factory.Resource;
+import org.thinkit.generator.common.duke.factory.ResourceFactory;
+import org.thinkit.generator.common.duke.formatter.JavaResourceFormatter;
 
 import lombok.EqualsAndHashCode;
 import lombok.NonNull;
@@ -77,7 +77,7 @@ import lombok.ToString;
  */
 @ToString
 @EqualsAndHashCode
-public final class CatalogResourceFormatter implements ResourceFormatter<CatalogMatrix, CatalogResourceGroup> {
+public final class CatalogResourceFormatter implements JavaResourceFormatter<CatalogMatrix, CatalogResourceGroup> {
 
     /**
      * 雛形 : コンストラクタの説明
@@ -95,7 +95,7 @@ public final class CatalogResourceFormatter implements ResourceFormatter<Catalog
      *
      * @return {@link CatalogResourceFormatter} クラスの新しいインスタンス
      */
-    public static ResourceFormatter<CatalogMatrix, CatalogResourceGroup> newInstance() {
+    public static JavaResourceFormatter<CatalogMatrix, CatalogResourceGroup> newInstance() {
         return new CatalogResourceFormatter();
     }
 
