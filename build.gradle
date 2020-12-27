@@ -71,7 +71,7 @@ dependencies {
     implementation 'com.google.googlejavaformat:google-java-format:1.9'
 
     implementation 'org.thinkit.common:dev-utils:v1.0.2'
-    implementation 'org.thinkit.generator.common:generator-commons:v1.1.0'
+    implementation 'org.thinkit.generator.common.duke:java-generator-commons:v1.0.1'
     implementation 'org.thinkit.api.catalog:catalog-api:v1.0.2'
     implementation 'org.thinkit.framework.envali:entity-validator:v1.0.3'
     implementation 'org.thinkit.framework.content:content-framework:v1.0.5'
