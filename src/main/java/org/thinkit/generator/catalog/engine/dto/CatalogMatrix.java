@@ -20,7 +20,7 @@ import java.util.List;
 
 import org.thinkit.framework.envali.annotation.NestedEntity;
 import org.thinkit.framework.envali.entity.ValidatableEntity;
-import org.thinkit.generator.common.dto.ResourceMatrix;
+import org.thinkit.generator.common.duke.dto.JavaResourceMatrix;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -36,7 +36,7 @@ import lombok.ToString;
  */
 @ToString
 @EqualsAndHashCode
-public final class CatalogMatrix implements ResourceMatrix, ValidatableEntity, Serializable {
+public final class CatalogMatrix implements JavaResourceMatrix, ValidatableEntity, Serializable {
 
     /**
      * シリアルバージョンUID

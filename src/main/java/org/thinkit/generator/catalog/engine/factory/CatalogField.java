@@ -15,9 +15,9 @@
 package org.thinkit.generator.catalog.engine.factory;
 
 import org.thinkit.common.catalog.Indentation;
-import org.thinkit.generator.common.factory.resource.Description;
-import org.thinkit.generator.common.factory.resource.Field;
-import org.thinkit.generator.common.factory.resource.FieldDefinition;
+import org.thinkit.generator.common.duke.factory.Description;
+import org.thinkit.generator.common.duke.factory.Field;
+import org.thinkit.generator.common.duke.factory.FieldDefinition;
 
 import lombok.EqualsAndHashCode;
 import lombok.NonNull;

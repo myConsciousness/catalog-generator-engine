@@ -14,8 +14,8 @@
 
 package org.thinkit.generator.catalog.engine.factory;
 
-import org.thinkit.generator.common.catalog.Annotation;
-import org.thinkit.generator.common.factory.resource.DescriptionTag;
+import org.thinkit.generator.common.duke.catalog.Annotation;
+import org.thinkit.generator.common.duke.factory.DescriptionTag;
 
 import lombok.EqualsAndHashCode;
 import lombok.NonNull;
@@ -71,11 +71,11 @@ public final class CatalogDescriptionTag extends DescriptionTag {
         return switch (annotation) {
             case PARAM -> """
                     %s %s %s
-                    """.formatted(annotation.getAnnotation(), super.getVariableName(), super.getDescription());
+                    """.formatted(annotation.getTag(), super.getVariableName(), super.getDescription());
 
             default -> """
                     %s %s
-                    """.formatted(annotation.getAnnotation(), super.getDescription());
+                    """.formatted(annotation.getTag(), super.getDescription());
         };
     }
 }

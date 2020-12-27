@@ -17,7 +17,7 @@ package org.thinkit.generator.catalog.engine.dto;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import org.thinkit.generator.common.dto.Resource;
+import org.thinkit.generator.common.duke.dto.JavaResource;
 
 import lombok.EqualsAndHashCode;
 import lombok.NonNull;
@@ -32,7 +32,7 @@ import lombok.ToString;
  */
 @ToString
 @EqualsAndHashCode(callSuper = false)
-public final class CatalogResourceGroup extends ArrayList<CatalogResource> implements Resource {
+public final class CatalogResourceGroup extends ArrayList<CatalogResource> implements JavaResource {
 
     /**
      * シリアルバージョンUID

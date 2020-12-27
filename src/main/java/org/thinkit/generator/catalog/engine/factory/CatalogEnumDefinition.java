@@ -15,7 +15,7 @@
 package org.thinkit.generator.catalog.engine.factory;
 
 import org.apache.commons.lang3.StringUtils;
-import org.thinkit.generator.common.factory.resource.EnumDefinition;
+import org.thinkit.generator.common.duke.factory.EnumDefinition;
 
 import lombok.EqualsAndHashCode;
 import lombok.NonNull;

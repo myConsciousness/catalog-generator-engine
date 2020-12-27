@@ -14,7 +14,7 @@
 
 package org.thinkit.generator.catalog.engine.factory;
 
-import org.thinkit.generator.common.factory.resource.ClassDescription;
+import org.thinkit.generator.common.duke.factory.ClassDescription;
 
 import lombok.EqualsAndHashCode;
 import lombok.NonNull;

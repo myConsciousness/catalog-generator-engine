@@ -15,9 +15,9 @@
 package org.thinkit.generator.catalog.engine.factory;
 
 import org.thinkit.common.catalog.Indentation;
-import org.thinkit.generator.common.factory.resource.Description;
-import org.thinkit.generator.common.factory.resource.EnumDefinition;
-import org.thinkit.generator.common.factory.resource.Enumeration;
+import org.thinkit.generator.common.duke.factory.Description;
+import org.thinkit.generator.common.duke.factory.EnumDefinition;
+import org.thinkit.generator.common.duke.factory.Enumeration;
 
 import lombok.EqualsAndHashCode;
 import lombok.NonNull;
