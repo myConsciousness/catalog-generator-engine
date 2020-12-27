@@ -21,6 +21,7 @@ import java.util.List;
 import org.thinkit.framework.envali.annotation.RequireNonEmpty;
 import org.thinkit.framework.envali.entity.ValidatableEntity;
 import org.thinkit.generator.catalog.engine.catalog.CatalogType;
+import org.thinkit.generator.common.duke.catalog.LombokState;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -60,7 +61,13 @@ public final class CatalogMeta implements ValidatableEntity, Serializable {
      * 依存パッケージリスト
      */
     @Getter
-    private List<String> dependentPackages = new ArrayList<>(0);
+    private List<String> dependentPackages;
+
+    /**
+     * Lombok適用状態
+     */
+    @Getter
+    private LombokState lombokState;
 
     /**
      * デフォルトコンストラクタ
@@ -74,14 +81,16 @@ public final class CatalogMeta implements ValidatableEntity, Serializable {
      * @param version           バージョン
      * @param catalogType       カタログ種別
      * @param dependentPackages 依存パッケージリスト
+     * @param lombokState       Lombok適用状態
      *
      * @exception NullPointerException 引数として {@code null} が渡された場合
      */
     private CatalogMeta(@NonNull String version, @NonNull CatalogType catalogType,
-            @NonNull List<String> dependentPackages) {
+            @NonNull List<String> dependentPackages, @NonNull LombokState lombokState) {
         this.version = version;
         this.catalogType = catalogType;
         this.dependentPackages = dependentPackages;
+        this.lombokState = lombokState;
     }
 
     /**
@@ -95,6 +104,7 @@ public final class CatalogMeta implements ValidatableEntity, Serializable {
         this.version = catalogMeta.getVersion();
         this.catalogType = catalogMeta.getCatalogType();
         this.dependentPackages = new ArrayList<>(catalogMeta.getDependentPackages());
+        this.lombokState = catalogMeta.getLombokState();
     }
 
     /**
@@ -103,13 +113,14 @@ public final class CatalogMeta implements ValidatableEntity, Serializable {
      * @param version           バージョン
      * @param catalogType       カタログ種別
      * @param dependentPackages 依存パッケージリスト
+     * @param lombokState       Lombok適用状態
      * @return {@link CatalogMeta} クラスの新しいインスタンス
      *
      * @exception NullPointerException 引数として {@code null} が渡された場合
      */
     public static CatalogMeta of(@NonNull String version, @NonNull CatalogType catalogType,
-            @NonNull List<String> dependentPackages) {
-        return new CatalogMeta(version, catalogType, dependentPackages);
+            @NonNull List<String> dependentPackages, @NonNull LombokState lombokState) {
+        return new CatalogMeta(version, catalogType, dependentPackages, lombokState);
     }
 
     /**

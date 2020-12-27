@@ -31,6 +31,7 @@ import org.thinkit.generator.catalog.engine.dto.CatalogField;
 import org.thinkit.generator.catalog.engine.dto.CatalogMatrix;
 import org.thinkit.generator.catalog.engine.dto.CatalogMeta;
 import org.thinkit.generator.catalog.engine.dto.CatalogResourceGroup;
+import org.thinkit.generator.common.duke.catalog.LombokState;
 
 /**
  * {@link CatalogResourceFormatter} のUnitテストを管理するテストクラスです。
@@ -54,7 +55,8 @@ public final class CatalogResourceFormatterTest {
         catalogFields.add(CatalogField.of("code", "int", "The code"));
 
         final CatalogDefinition definition = CatalogDefinition.of(
-                CatalogMeta.of("1.0.0", CatalogType.CATALOG, List.of("org.thinkit.api.catalog.Catalog")),
+                CatalogMeta.of("1.0.0", CatalogType.CATALOG, List.of("org.thinkit.api.catalog.Catalog"),
+                        LombokState.NONE),
                 "org.thinkit.generator.catalog.test", "TestCatalog", "", catalogEnumerations, catalogFields);
 
         final CatalogResourceGroup catalogResourceGroup = assertDoesNotThrow(() -> CatalogResourceFormatter
@@ -80,8 +82,8 @@ public final class CatalogResourceFormatterTest {
         catalogFields.add(CatalogField.of("tag", "String", "The tag"));
 
         final CatalogDefinition definition = CatalogDefinition.of(
-                CatalogMeta.of("1.0.0", CatalogType.BI_CATALOG, List.of()), "org.thinkit.generator.catalog.test",
-                "TestBiCatalog", "String", catalogEnumerations, catalogFields);
+                CatalogMeta.of("1.0.0", CatalogType.BI_CATALOG, List.of(), LombokState.NONE),
+                "org.thinkit.generator.catalog.test", "TestBiCatalog", "String", catalogEnumerations, catalogFields);
 
         final CatalogResourceGroup catalogResourceGroup = assertDoesNotThrow(() -> CatalogResourceFormatter
                 .newInstance().format(CatalogMatrix.of(CatalogCreator.of("Shinya"), List.of(definition))));
