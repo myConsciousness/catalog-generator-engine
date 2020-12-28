@@ -15,7 +15,7 @@
 <script type="text/javascript" src="../../../../../../script-dir/jquery-ui.min.js"></script>
 </head>
 <body class="class-declaration-page">
-<script type="text/javascript">var data = {"i0":10,"i1":42,"i2":10,"i3":42,"i4":10,"i5":10,"i6":42,"i7":10,"i8":42,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":42,"i15":10,"i16":10,"i17":10,"i18":10,"i19":10,"i20":10,"i21":10,"i22":10,"i23":10,"i24":10,"i25":10,"i26":9,"i27":10,"i28":10};
+<script type="text/javascript">var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":42,"i5":10,"i6":42,"i7":10,"i8":10,"i9":42,"i10":10,"i11":10,"i12":42,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":42,"i19":10,"i20":10,"i21":10,"i22":10,"i23":10,"i24":10,"i25":10,"i26":10,"i27":10,"i28":10,"i29":10,"i30":10,"i31":9,"i32":10,"i33":10};
 var tabs = {65535:["t0","\u3059\u3079\u3066\u306E\u30E1\u30BD\u30C3\u30C9"],1:["t1","static\u30E1\u30BD\u30C3\u30C9"],2:["t2","\u30A4\u30F3\u30B9\u30BF\u30F3\u30B9\u30FB\u30E1\u30BD\u30C3\u30C9"],8:["t4","concrete\u30E1\u30BD\u30C3\u30C9"],32:["t6","\u63A8\u5968\u3055\u308C\u3066\u3044\u306A\u3044\u30E1\u30BD\u30C3\u30C9"]};
 var altColor = "alt-color";
 var rowColor = "row-color";
@@ -76,14 +76,14 @@ loadScripts(document, 'script');</script>
 <h1 title="クラス CatalogResourceFactory" class="title">クラス CatalogResourceFactory</h1>
 </div>
 <div class="inheritance" title="継承ツリー"><a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/Object.html" title="java.lang内のクラスまたはインタフェース" class="external-link">java.lang.Object</a>
-<div class="inheritance">org.thinkit.generator.common.factory.resource.ResourceFactory
+<div class="inheritance">org.thinkit.generator.common.duke.factory.ResourceFactory
 <div class="inheritance">org.thinkit.generator.catalog.engine.factory.CatalogResourceFactory</div>
 </div>
 </div>
 <section class="description">
 <hr>
 <pre>public final class <span class="type-name-label">CatalogResourceFactory</span>
-extends org.thinkit.generator.common.factory.resource.ResourceFactory</pre>
+extends org.thinkit.generator.common.duke.factory.ResourceFactory</pre>
 <div class="block">カタログクラスの各コンポーネントクラスを生成するファクトリークラスです。</div>
 <dl class="notes">
 <dt>導入されたバージョン:</dt>
@@ -109,13 +109,29 @@ extends org.thinkit.generator.common.factory.resource.ResourceFactory</pre>
 </thead>
 <tbody>
 <tr class="alt-color" id="i0">
-<td class="col-first"><code>org.thinkit.generator.common.factory.resource.ClassDescription</code></td>
+<td class="col-first"><code>org.thinkit.generator.common.duke.factory.Annotation</code></td>
+<th class="col-second" scope="row"><code><span class="member-name-link"><a href="#createAnnotation(org.thinkit.generator.common.duke.catalog.AnnotationPattern)">createAnnotation</a></span>&#8203;(@NonNull org.thinkit.generator.common.duke.catalog.AnnotationPattern&nbsp;annotationPattern)</code></th>
+<td class="col-last">&nbsp;</td>
+</tr>
+<tr class="row-color" id="i1">
+<td class="col-first"><code>org.thinkit.generator.common.duke.factory.AnnotationParameter</code></td>
+<th class="col-second" scope="row"><code><span class="member-name-link"><a href="#createAnnotationParameter(java.lang.String)">createAnnotationParameter</a></span>&#8203;(@NonNull <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a>&nbsp;fieldName)</code></th>
+<td class="col-last">&nbsp;</td>
+</tr>
+<tr class="alt-color" id="i2">
+<td class="col-first"><code>org.thinkit.generator.common.duke.factory.ClassBody</code></td>
+<th class="col-second" scope="row"><code><span class="member-name-link"><a href="#createClassBody(org.thinkit.generator.common.duke.factory.ClassDescription,java.lang.String)">createClassBody</a></span>&#8203;(@NonNull org.thinkit.generator.common.duke.factory.ClassDescription&nbsp;classDescription,
+@NonNull <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a>&nbsp;resourceName)</code></th>
+<td class="col-last">&nbsp;</td>
+</tr>
+<tr class="row-color" id="i3">
+<td class="col-first"><code>org.thinkit.generator.common.duke.factory.ClassDescription</code></td>
 <th class="col-second" scope="row"><code><span class="member-name-link"><a href="#createClassDescription(java.lang.String,java.lang.String)">createClassDescription</a></span>&#8203;(@NonNull <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a>&nbsp;creator,
 @NonNull <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a>&nbsp;version)</code></th>
 <td class="col-last">&nbsp;</td>
 </tr>
-<tr class="row-color" id="i1">
-<td class="col-first"><code>org.thinkit.generator.common.factory.resource.ClassDescription</code></td>
+<tr class="alt-color" id="i4">
+<td class="col-first"><code>org.thinkit.generator.common.duke.factory.ClassDescription</code></td>
 <th class="col-second" scope="row"><code><span class="member-name-link"><a href="#createClassDescription(java.lang.String,java.lang.String,java.lang.String)">createClassDescription</a></span>&#8203;(@NonNull <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a>&nbsp;description,
 @NonNull <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a>&nbsp;creator,
 @NonNull <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a>&nbsp;version)</code></th>
@@ -123,32 +139,32 @@ extends org.thinkit.generator.common.factory.resource.ResourceFactory</pre>
 <div class="block"><span class="deprecated-label">推奨されていません。</span></div>
 </td>
 </tr>
-<tr class="alt-color" id="i2">
-<td class="col-first"><code>org.thinkit.generator.common.factory.resource.Constructor</code></td>
-<th class="col-second" scope="row"><code><span class="member-name-link"><a href="#createConstructor(java.lang.String,org.thinkit.generator.common.factory.resource.FunctionDescription)">createConstructor</a></span>&#8203;(@NonNull <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a>&nbsp;functionName,
-@NonNull org.thinkit.generator.common.factory.resource.FunctionDescription&nbsp;functionDescription)</code></th>
+<tr class="row-color" id="i5">
+<td class="col-first"><code>org.thinkit.generator.common.duke.factory.Constructor</code></td>
+<th class="col-second" scope="row"><code><span class="member-name-link"><a href="#createConstructor(java.lang.String,org.thinkit.generator.common.duke.factory.FunctionDescription)">createConstructor</a></span>&#8203;(@NonNull <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a>&nbsp;functionName,
+@NonNull org.thinkit.generator.common.duke.factory.FunctionDescription&nbsp;functionDescription)</code></th>
 <td class="col-last">&nbsp;</td>
 </tr>
-<tr class="row-color" id="i3">
-<td class="col-first"><code>org.thinkit.generator.common.factory.resource.ConstructorProcess</code></td>
+<tr class="alt-color" id="i6">
+<td class="col-first"><code>org.thinkit.generator.common.duke.factory.ConstructorProcess</code></td>
 <th class="col-second" scope="row"><code><span class="member-name-link"><a href="#createConstructorProcess(java.lang.String,java.lang.String)">createConstructorProcess</a></span>&#8203;(@NonNull <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a>&nbsp;variableName,
 @NonNull <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a>&nbsp;getterName)</code></th>
 <td class="col-last">
 <div class="block"><span class="deprecated-label">推奨されていません。</span></div>
 </td>
 </tr>
-<tr class="alt-color" id="i4">
-<td class="col-first"><code>org.thinkit.generator.common.factory.resource.ConstructorProcess</code></td>
+<tr class="row-color" id="i7">
+<td class="col-first"><code>org.thinkit.generator.common.duke.factory.ConstructorProcess</code></td>
 <th class="col-second" scope="row"><code><span class="member-name-link"><a href="#createConstructorProcess(java.lang.String)">createConstructorProcess</a></span>&#8203;(<a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a>&nbsp;variableName)</code></th>
 <td class="col-last">&nbsp;</td>
 </tr>
-<tr class="row-color" id="i5">
-<td class="col-first"><code>org.thinkit.generator.common.factory.resource.Copyright</code></td>
+<tr class="alt-color" id="i8">
+<td class="col-first"><code>org.thinkit.generator.common.duke.factory.Copyright</code></td>
 <th class="col-second" scope="row"><code><span class="member-name-link"><a href="#createCopyright(java.lang.String)">createCopyright</a></span>&#8203;(@NonNull <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a>&nbsp;creator)</code></th>
 <td class="col-last">&nbsp;</td>
 </tr>
-<tr class="alt-color" id="i6">
-<td class="col-first"><code>org.thinkit.generator.common.factory.resource.Copyright</code></td>
+<tr class="row-color" id="i9">
+<td class="col-first"><code>org.thinkit.generator.common.duke.factory.Copyright</code></td>
 <th class="col-second" scope="row"><code><span class="member-name-link"><a href="#createCopyright(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)">createCopyright</a></span>&#8203;(@NonNull <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a>&nbsp;projectName,
 @NonNull <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a>&nbsp;fileName,
 @NonNull <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a>&nbsp;encoding,
@@ -158,51 +174,56 @@ extends org.thinkit.generator.common.factory.resource.ResourceFactory</pre>
 <div class="block"><span class="deprecated-label">推奨されていません。</span></div>
 </td>
 </tr>
-<tr class="row-color" id="i7">
-<td class="col-first"><code>org.thinkit.generator.common.factory.resource.Description</code></td>
+<tr class="alt-color" id="i10">
+<td class="col-first"><code>org.thinkit.generator.common.duke.factory.DependentPackage</code></td>
+<th class="col-second" scope="row"><code><span class="member-name-link"><a href="#createDependentPackage(java.lang.String)">createDependentPackage</a></span>&#8203;(@NonNull <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a>&nbsp;dependentPackage)</code></th>
+<td class="col-last">&nbsp;</td>
+</tr>
+<tr class="row-color" id="i11">
+<td class="col-first"><code>org.thinkit.generator.common.duke.factory.Description</code></td>
 <th class="col-second" scope="row"><code><span class="member-name-link"><a href="#createDescription(java.lang.String)">createDescription</a></span>&#8203;(@NonNull <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a>&nbsp;description)</code></th>
 <td class="col-last">&nbsp;</td>
 </tr>
-<tr class="alt-color" id="i8">
-<td class="col-first"><code>org.thinkit.generator.common.factory.resource.DescriptionTag</code></td>
+<tr class="alt-color" id="i12">
+<td class="col-first"><code>org.thinkit.generator.common.duke.factory.DescriptionTag</code></td>
 <th class="col-second" scope="row"><code><span class="member-name-link"><a href="#createDescriptionTag(java.lang.String,java.lang.String)">createDescriptionTag</a></span>&#8203;(@NonNull <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a>&nbsp;variableName,
 @NonNull <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a>&nbsp;description)</code></th>
 <td class="col-last">
 <div class="block"><span class="deprecated-label">推奨されていません。</span></div>
 </td>
 </tr>
-<tr class="row-color" id="i9">
-<td class="col-first"><code>org.thinkit.generator.common.factory.resource.DescriptionTag</code></td>
-<th class="col-second" scope="row"><code><span class="member-name-link"><a href="#createDescriptionTag(java.lang.String,java.lang.String,org.thinkit.generator.common.catalog.Annotation)">createDescriptionTag</a></span>&#8203;(@NonNull <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a>&nbsp;variableName,
+<tr class="row-color" id="i13">
+<td class="col-first"><code>org.thinkit.generator.common.duke.factory.DescriptionTag</code></td>
+<th class="col-second" scope="row"><code><span class="member-name-link"><a href="#createDescriptionTag(java.lang.String,java.lang.String,org.thinkit.generator.common.duke.catalog.AnnotationPattern)">createDescriptionTag</a></span>&#8203;(@NonNull <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a>&nbsp;variableName,
 @NonNull <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a>&nbsp;description,
-@NonNull org.thinkit.generator.common.catalog.Annotation&nbsp;annotation)</code></th>
+@NonNull org.thinkit.generator.common.duke.catalog.AnnotationPattern&nbsp;annotationPattern)</code></th>
 <td class="col-last">&nbsp;</td>
 </tr>
-<tr class="alt-color" id="i10">
-<td class="col-first"><code>org.thinkit.generator.common.factory.resource.EnumDefinition</code></td>
+<tr class="alt-color" id="i14">
+<td class="col-first"><code>org.thinkit.generator.common.duke.factory.EnumDefinition</code></td>
 <th class="col-second" scope="row"><code><span class="member-name-link"><a href="#createEnumDefinition(java.lang.String)">createEnumDefinition</a></span>&#8203;(@NonNull <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a>&nbsp;literal)</code></th>
 <td class="col-last">&nbsp;</td>
 </tr>
-<tr class="row-color" id="i11">
-<td class="col-first"><code>org.thinkit.generator.common.factory.resource.Enumeration</code></td>
-<th class="col-second" scope="row"><code><span class="member-name-link"><a href="#createEnumeration(org.thinkit.generator.common.factory.resource.EnumDefinition,org.thinkit.generator.common.factory.resource.Description)">createEnumeration</a></span>&#8203;(@NonNull org.thinkit.generator.common.factory.resource.EnumDefinition&nbsp;enumDefinition,
-@NonNull org.thinkit.generator.common.factory.resource.Description&nbsp;description)</code></th>
+<tr class="row-color" id="i15">
+<td class="col-first"><code>org.thinkit.generator.common.duke.factory.Enumeration</code></td>
+<th class="col-second" scope="row"><code><span class="member-name-link"><a href="#createEnumeration(org.thinkit.generator.common.duke.factory.EnumDefinition,org.thinkit.generator.common.duke.factory.Description)">createEnumeration</a></span>&#8203;(@NonNull org.thinkit.generator.common.duke.factory.EnumDefinition&nbsp;enumDefinition,
+@NonNull org.thinkit.generator.common.duke.factory.Description&nbsp;description)</code></th>
 <td class="col-last">&nbsp;</td>
 </tr>
-<tr class="alt-color" id="i12">
-<td class="col-first"><code>org.thinkit.generator.common.factory.resource.Field</code></td>
-<th class="col-second" scope="row"><code><span class="member-name-link"><a href="#createField(org.thinkit.generator.common.factory.resource.FieldDefinition,org.thinkit.generator.common.factory.resource.Description)">createField</a></span>&#8203;(@NonNull org.thinkit.generator.common.factory.resource.FieldDefinition&nbsp;fieldDefinition,
-@NonNull org.thinkit.generator.common.factory.resource.Description&nbsp;description)</code></th>
+<tr class="alt-color" id="i16">
+<td class="col-first"><code>org.thinkit.generator.common.duke.factory.Field</code></td>
+<th class="col-second" scope="row"><code><span class="member-name-link"><a href="#createField(org.thinkit.generator.common.duke.factory.FieldDefinition,org.thinkit.generator.common.duke.factory.Description)">createField</a></span>&#8203;(@NonNull org.thinkit.generator.common.duke.factory.FieldDefinition&nbsp;fieldDefinition,
+@NonNull org.thinkit.generator.common.duke.factory.Description&nbsp;description)</code></th>
 <td class="col-last">&nbsp;</td>
 </tr>
-<tr class="row-color" id="i13">
-<td class="col-first"><code>org.thinkit.generator.common.factory.resource.FieldDefinition</code></td>
+<tr class="row-color" id="i17">
+<td class="col-first"><code>org.thinkit.generator.common.duke.factory.FieldDefinition</code></td>
 <th class="col-second" scope="row"><code><span class="member-name-link"><a href="#createFieldDefinition(java.lang.String,java.lang.String)">createFieldDefinition</a></span>&#8203;(@NonNull <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a>&nbsp;dataType,
 @NonNull <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a>&nbsp;variableName)</code></th>
 <td class="col-last">&nbsp;</td>
 </tr>
-<tr class="alt-color" id="i14">
-<td class="col-first"><code>org.thinkit.generator.common.factory.resource.FieldDefinition</code></td>
+<tr class="alt-color" id="i18">
+<td class="col-first"><code>org.thinkit.generator.common.duke.factory.FieldDefinition</code></td>
 <th class="col-second" scope="row"><code><span class="member-name-link"><a href="#createFieldDefinition(java.lang.String,java.lang.String,java.lang.String)">createFieldDefinition</a></span>&#8203;(@NonNull <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a>&nbsp;dataType,
 @NonNull <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a>&nbsp;variableName,
 @NonNull <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a>&nbsp;initialValue)</code></th>
@@ -210,81 +231,87 @@ extends org.thinkit.generator.common.factory.resource.ResourceFactory</pre>
 <div class="block"><span class="deprecated-label">推奨されていません。</span></div>
 </td>
 </tr>
-<tr class="row-color" id="i15">
-<td class="col-first"><code>org.thinkit.generator.common.factory.resource.FunctionDescription</code></td>
+<tr class="row-color" id="i19">
+<td class="col-first"><code>org.thinkit.generator.common.duke.factory.FunctionDescription</code></td>
 <th class="col-second" scope="row"><code><span class="member-name-link"><a href="#createFunctionDescription(java.lang.String)">createFunctionDescription</a></span>&#8203;(@NonNull <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a>&nbsp;description)</code></th>
 <td class="col-last">&nbsp;</td>
 </tr>
-<tr class="alt-color" id="i16">
-<td class="col-first"><code>org.thinkit.generator.common.factory.resource.Generics</code></td>
+<tr class="alt-color" id="i20">
+<td class="col-first"><code>org.thinkit.generator.common.duke.factory.Generics</code></td>
 <th class="col-second" scope="row"><code><span class="member-name-link"><a href="#createGenerics()">createGenerics</a></span>()</code></th>
 <td class="col-last">&nbsp;</td>
 </tr>
-<tr class="row-color" id="i17">
-<td class="col-first"><code>org.thinkit.generator.common.factory.resource.Inheritance</code></td>
+<tr class="row-color" id="i21">
+<td class="col-first"><code>org.thinkit.generator.common.duke.factory.Inheritance</code></td>
 <th class="col-second" scope="row"><code><span class="member-name-link"><a href="#createInheritance(java.lang.String)">createInheritance</a></span>&#8203;(@NonNull <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a>&nbsp;literal)</code></th>
 <td class="col-last">&nbsp;</td>
 </tr>
-<tr class="alt-color" id="i18">
-<td class="col-first"><code>org.thinkit.generator.common.factory.resource.Inheritance</code></td>
-<th class="col-second" scope="row"><code><span class="member-name-link"><a href="#createInheritance(java.lang.String,org.thinkit.generator.common.factory.resource.Generics)">createInheritance</a></span>&#8203;(@NonNull <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a>&nbsp;literal,
-@NonNull org.thinkit.generator.common.factory.resource.Generics&nbsp;generics)</code></th>
-<td class="col-last">&nbsp;</td>
-</tr>
-<tr class="row-color" id="i19">
-<td class="col-first"><code>org.thinkit.generator.common.factory.resource.Interface</code></td>
-<th class="col-second" scope="row"><code><span class="member-name-link"><a href="#createInterface(java.lang.String)">createInterface</a></span>&#8203;(@NonNull <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a>&nbsp;literal)</code></th>
-<td class="col-last">&nbsp;</td>
-</tr>
-<tr class="alt-color" id="i20">
-<td class="col-first"><code>org.thinkit.generator.common.factory.resource.Interface</code></td>
-<th class="col-second" scope="row"><code><span class="member-name-link"><a href="#createInterface(java.lang.String,org.thinkit.generator.common.factory.resource.Generics)">createInterface</a></span>&#8203;(@NonNull <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a>&nbsp;literal,
-@NonNull org.thinkit.generator.common.factory.resource.Generics&nbsp;generics)</code></th>
-<td class="col-last">&nbsp;</td>
-</tr>
-<tr class="row-color" id="i21">
-<td class="col-first"><code>org.thinkit.generator.common.factory.resource.Method</code></td>
-<th class="col-second" scope="row"><code><span class="member-name-link"><a href="#createMethod(java.lang.String,org.thinkit.generator.common.factory.resource.FunctionDescription)">createMethod</a></span>&#8203;(@NonNull <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a>&nbsp;methodName,
-@NonNull org.thinkit.generator.common.factory.resource.FunctionDescription&nbsp;methodDescription)</code></th>
-<td class="col-last">&nbsp;</td>
-</tr>
 <tr class="alt-color" id="i22">
-<td class="col-first"><code>org.thinkit.generator.common.factory.resource.MethodProcess</code></td>
-<th class="col-second" scope="row"><code><span class="member-name-link"><a href="#createMethodProcess(java.lang.String)">createMethodProcess</a></span>&#8203;(@NonNull <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a>&nbsp;variableName)</code></th>
+<td class="col-first"><code>org.thinkit.generator.common.duke.factory.Inheritance</code></td>
+<th class="col-second" scope="row"><code><span class="member-name-link"><a href="#createInheritance(java.lang.String,org.thinkit.generator.common.duke.factory.Generics)">createInheritance</a></span>&#8203;(@NonNull <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a>&nbsp;literal,
+@NonNull org.thinkit.generator.common.duke.factory.Generics&nbsp;generics)</code></th>
 <td class="col-last">&nbsp;</td>
 </tr>
 <tr class="row-color" id="i23">
-<td class="col-first"><code>org.thinkit.generator.common.factory.resource.Parameter</code></td>
+<td class="col-first"><code>org.thinkit.generator.common.duke.factory.Interface</code></td>
+<th class="col-second" scope="row"><code><span class="member-name-link"><a href="#createInterface(java.lang.String)">createInterface</a></span>&#8203;(@NonNull <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a>&nbsp;literal)</code></th>
+<td class="col-last">&nbsp;</td>
+</tr>
+<tr class="alt-color" id="i24">
+<td class="col-first"><code>org.thinkit.generator.common.duke.factory.Interface</code></td>
+<th class="col-second" scope="row"><code><span class="member-name-link"><a href="#createInterface(java.lang.String,org.thinkit.generator.common.duke.factory.Generics)">createInterface</a></span>&#8203;(@NonNull <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a>&nbsp;literal,
+@NonNull org.thinkit.generator.common.duke.factory.Generics&nbsp;generics)</code></th>
+<td class="col-last">&nbsp;</td>
+</tr>
+<tr class="row-color" id="i25">
+<td class="col-first"><code>org.thinkit.generator.common.duke.factory.Method</code></td>
+<th class="col-second" scope="row"><code><span class="member-name-link"><a href="#createMethod(org.thinkit.generator.common.duke.catalog.Modifier,java.lang.String,java.lang.String,org.thinkit.generator.common.duke.factory.FunctionDescription)">createMethod</a></span>&#8203;(@NonNull org.thinkit.generator.common.duke.catalog.Modifier&nbsp;modifier,
+@NonNull <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a>&nbsp;returnType,
+@NonNull <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a>&nbsp;methodName,
+@NonNull org.thinkit.generator.common.duke.factory.FunctionDescription&nbsp;methodDescription)</code></th>
+<td class="col-last">&nbsp;</td>
+</tr>
+<tr class="alt-color" id="i26">
+<td class="col-first"><code>org.thinkit.generator.common.duke.factory.MethodProcess</code></td>
+<th class="col-second" scope="row"><code><span class="member-name-link"><a href="#createMethodProcess(java.lang.String)">createMethodProcess</a></span>&#8203;(@NonNull <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a>&nbsp;variableName)</code></th>
+<td class="col-last">&nbsp;</td>
+</tr>
+<tr class="row-color" id="i27">
+<td class="col-first"><code>org.thinkit.generator.common.duke.factory.Package</code></td>
+<th class="col-second" scope="row"><code><span class="member-name-link"><a href="#createPackage(java.lang.String)">createPackage</a></span>&#8203;(@NonNull <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a>&nbsp;packageName)</code></th>
+<td class="col-last">&nbsp;</td>
+</tr>
+<tr class="alt-color" id="i28">
+<td class="col-first"><code>org.thinkit.generator.common.duke.factory.Parameter</code></td>
 <th class="col-second" scope="row"><code><span class="member-name-link"><a href="#createParameter(java.lang.String,java.lang.String)">createParameter</a></span>&#8203;(@NonNull <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a>&nbsp;dataType,
 @NonNull <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a>&nbsp;variableName)</code></th>
 <td class="col-last">&nbsp;</td>
 </tr>
-<tr class="alt-color" id="i24">
-<td class="col-first"><code>org.thinkit.generator.common.factory.resource.Resource</code></td>
-<th class="col-second" scope="row"><code><span class="member-name-link"><a href="#createResource(org.thinkit.generator.common.factory.resource.Copyright,java.lang.String,org.thinkit.generator.common.factory.resource.ClassDescription,java.lang.String)">createResource</a></span>&#8203;(@NonNull org.thinkit.generator.common.factory.resource.Copyright&nbsp;copyright,
-@NonNull <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a>&nbsp;packageName,
-@NonNull org.thinkit.generator.common.factory.resource.ClassDescription&nbsp;classDescription,
-@NonNull <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a>&nbsp;resourceName)</code></th>
+<tr class="row-color" id="i29">
+<td class="col-first"><code>org.thinkit.generator.common.duke.factory.Resource</code></td>
+<th class="col-second" scope="row"><code><span class="member-name-link"><a href="#createResource(org.thinkit.generator.common.duke.factory.Copyright,org.thinkit.generator.common.duke.factory.Package,org.thinkit.generator.common.duke.factory.ClassBody)">createResource</a></span>&#8203;(@NonNull org.thinkit.generator.common.duke.factory.Copyright&nbsp;copyright,
+@NonNull org.thinkit.generator.common.duke.factory.Package&nbsp;packageName,
+@NonNull org.thinkit.generator.common.duke.factory.ClassBody&nbsp;classBody)</code></th>
 <td class="col-last">&nbsp;</td>
 </tr>
-<tr class="row-color" id="i25">
+<tr class="alt-color" id="i30">
 <td class="col-first"><code>boolean</code></td>
 <th class="col-second" scope="row"><code><span class="member-name-link"><a href="#equals(java.lang.Object)">equals</a></span>&#8203;(<a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/Object.html" title="java.lang内のクラスまたはインタフェース" class="external-link">Object</a>&nbsp;o)</code></th>
 <td class="col-last">&nbsp;</td>
 </tr>
-<tr class="alt-color" id="i26">
-<td class="col-first"><code>static org.thinkit.generator.common.factory.resource.ResourceFactory</code></td>
+<tr class="row-color" id="i31">
+<td class="col-first"><code>static org.thinkit.generator.common.duke.factory.ResourceFactory</code></td>
 <th class="col-second" scope="row"><code><span class="member-name-link"><a href="#getInstance()">getInstance</a></span>()</code></th>
 <td class="col-last">
 <div class="block"><a href="CatalogResourceFactory.html" title="org.thinkit.generator.catalog.engine.factory内のクラス"><code>CatalogResourceFactory</code></a> のシングルトンインスタンスを返却します。</div>
 </td>
 </tr>
-<tr class="row-color" id="i27">
+<tr class="alt-color" id="i32">
 <td class="col-first"><code>int</code></td>
 <th class="col-second" scope="row"><code><span class="member-name-link"><a href="#hashCode()">hashCode</a></span>()</code></th>
 <td class="col-last">&nbsp;</td>
 </tr>
-<tr class="alt-color" id="i28">
+<tr class="row-color" id="i33">
 <td class="col-first"><code><a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a></code></td>
 <th class="col-second" scope="row"><code><span class="member-name-link"><a href="#toString()">toString</a></span>()</code></th>
 <td class="col-last">&nbsp;</td>
@@ -310,7 +337,7 @@ extends org.thinkit.generator.common.factory.resource.ResourceFactory</pre>
 <li>
 <section class="detail" id="getInstance()">
 <h3>getInstance</h3>
-<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">org.thinkit.generator.common.factory.resource.ResourceFactory</span>&nbsp;<span class="member-name">getInstance</span>()</div>
+<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">org.thinkit.generator.common.duke.factory.ResourceFactory</span>&nbsp;<span class="member-name">getInstance</span>()</div>
 <div class="block"><a href="CatalogResourceFactory.html" title="org.thinkit.generator.catalog.engine.factory内のクラス"><code>CatalogResourceFactory</code></a> のシングルトンインスタンスを返却します。</div>
 <dl class="notes">
 <dt>戻り値:</dt>
@@ -321,11 +348,11 @@ extends org.thinkit.generator.common.factory.resource.ResourceFactory</pre>
 <li>
 <section class="detail" id="createCopyright(java.lang.String)">
 <h3>createCopyright</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">org.thinkit.generator.common.factory.resource.Copyright</span>&nbsp;<span class="member-name">createCopyright</span>&#8203;(<span class="parameters">@NonNull
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">org.thinkit.generator.common.duke.factory.Copyright</span>&nbsp;<span class="member-name">createCopyright</span>&#8203;(<span class="parameters">@NonNull
 @NonNull <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a>&nbsp;creator)</span></div>
 <dl class="notes">
 <dt>定義:</dt>
-<dd><code>createCopyright</code>&nbsp;クラス内&nbsp;<code>org.thinkit.generator.common.factory.resource.ResourceFactory</code></dd>
+<dd><code>createCopyright</code>&nbsp;クラス内&nbsp;<code>org.thinkit.generator.common.duke.factory.ResourceFactory</code></dd>
 </dl>
 </section>
 </li>
@@ -333,7 +360,7 @@ extends org.thinkit.generator.common.factory.resource.ResourceFactory</pre>
 <section class="detail" id="createCopyright(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)">
 <h3>createCopyright</h3>
 <div class="member-signature"><span class="annotations"><a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/Deprecated.html" title="java.lang内のクラスまたはインタフェース" class="external-link">@Deprecated</a>
-</span><span class="modifiers">public</span>&nbsp;<span class="return-type">org.thinkit.generator.common.factory.resource.Copyright</span>&nbsp;<span class="member-name">createCopyright</span>&#8203;(<span class="parameters">@NonNull
+</span><span class="modifiers">public</span>&nbsp;<span class="return-type">org.thinkit.generator.common.duke.factory.Copyright</span>&nbsp;<span class="member-name">createCopyright</span>&#8203;(<span class="parameters">@NonNull
 @NonNull <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a>&nbsp;projectName,
 @NonNull
 @NonNull <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a>&nbsp;fileName,
@@ -346,20 +373,20 @@ extends org.thinkit.generator.common.factory.resource.ResourceFactory</pre>
 <div class="deprecation-block"><span class="deprecated-label">推奨されていません。</span></div>
 <dl class="notes">
 <dt>定義:</dt>
-<dd><code>createCopyright</code>&nbsp;クラス内&nbsp;<code>org.thinkit.generator.common.factory.resource.ResourceFactory</code></dd>
+<dd><code>createCopyright</code>&nbsp;クラス内&nbsp;<code>org.thinkit.generator.common.duke.factory.ResourceFactory</code></dd>
 </dl>
 </section>
 </li>
 <li>
 <section class="detail" id="createClassDescription(java.lang.String,java.lang.String)">
 <h3>createClassDescription</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">org.thinkit.generator.common.factory.resource.ClassDescription</span>&nbsp;<span class="member-name">createClassDescription</span>&#8203;(<span class="parameters">@NonNull
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">org.thinkit.generator.common.duke.factory.ClassDescription</span>&nbsp;<span class="member-name">createClassDescription</span>&#8203;(<span class="parameters">@NonNull
 @NonNull <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a>&nbsp;creator,
 @NonNull
 @NonNull <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a>&nbsp;version)</span></div>
 <dl class="notes">
 <dt>定義:</dt>
-<dd><code>createClassDescription</code>&nbsp;クラス内&nbsp;<code>org.thinkit.generator.common.factory.resource.ResourceFactory</code></dd>
+<dd><code>createClassDescription</code>&nbsp;クラス内&nbsp;<code>org.thinkit.generator.common.duke.factory.ResourceFactory</code></dd>
 </dl>
 </section>
 </li>
@@ -367,7 +394,7 @@ extends org.thinkit.generator.common.factory.resource.ResourceFactory</pre>
 <section class="detail" id="createClassDescription(java.lang.String,java.lang.String,java.lang.String)">
 <h3>createClassDescription</h3>
 <div class="member-signature"><span class="annotations"><a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/Deprecated.html" title="java.lang内のクラスまたはインタフェース" class="external-link">@Deprecated</a>
-</span><span class="modifiers">public</span>&nbsp;<span class="return-type">org.thinkit.generator.common.factory.resource.ClassDescription</span>&nbsp;<span class="member-name">createClassDescription</span>&#8203;(<span class="parameters">@NonNull
+</span><span class="modifiers">public</span>&nbsp;<span class="return-type">org.thinkit.generator.common.duke.factory.ClassDescription</span>&nbsp;<span class="member-name">createClassDescription</span>&#8203;(<span class="parameters">@NonNull
 @NonNull <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a>&nbsp;description,
 @NonNull
 @NonNull <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a>&nbsp;creator,
@@ -376,113 +403,113 @@ extends org.thinkit.generator.common.factory.resource.ResourceFactory</pre>
 <div class="deprecation-block"><span class="deprecated-label">推奨されていません。</span></div>
 <dl class="notes">
 <dt>定義:</dt>
-<dd><code>createClassDescription</code>&nbsp;クラス内&nbsp;<code>org.thinkit.generator.common.factory.resource.ResourceFactory</code></dd>
+<dd><code>createClassDescription</code>&nbsp;クラス内&nbsp;<code>org.thinkit.generator.common.duke.factory.ResourceFactory</code></dd>
 </dl>
 </section>
 </li>
 <li>
 <section class="detail" id="createDescription(java.lang.String)">
 <h3>createDescription</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">org.thinkit.generator.common.factory.resource.Description</span>&nbsp;<span class="member-name">createDescription</span>&#8203;(<span class="parameters">@NonNull
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">org.thinkit.generator.common.duke.factory.Description</span>&nbsp;<span class="member-name">createDescription</span>&#8203;(<span class="parameters">@NonNull
 @NonNull <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a>&nbsp;description)</span></div>
 <dl class="notes">
 <dt>定義:</dt>
-<dd><code>createDescription</code>&nbsp;クラス内&nbsp;<code>org.thinkit.generator.common.factory.resource.ResourceFactory</code></dd>
+<dd><code>createDescription</code>&nbsp;クラス内&nbsp;<code>org.thinkit.generator.common.duke.factory.ResourceFactory</code></dd>
 </dl>
 </section>
 </li>
 <li>
 <section class="detail" id="createInheritance(java.lang.String)">
 <h3>createInheritance</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">org.thinkit.generator.common.factory.resource.Inheritance</span>&nbsp;<span class="member-name">createInheritance</span>&#8203;(<span class="parameters">@NonNull
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">org.thinkit.generator.common.duke.factory.Inheritance</span>&nbsp;<span class="member-name">createInheritance</span>&#8203;(<span class="parameters">@NonNull
 @NonNull <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a>&nbsp;literal)</span></div>
 <dl class="notes">
 <dt>定義:</dt>
-<dd><code>createInheritance</code>&nbsp;クラス内&nbsp;<code>org.thinkit.generator.common.factory.resource.ResourceFactory</code></dd>
+<dd><code>createInheritance</code>&nbsp;クラス内&nbsp;<code>org.thinkit.generator.common.duke.factory.ResourceFactory</code></dd>
 </dl>
 </section>
 </li>
 <li>
-<section class="detail" id="createInheritance(java.lang.String,org.thinkit.generator.common.factory.resource.Generics)">
+<section class="detail" id="createInheritance(java.lang.String,org.thinkit.generator.common.duke.factory.Generics)">
 <h3>createInheritance</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">org.thinkit.generator.common.factory.resource.Inheritance</span>&nbsp;<span class="member-name">createInheritance</span>&#8203;(<span class="parameters">@NonNull
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">org.thinkit.generator.common.duke.factory.Inheritance</span>&nbsp;<span class="member-name">createInheritance</span>&#8203;(<span class="parameters">@NonNull
 @NonNull <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a>&nbsp;literal,
 @NonNull
-@NonNull org.thinkit.generator.common.factory.resource.Generics&nbsp;generics)</span></div>
+@NonNull org.thinkit.generator.common.duke.factory.Generics&nbsp;generics)</span></div>
 <dl class="notes">
 <dt>定義:</dt>
-<dd><code>createInheritance</code>&nbsp;クラス内&nbsp;<code>org.thinkit.generator.common.factory.resource.ResourceFactory</code></dd>
+<dd><code>createInheritance</code>&nbsp;クラス内&nbsp;<code>org.thinkit.generator.common.duke.factory.ResourceFactory</code></dd>
 </dl>
 </section>
 </li>
 <li>
 <section class="detail" id="createInterface(java.lang.String)">
 <h3>createInterface</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">org.thinkit.generator.common.factory.resource.Interface</span>&nbsp;<span class="member-name">createInterface</span>&#8203;(<span class="parameters">@NonNull
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">org.thinkit.generator.common.duke.factory.Interface</span>&nbsp;<span class="member-name">createInterface</span>&#8203;(<span class="parameters">@NonNull
 @NonNull <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a>&nbsp;literal)</span></div>
 <dl class="notes">
 <dt>定義:</dt>
-<dd><code>createInterface</code>&nbsp;クラス内&nbsp;<code>org.thinkit.generator.common.factory.resource.ResourceFactory</code></dd>
+<dd><code>createInterface</code>&nbsp;クラス内&nbsp;<code>org.thinkit.generator.common.duke.factory.ResourceFactory</code></dd>
 </dl>
 </section>
 </li>
 <li>
-<section class="detail" id="createInterface(java.lang.String,org.thinkit.generator.common.factory.resource.Generics)">
+<section class="detail" id="createInterface(java.lang.String,org.thinkit.generator.common.duke.factory.Generics)">
 <h3>createInterface</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">org.thinkit.generator.common.factory.resource.Interface</span>&nbsp;<span class="member-name">createInterface</span>&#8203;(<span class="parameters">@NonNull
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">org.thinkit.generator.common.duke.factory.Interface</span>&nbsp;<span class="member-name">createInterface</span>&#8203;(<span class="parameters">@NonNull
 @NonNull <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a>&nbsp;literal,
 @NonNull
-@NonNull org.thinkit.generator.common.factory.resource.Generics&nbsp;generics)</span></div>
+@NonNull org.thinkit.generator.common.duke.factory.Generics&nbsp;generics)</span></div>
 <dl class="notes">
 <dt>定義:</dt>
-<dd><code>createInterface</code>&nbsp;クラス内&nbsp;<code>org.thinkit.generator.common.factory.resource.ResourceFactory</code></dd>
+<dd><code>createInterface</code>&nbsp;クラス内&nbsp;<code>org.thinkit.generator.common.duke.factory.ResourceFactory</code></dd>
 </dl>
 </section>
 </li>
 <li>
 <section class="detail" id="createGenerics()">
 <h3>createGenerics</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">org.thinkit.generator.common.factory.resource.Generics</span>&nbsp;<span class="member-name">createGenerics</span>()</div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">org.thinkit.generator.common.duke.factory.Generics</span>&nbsp;<span class="member-name">createGenerics</span>()</div>
 <dl class="notes">
 <dt>定義:</dt>
-<dd><code>createGenerics</code>&nbsp;クラス内&nbsp;<code>org.thinkit.generator.common.factory.resource.ResourceFactory</code></dd>
+<dd><code>createGenerics</code>&nbsp;クラス内&nbsp;<code>org.thinkit.generator.common.duke.factory.ResourceFactory</code></dd>
 </dl>
 </section>
 </li>
 <li>
 <section class="detail" id="createEnumDefinition(java.lang.String)">
 <h3>createEnumDefinition</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">org.thinkit.generator.common.factory.resource.EnumDefinition</span>&nbsp;<span class="member-name">createEnumDefinition</span>&#8203;(<span class="parameters">@NonNull
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">org.thinkit.generator.common.duke.factory.EnumDefinition</span>&nbsp;<span class="member-name">createEnumDefinition</span>&#8203;(<span class="parameters">@NonNull
 @NonNull <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a>&nbsp;literal)</span></div>
 <dl class="notes">
 <dt>定義:</dt>
-<dd><code>createEnumDefinition</code>&nbsp;クラス内&nbsp;<code>org.thinkit.generator.common.factory.resource.ResourceFactory</code></dd>
+<dd><code>createEnumDefinition</code>&nbsp;クラス内&nbsp;<code>org.thinkit.generator.common.duke.factory.ResourceFactory</code></dd>
 </dl>
 </section>
 </li>
 <li>
-<section class="detail" id="createEnumeration(org.thinkit.generator.common.factory.resource.EnumDefinition,org.thinkit.generator.common.factory.resource.Description)">
+<section class="detail" id="createEnumeration(org.thinkit.generator.common.duke.factory.EnumDefinition,org.thinkit.generator.common.duke.factory.Description)">
 <h3>createEnumeration</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">org.thinkit.generator.common.factory.resource.Enumeration</span>&nbsp;<span class="member-name">createEnumeration</span>&#8203;(<span class="parameters">@NonNull
-@NonNull org.thinkit.generator.common.factory.resource.EnumDefinition&nbsp;enumDefinition,
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">org.thinkit.generator.common.duke.factory.Enumeration</span>&nbsp;<span class="member-name">createEnumeration</span>&#8203;(<span class="parameters">@NonNull
+@NonNull org.thinkit.generator.common.duke.factory.EnumDefinition&nbsp;enumDefinition,
 @NonNull
-@NonNull org.thinkit.generator.common.factory.resource.Description&nbsp;description)</span></div>
+@NonNull org.thinkit.generator.common.duke.factory.Description&nbsp;description)</span></div>
 <dl class="notes">
 <dt>定義:</dt>
-<dd><code>createEnumeration</code>&nbsp;クラス内&nbsp;<code>org.thinkit.generator.common.factory.resource.ResourceFactory</code></dd>
+<dd><code>createEnumeration</code>&nbsp;クラス内&nbsp;<code>org.thinkit.generator.common.duke.factory.ResourceFactory</code></dd>
 </dl>
 </section>
 </li>
 <li>
 <section class="detail" id="createFieldDefinition(java.lang.String,java.lang.String)">
 <h3>createFieldDefinition</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">org.thinkit.generator.common.factory.resource.FieldDefinition</span>&nbsp;<span class="member-name">createFieldDefinition</span>&#8203;(<span class="parameters">@NonNull
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">org.thinkit.generator.common.duke.factory.FieldDefinition</span>&nbsp;<span class="member-name">createFieldDefinition</span>&#8203;(<span class="parameters">@NonNull
 @NonNull <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a>&nbsp;dataType,
 @NonNull
 @NonNull <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a>&nbsp;variableName)</span></div>
 <dl class="notes">
 <dt>定義:</dt>
-<dd><code>createFieldDefinition</code>&nbsp;クラス内&nbsp;<code>org.thinkit.generator.common.factory.resource.ResourceFactory</code></dd>
+<dd><code>createFieldDefinition</code>&nbsp;クラス内&nbsp;<code>org.thinkit.generator.common.duke.factory.ResourceFactory</code></dd>
 </dl>
 </section>
 </li>
@@ -490,7 +517,7 @@ extends org.thinkit.generator.common.factory.resource.ResourceFactory</pre>
 <section class="detail" id="createFieldDefinition(java.lang.String,java.lang.String,java.lang.String)">
 <h3>createFieldDefinition</h3>
 <div class="member-signature"><span class="annotations"><a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/Deprecated.html" title="java.lang内のクラスまたはインタフェース" class="external-link">@Deprecated</a>
-</span><span class="modifiers">public</span>&nbsp;<span class="return-type">org.thinkit.generator.common.factory.resource.FieldDefinition</span>&nbsp;<span class="member-name">createFieldDefinition</span>&#8203;(<span class="parameters">@NonNull
+</span><span class="modifiers">public</span>&nbsp;<span class="return-type">org.thinkit.generator.common.duke.factory.FieldDefinition</span>&nbsp;<span class="member-name">createFieldDefinition</span>&#8203;(<span class="parameters">@NonNull
 @NonNull <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a>&nbsp;dataType,
 @NonNull
 @NonNull <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a>&nbsp;variableName,
@@ -499,31 +526,31 @@ extends org.thinkit.generator.common.factory.resource.ResourceFactory</pre>
 <div class="deprecation-block"><span class="deprecated-label">推奨されていません。</span></div>
 <dl class="notes">
 <dt>定義:</dt>
-<dd><code>createFieldDefinition</code>&nbsp;クラス内&nbsp;<code>org.thinkit.generator.common.factory.resource.ResourceFactory</code></dd>
+<dd><code>createFieldDefinition</code>&nbsp;クラス内&nbsp;<code>org.thinkit.generator.common.duke.factory.ResourceFactory</code></dd>
 </dl>
 </section>
 </li>
 <li>
-<section class="detail" id="createField(org.thinkit.generator.common.factory.resource.FieldDefinition,org.thinkit.generator.common.factory.resource.Description)">
+<section class="detail" id="createField(org.thinkit.generator.common.duke.factory.FieldDefinition,org.thinkit.generator.common.duke.factory.Description)">
 <h3>createField</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">org.thinkit.generator.common.factory.resource.Field</span>&nbsp;<span class="member-name">createField</span>&#8203;(<span class="parameters">@NonNull
-@NonNull org.thinkit.generator.common.factory.resource.FieldDefinition&nbsp;fieldDefinition,
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">org.thinkit.generator.common.duke.factory.Field</span>&nbsp;<span class="member-name">createField</span>&#8203;(<span class="parameters">@NonNull
+@NonNull org.thinkit.generator.common.duke.factory.FieldDefinition&nbsp;fieldDefinition,
 @NonNull
-@NonNull org.thinkit.generator.common.factory.resource.Description&nbsp;description)</span></div>
+@NonNull org.thinkit.generator.common.duke.factory.Description&nbsp;description)</span></div>
 <dl class="notes">
 <dt>定義:</dt>
-<dd><code>createField</code>&nbsp;クラス内&nbsp;<code>org.thinkit.generator.common.factory.resource.ResourceFactory</code></dd>
+<dd><code>createField</code>&nbsp;クラス内&nbsp;<code>org.thinkit.generator.common.duke.factory.ResourceFactory</code></dd>
 </dl>
 </section>
 </li>
 <li>
 <section class="detail" id="createFunctionDescription(java.lang.String)">
 <h3>createFunctionDescription</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">org.thinkit.generator.common.factory.resource.FunctionDescription</span>&nbsp;<span class="member-name">createFunctionDescription</span>&#8203;(<span class="parameters">@NonNull
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">org.thinkit.generator.common.duke.factory.FunctionDescription</span>&nbsp;<span class="member-name">createFunctionDescription</span>&#8203;(<span class="parameters">@NonNull
 @NonNull <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a>&nbsp;description)</span></div>
 <dl class="notes">
 <dt>定義:</dt>
-<dd><code>createFunctionDescription</code>&nbsp;クラス内&nbsp;<code>org.thinkit.generator.common.factory.resource.ResourceFactory</code></dd>
+<dd><code>createFunctionDescription</code>&nbsp;クラス内&nbsp;<code>org.thinkit.generator.common.duke.factory.ResourceFactory</code></dd>
 </dl>
 </section>
 </li>
@@ -531,65 +558,65 @@ extends org.thinkit.generator.common.factory.resource.ResourceFactory</pre>
 <section class="detail" id="createDescriptionTag(java.lang.String,java.lang.String)">
 <h3>createDescriptionTag</h3>
 <div class="member-signature"><span class="annotations"><a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/Deprecated.html" title="java.lang内のクラスまたはインタフェース" class="external-link">@Deprecated</a>
-</span><span class="modifiers">public</span>&nbsp;<span class="return-type">org.thinkit.generator.common.factory.resource.DescriptionTag</span>&nbsp;<span class="member-name">createDescriptionTag</span>&#8203;(<span class="parameters">@NonNull
+</span><span class="modifiers">public</span>&nbsp;<span class="return-type">org.thinkit.generator.common.duke.factory.DescriptionTag</span>&nbsp;<span class="member-name">createDescriptionTag</span>&#8203;(<span class="parameters">@NonNull
 @NonNull <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a>&nbsp;variableName,
 @NonNull
 @NonNull <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a>&nbsp;description)</span></div>
 <div class="deprecation-block"><span class="deprecated-label">推奨されていません。</span></div>
 <dl class="notes">
 <dt>定義:</dt>
-<dd><code>createDescriptionTag</code>&nbsp;クラス内&nbsp;<code>org.thinkit.generator.common.factory.resource.ResourceFactory</code></dd>
+<dd><code>createDescriptionTag</code>&nbsp;クラス内&nbsp;<code>org.thinkit.generator.common.duke.factory.ResourceFactory</code></dd>
 </dl>
 </section>
 </li>
 <li>
-<section class="detail" id="createDescriptionTag(java.lang.String,java.lang.String,org.thinkit.generator.common.catalog.Annotation)">
+<section class="detail" id="createDescriptionTag(java.lang.String,java.lang.String,org.thinkit.generator.common.duke.catalog.AnnotationPattern)">
 <h3>createDescriptionTag</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">org.thinkit.generator.common.factory.resource.DescriptionTag</span>&nbsp;<span class="member-name">createDescriptionTag</span>&#8203;(<span class="parameters">@NonNull
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">org.thinkit.generator.common.duke.factory.DescriptionTag</span>&nbsp;<span class="member-name">createDescriptionTag</span>&#8203;(<span class="parameters">@NonNull
 @NonNull <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a>&nbsp;variableName,
 @NonNull
 @NonNull <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a>&nbsp;description,
 @NonNull
-@NonNull org.thinkit.generator.common.catalog.Annotation&nbsp;annotation)</span></div>
+@NonNull org.thinkit.generator.common.duke.catalog.AnnotationPattern&nbsp;annotationPattern)</span></div>
 <dl class="notes">
 <dt>定義:</dt>
-<dd><code>createDescriptionTag</code>&nbsp;クラス内&nbsp;<code>org.thinkit.generator.common.factory.resource.ResourceFactory</code></dd>
+<dd><code>createDescriptionTag</code>&nbsp;クラス内&nbsp;<code>org.thinkit.generator.common.duke.factory.ResourceFactory</code></dd>
 </dl>
 </section>
 </li>
 <li>
-<section class="detail" id="createConstructor(java.lang.String,org.thinkit.generator.common.factory.resource.FunctionDescription)">
+<section class="detail" id="createConstructor(java.lang.String,org.thinkit.generator.common.duke.factory.FunctionDescription)">
 <h3>createConstructor</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">org.thinkit.generator.common.factory.resource.Constructor</span>&nbsp;<span class="member-name">createConstructor</span>&#8203;(<span class="parameters">@NonNull
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">org.thinkit.generator.common.duke.factory.Constructor</span>&nbsp;<span class="member-name">createConstructor</span>&#8203;(<span class="parameters">@NonNull
 @NonNull <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a>&nbsp;functionName,
 @NonNull
-@NonNull org.thinkit.generator.common.factory.resource.FunctionDescription&nbsp;functionDescription)</span></div>
+@NonNull org.thinkit.generator.common.duke.factory.FunctionDescription&nbsp;functionDescription)</span></div>
 <dl class="notes">
 <dt>定義:</dt>
-<dd><code>createConstructor</code>&nbsp;クラス内&nbsp;<code>org.thinkit.generator.common.factory.resource.ResourceFactory</code></dd>
+<dd><code>createConstructor</code>&nbsp;クラス内&nbsp;<code>org.thinkit.generator.common.duke.factory.ResourceFactory</code></dd>
 </dl>
 </section>
 </li>
 <li>
 <section class="detail" id="createParameter(java.lang.String,java.lang.String)">
 <h3>createParameter</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">org.thinkit.generator.common.factory.resource.Parameter</span>&nbsp;<span class="member-name">createParameter</span>&#8203;(<span class="parameters">@NonNull
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">org.thinkit.generator.common.duke.factory.Parameter</span>&nbsp;<span class="member-name">createParameter</span>&#8203;(<span class="parameters">@NonNull
 @NonNull <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a>&nbsp;dataType,
 @NonNull
 @NonNull <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a>&nbsp;variableName)</span></div>
 <dl class="notes">
 <dt>定義:</dt>
-<dd><code>createParameter</code>&nbsp;クラス内&nbsp;<code>org.thinkit.generator.common.factory.resource.ResourceFactory</code></dd>
+<dd><code>createParameter</code>&nbsp;クラス内&nbsp;<code>org.thinkit.generator.common.duke.factory.ResourceFactory</code></dd>
 </dl>
 </section>
 </li>
 <li>
 <section class="detail" id="createConstructorProcess(java.lang.String)">
 <h3>createConstructorProcess</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">org.thinkit.generator.common.factory.resource.ConstructorProcess</span>&nbsp;<span class="member-name">createConstructorProcess</span>&#8203;(<span class="parameters"><a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a>&nbsp;variableName)</span></div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">org.thinkit.generator.common.duke.factory.ConstructorProcess</span>&nbsp;<span class="member-name">createConstructorProcess</span>&#8203;(<span class="parameters"><a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a>&nbsp;variableName)</span></div>
 <dl class="notes">
 <dt>定義:</dt>
-<dd><code>createConstructorProcess</code>&nbsp;クラス内&nbsp;<code>org.thinkit.generator.common.factory.resource.ResourceFactory</code></dd>
+<dd><code>createConstructorProcess</code>&nbsp;クラス内&nbsp;<code>org.thinkit.generator.common.duke.factory.ResourceFactory</code></dd>
 </dl>
 </section>
 </li>
@@ -597,55 +624,114 @@ extends org.thinkit.generator.common.factory.resource.ResourceFactory</pre>
 <section class="detail" id="createConstructorProcess(java.lang.String,java.lang.String)">
 <h3>createConstructorProcess</h3>
 <div class="member-signature"><span class="annotations"><a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/Deprecated.html" title="java.lang内のクラスまたはインタフェース" class="external-link">@Deprecated</a>
-</span><span class="modifiers">public</span>&nbsp;<span class="return-type">org.thinkit.generator.common.factory.resource.ConstructorProcess</span>&nbsp;<span class="member-name">createConstructorProcess</span>&#8203;(<span class="parameters">@NonNull
+</span><span class="modifiers">public</span>&nbsp;<span class="return-type">org.thinkit.generator.common.duke.factory.ConstructorProcess</span>&nbsp;<span class="member-name">createConstructorProcess</span>&#8203;(<span class="parameters">@NonNull
 @NonNull <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a>&nbsp;variableName,
 @NonNull
 @NonNull <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a>&nbsp;getterName)</span></div>
 <div class="deprecation-block"><span class="deprecated-label">推奨されていません。</span></div>
 <dl class="notes">
 <dt>定義:</dt>
-<dd><code>createConstructorProcess</code>&nbsp;クラス内&nbsp;<code>org.thinkit.generator.common.factory.resource.ResourceFactory</code></dd>
+<dd><code>createConstructorProcess</code>&nbsp;クラス内&nbsp;<code>org.thinkit.generator.common.duke.factory.ResourceFactory</code></dd>
 </dl>
 </section>
 </li>
 <li>
-<section class="detail" id="createMethod(java.lang.String,org.thinkit.generator.common.factory.resource.FunctionDescription)">
+<section class="detail" id="createMethod(org.thinkit.generator.common.duke.catalog.Modifier,java.lang.String,java.lang.String,org.thinkit.generator.common.duke.factory.FunctionDescription)">
 <h3>createMethod</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">org.thinkit.generator.common.factory.resource.Method</span>&nbsp;<span class="member-name">createMethod</span>&#8203;(<span class="parameters">@NonNull
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">org.thinkit.generator.common.duke.factory.Method</span>&nbsp;<span class="member-name">createMethod</span>&#8203;(<span class="parameters">@NonNull
+@NonNull org.thinkit.generator.common.duke.catalog.Modifier&nbsp;modifier,
+@NonNull
+@NonNull <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a>&nbsp;returnType,
+@NonNull
 @NonNull <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a>&nbsp;methodName,
 @NonNull
-@NonNull org.thinkit.generator.common.factory.resource.FunctionDescription&nbsp;methodDescription)</span></div>
+@NonNull org.thinkit.generator.common.duke.factory.FunctionDescription&nbsp;methodDescription)</span></div>
 <dl class="notes">
 <dt>定義:</dt>
-<dd><code>createMethod</code>&nbsp;クラス内&nbsp;<code>org.thinkit.generator.common.factory.resource.ResourceFactory</code></dd>
+<dd><code>createMethod</code>&nbsp;クラス内&nbsp;<code>org.thinkit.generator.common.duke.factory.ResourceFactory</code></dd>
 </dl>
 </section>
 </li>
 <li>
 <section class="detail" id="createMethodProcess(java.lang.String)">
 <h3>createMethodProcess</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">org.thinkit.generator.common.factory.resource.MethodProcess</span>&nbsp;<span class="member-name">createMethodProcess</span>&#8203;(<span class="parameters">@NonNull
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">org.thinkit.generator.common.duke.factory.MethodProcess</span>&nbsp;<span class="member-name">createMethodProcess</span>&#8203;(<span class="parameters">@NonNull
 @NonNull <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a>&nbsp;variableName)</span></div>
 <dl class="notes">
 <dt>定義:</dt>
-<dd><code>createMethodProcess</code>&nbsp;クラス内&nbsp;<code>org.thinkit.generator.common.factory.resource.ResourceFactory</code></dd>
+<dd><code>createMethodProcess</code>&nbsp;クラス内&nbsp;<code>org.thinkit.generator.common.duke.factory.ResourceFactory</code></dd>
 </dl>
 </section>
 </li>
 <li>
-<section class="detail" id="createResource(org.thinkit.generator.common.factory.resource.Copyright,java.lang.String,org.thinkit.generator.common.factory.resource.ClassDescription,java.lang.String)">
-<h3>createResource</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">org.thinkit.generator.common.factory.resource.Resource</span>&nbsp;<span class="member-name">createResource</span>&#8203;(<span class="parameters">@NonNull
-@NonNull org.thinkit.generator.common.factory.resource.Copyright&nbsp;copyright,
-@NonNull
-@NonNull <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a>&nbsp;packageName,
-@NonNull
-@NonNull org.thinkit.generator.common.factory.resource.ClassDescription&nbsp;classDescription,
+<section class="detail" id="createDependentPackage(java.lang.String)">
+<h3>createDependentPackage</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">org.thinkit.generator.common.duke.factory.DependentPackage</span>&nbsp;<span class="member-name">createDependentPackage</span>&#8203;(<span class="parameters">@NonNull
+@NonNull <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a>&nbsp;dependentPackage)</span></div>
+<dl class="notes">
+<dt>定義:</dt>
+<dd><code>createDependentPackage</code>&nbsp;クラス内&nbsp;<code>org.thinkit.generator.common.duke.factory.ResourceFactory</code></dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="createPackage(java.lang.String)">
+<h3>createPackage</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">org.thinkit.generator.common.duke.factory.Package</span>&nbsp;<span class="member-name">createPackage</span>&#8203;(<span class="parameters">@NonNull
+@NonNull <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a>&nbsp;packageName)</span></div>
+<dl class="notes">
+<dt>定義:</dt>
+<dd><code>createPackage</code>&nbsp;クラス内&nbsp;<code>org.thinkit.generator.common.duke.factory.ResourceFactory</code></dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="createAnnotation(org.thinkit.generator.common.duke.catalog.AnnotationPattern)">
+<h3>createAnnotation</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">org.thinkit.generator.common.duke.factory.Annotation</span>&nbsp;<span class="member-name">createAnnotation</span>&#8203;(<span class="parameters">@NonNull
+@NonNull org.thinkit.generator.common.duke.catalog.AnnotationPattern&nbsp;annotationPattern)</span></div>
+<dl class="notes">
+<dt>定義:</dt>
+<dd><code>createAnnotation</code>&nbsp;クラス内&nbsp;<code>org.thinkit.generator.common.duke.factory.ResourceFactory</code></dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="createAnnotationParameter(java.lang.String)">
+<h3>createAnnotationParameter</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">org.thinkit.generator.common.duke.factory.AnnotationParameter</span>&nbsp;<span class="member-name">createAnnotationParameter</span>&#8203;(<span class="parameters">@NonNull
+@NonNull <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a>&nbsp;fieldName)</span></div>
+<dl class="notes">
+<dt>定義:</dt>
+<dd><code>createAnnotationParameter</code>&nbsp;クラス内&nbsp;<code>org.thinkit.generator.common.duke.factory.ResourceFactory</code></dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="createClassBody(org.thinkit.generator.common.duke.factory.ClassDescription,java.lang.String)">
+<h3>createClassBody</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">org.thinkit.generator.common.duke.factory.ClassBody</span>&nbsp;<span class="member-name">createClassBody</span>&#8203;(<span class="parameters">@NonNull
+@NonNull org.thinkit.generator.common.duke.factory.ClassDescription&nbsp;classDescription,
 @NonNull
 @NonNull <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a>&nbsp;resourceName)</span></div>
 <dl class="notes">
 <dt>定義:</dt>
-<dd><code>createResource</code>&nbsp;クラス内&nbsp;<code>org.thinkit.generator.common.factory.resource.ResourceFactory</code></dd>
+<dd><code>createClassBody</code>&nbsp;クラス内&nbsp;<code>org.thinkit.generator.common.duke.factory.ResourceFactory</code></dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="createResource(org.thinkit.generator.common.duke.factory.Copyright,org.thinkit.generator.common.duke.factory.Package,org.thinkit.generator.common.duke.factory.ClassBody)">
+<h3>createResource</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">org.thinkit.generator.common.duke.factory.Resource</span>&nbsp;<span class="member-name">createResource</span>&#8203;(<span class="parameters">@NonNull
+@NonNull org.thinkit.generator.common.duke.factory.Copyright&nbsp;copyright,
+@NonNull
+@NonNull org.thinkit.generator.common.duke.factory.Package&nbsp;packageName,
+@NonNull
+@NonNull org.thinkit.generator.common.duke.factory.ClassBody&nbsp;classBody)</span></div>
+<dl class="notes">
+<dt>定義:</dt>
+<dd><code>createResource</code>&nbsp;クラス内&nbsp;<code>org.thinkit.generator.common.duke.factory.ResourceFactory</code></dd>
 </dl>
 </section>
 </li>

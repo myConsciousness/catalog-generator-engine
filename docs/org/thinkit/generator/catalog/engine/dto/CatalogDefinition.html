@@ -133,31 +133,31 @@ implements org.thinkit.framework.envali.entity.ValidatableEntity, <a href="https
 </td>
 </tr>
 <tr class="row-color" id="i3">
+<td class="col-first"><code><a href="CatalogMeta.html" title="org.thinkit.generator.catalog.engine.dto内のクラス">CatalogMeta</a></code></td>
+<th class="col-second" scope="row"><code><span class="member-name-link"><a href="#getCatalogMeta()">getCatalogMeta</a></span>()</code></th>
+<td class="col-last">
+<div class="block">カタログメタ</div>
+</td>
+</tr>
+<tr class="alt-color" id="i4">
 <td class="col-first"><code><a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a></code></td>
 <th class="col-second" scope="row"><code><span class="member-name-link"><a href="#getClassName()">getClassName</a></span>()</code></th>
 <td class="col-last">
 <div class="block">クラス名</div>
 </td>
 </tr>
-<tr class="alt-color" id="i4">
+<tr class="row-color" id="i5">
 <td class="col-first"><code><a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a></code></td>
 <th class="col-second" scope="row"><code><span class="member-name-link"><a href="#getPackageName()">getPackageName</a></span>()</code></th>
 <td class="col-last">
 <div class="block">パッケージ名</div>
 </td>
 </tr>
-<tr class="row-color" id="i5">
+<tr class="alt-color" id="i6">
 <td class="col-first"><code><a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a></code></td>
 <th class="col-second" scope="row"><code><span class="member-name-link"><a href="#getTagDataType()">getTagDataType</a></span>()</code></th>
 <td class="col-last">
 <div class="block">タグのデータ型</div>
-</td>
-</tr>
-<tr class="alt-color" id="i6">
-<td class="col-first"><code><a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a></code></td>
-<th class="col-second" scope="row"><code><span class="member-name-link"><a href="#getVersion()">getVersion</a></span>()</code></th>
-<td class="col-last">
-<div class="block">バージョン</div>
 </td>
 </tr>
 <tr class="row-color" id="i7">
@@ -167,21 +167,21 @@ implements org.thinkit.framework.envali.entity.ValidatableEntity, <a href="https
 </tr>
 <tr class="alt-color" id="i8">
 <td class="col-first"><code>static <a href="CatalogDefinition.html" title="org.thinkit.generator.catalog.engine.dto内のクラス">CatalogDefinition</a></code></td>
-<th class="col-second" scope="row"><code><span class="member-name-link"><a href="#of(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.List,java.util.List)">of</a></span>&#8203;(@NonNull <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a>&nbsp;packageName,
-@NonNull <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a>&nbsp;version,
+<th class="col-second" scope="row"><code><span class="member-name-link"><a href="#of(org.thinkit.generator.catalog.engine.dto.CatalogDefinition)">of</a></span>&#8203;(@NonNull <a href="CatalogDefinition.html" title="org.thinkit.generator.catalog.engine.dto内のクラス">CatalogDefinition</a>&nbsp;catalogDefinition)</code></th>
+<td class="col-last">
+<div class="block">引数として渡されたカタログ情報をコピーした <a href="CatalogDefinition.html" title="org.thinkit.generator.catalog.engine.dto内のクラス"><code>CatalogDefinition</code></a> クラスの新しいインスタンスを生成し返却します。</div>
+</td>
+</tr>
+<tr class="row-color" id="i9">
+<td class="col-first"><code>static <a href="CatalogDefinition.html" title="org.thinkit.generator.catalog.engine.dto内のクラス">CatalogDefinition</a></code></td>
+<th class="col-second" scope="row"><code><span class="member-name-link"><a href="#of(org.thinkit.generator.catalog.engine.dto.CatalogMeta,java.lang.String,java.lang.String,java.lang.String,java.util.List,java.util.List)">of</a></span>&#8203;(@NonNull <a href="CatalogMeta.html" title="org.thinkit.generator.catalog.engine.dto内のクラス">CatalogMeta</a>&nbsp;catalogMeta,
+@NonNull <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a>&nbsp;packageName,
 @NonNull <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a>&nbsp;className,
 @NonNull <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a>&nbsp;tagDataType,
 @NonNull <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/util/List.html" title="java.util内のクラスまたはインタフェース" class="external-link">List</a>&lt;<a href="CatalogEnumeration.html" title="org.thinkit.generator.catalog.engine.dto内のクラス">CatalogEnumeration</a>&gt;&nbsp;catalogEnumerations,
 @NonNull <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/util/List.html" title="java.util内のクラスまたはインタフェース" class="external-link">List</a>&lt;<a href="CatalogField.html" title="org.thinkit.generator.catalog.engine.dto内のクラス">CatalogField</a>&gt;&nbsp;catalogFields)</code></th>
 <td class="col-last">
 <div class="block">引数として渡された情報を基に <a href="CatalogDefinition.html" title="org.thinkit.generator.catalog.engine.dto内のクラス"><code>CatalogDefinition</code></a> クラスの新しいインスタンスを生成し返却します。</div>
-</td>
-</tr>
-<tr class="row-color" id="i9">
-<td class="col-first"><code>static <a href="CatalogDefinition.html" title="org.thinkit.generator.catalog.engine.dto内のクラス">CatalogDefinition</a></code></td>
-<th class="col-second" scope="row"><code><span class="member-name-link"><a href="#of(org.thinkit.generator.catalog.engine.dto.CatalogDefinition)">of</a></span>&#8203;(@NonNull <a href="CatalogDefinition.html" title="org.thinkit.generator.catalog.engine.dto内のクラス">CatalogDefinition</a>&nbsp;catalogDefinition)</code></th>
-<td class="col-last">
-<div class="block">引数として渡されたカタログ情報をコピーした <a href="CatalogDefinition.html" title="org.thinkit.generator.catalog.engine.dto内のクラス"><code>CatalogDefinition</code></a> クラスの新しいインスタンスを生成し返却します。</div>
 </td>
 </tr>
 <tr class="alt-color" id="i10">
@@ -211,12 +211,12 @@ implements org.thinkit.framework.envali.entity.ValidatableEntity, <a href="https
 <h2>メソッドの詳細</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="of(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.List,java.util.List)">
+<section class="detail" id="of(org.thinkit.generator.catalog.engine.dto.CatalogMeta,java.lang.String,java.lang.String,java.lang.String,java.util.List,java.util.List)">
 <h3>of</h3>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="CatalogDefinition.html" title="org.thinkit.generator.catalog.engine.dto内のクラス">CatalogDefinition</a></span>&nbsp;<span class="member-name">of</span>&#8203;(<span class="parameters">@NonNull
-@NonNull <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a>&nbsp;packageName,
+@NonNull <a href="CatalogMeta.html" title="org.thinkit.generator.catalog.engine.dto内のクラス">CatalogMeta</a>&nbsp;catalogMeta,
 @NonNull
-@NonNull <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a>&nbsp;version,
+@NonNull <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a>&nbsp;packageName,
 @NonNull
 @NonNull <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a>&nbsp;className,
 @NonNull
@@ -228,8 +228,8 @@ implements org.thinkit.framework.envali.entity.ValidatableEntity, <a href="https
 <div class="block">引数として渡された情報を基に <a href="CatalogDefinition.html" title="org.thinkit.generator.catalog.engine.dto内のクラス"><code>CatalogDefinition</code></a> クラスの新しいインスタンスを生成し返却します。</div>
 <dl class="notes">
 <dt>パラメータ:</dt>
+<dd><code>catalogMeta</code> - カタログメタ</dd>
 <dd><code>packageName</code> - パッケージ名</dd>
-<dd><code>version</code> - バージョン</dd>
 <dd><code>className</code> - クラス名</dd>
 <dd><code>tagDataType</code> - タグのデータ型</dd>
 <dd><code>catalogEnumerations</code> - カタログ列挙子グループ</dd>
@@ -288,17 +288,17 @@ implements org.thinkit.framework.envali.entity.ValidatableEntity, <a href="https
 </section>
 </li>
 <li>
+<section class="detail" id="getCatalogMeta()">
+<h3>getCatalogMeta</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="CatalogMeta.html" title="org.thinkit.generator.catalog.engine.dto内のクラス">CatalogMeta</a></span>&nbsp;<span class="member-name">getCatalogMeta</span>()</div>
+<div class="block">カタログメタ</div>
+</section>
+</li>
+<li>
 <section class="detail" id="getPackageName()">
 <h3>getPackageName</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a></span>&nbsp;<span class="member-name">getPackageName</span>()</div>
 <div class="block">パッケージ名</div>
-</section>
-</li>
-<li>
-<section class="detail" id="getVersion()">
-<h3>getVersion</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a></span>&nbsp;<span class="member-name">getVersion</span>()</div>
-<div class="block">バージョン</div>
 </section>
 </li>
 <li>

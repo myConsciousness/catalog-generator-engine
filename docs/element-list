@@ -1,5 +1,7 @@
 org.thinkit.generator.catalog.engine.catalog
+org.thinkit.generator.catalog.engine.content
+org.thinkit.generator.catalog.engine.content.entity
 org.thinkit.generator.catalog.engine.dto
 org.thinkit.generator.catalog.engine.factory
-org.thinkit.generator.catalog.engine.factory.strategy
 org.thinkit.generator.catalog.engine.formatter
+org.thinkit.generator.catalog.engine.strategy

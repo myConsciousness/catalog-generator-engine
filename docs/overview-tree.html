@@ -54,10 +54,12 @@ loadScripts(document, 'script');</script>
 <span class="package-hierarchy-label">パッケージ階層:</span>
 <ul class="horizontal">
 <li><a href="org/thinkit/generator/catalog/engine/catalog/package-tree.html">org.thinkit.generator.catalog.engine.catalog</a>, </li>
+<li><a href="org/thinkit/generator/catalog/engine/content/package-tree.html">org.thinkit.generator.catalog.engine.content</a>, </li>
+<li><a href="org/thinkit/generator/catalog/engine/content/entity/package-tree.html">org.thinkit.generator.catalog.engine.content.entity</a>, </li>
 <li><a href="org/thinkit/generator/catalog/engine/dto/package-tree.html">org.thinkit.generator.catalog.engine.dto</a>, </li>
 <li><a href="org/thinkit/generator/catalog/engine/factory/package-tree.html">org.thinkit.generator.catalog.engine.factory</a>, </li>
-<li><a href="org/thinkit/generator/catalog/engine/factory/strategy/package-tree.html">org.thinkit.generator.catalog.engine.factory.strategy</a>, </li>
-<li><a href="org/thinkit/generator/catalog/engine/formatter/package-tree.html">org.thinkit.generator.catalog.engine.formatter</a></li>
+<li><a href="org/thinkit/generator/catalog/engine/formatter/package-tree.html">org.thinkit.generator.catalog.engine.formatter</a>, </li>
+<li><a href="org/thinkit/generator/catalog/engine/strategy/package-tree.html">org.thinkit.generator.catalog.engine.strategy</a></li>
 </ul>
 </div>
 <section class="hierarchy">
@@ -71,7 +73,7 @@ loadScripts(document, 'script');</script>
 <ul>
 <li class="circle">java.util.<a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/util/ArrayList.html" title="java.util内のクラスまたはインタフェース" class="external-link"><span class="type-name-link">ArrayList</span></a>&lt;E&gt; (implements java.lang.<a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/Cloneable.html" title="java.lang内のクラスまたはインタフェース" class="external-link">Cloneable</a>, java.util.<a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/util/List.html" title="java.util内のクラスまたはインタフェース" class="external-link">List</a>&lt;E&gt;, java.util.<a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/util/RandomAccess.html" title="java.util内のクラスまたはインタフェース" class="external-link">RandomAccess</a>, java.io.<a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/io/Serializable.html" title="java.io内のクラスまたはインタフェース" class="external-link">Serializable</a>)
 <ul>
-<li class="circle">org.thinkit.generator.catalog.engine.dto.<a href="org/thinkit/generator/catalog/engine/dto/CatalogResourceGroup.html" title="org.thinkit.generator.catalog.engine.dto内のクラス"><span class="type-name-link">CatalogResourceGroup</span></a> (implements org.thinkit.generator.common.dto.Resource)</li>
+<li class="circle">org.thinkit.generator.catalog.engine.dto.<a href="org/thinkit/generator/catalog/engine/dto/CatalogResourceGroup.html" title="org.thinkit.generator.catalog.engine.dto内のクラス"><span class="type-name-link">CatalogResourceGroup</span></a> (implements org.thinkit.generator.common.duke.dto.JavaResource)</li>
 </ul>
 </li>
 </ul>
@@ -82,121 +84,152 @@ loadScripts(document, 'script');</script>
 <li class="circle">org.thinkit.generator.catalog.engine.dto.<a href="org/thinkit/generator/catalog/engine/dto/CatalogDefinition.html" title="org.thinkit.generator.catalog.engine.dto内のクラス"><span class="type-name-link">CatalogDefinition</span></a> (implements java.io.<a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/io/Serializable.html" title="java.io内のクラスまたはインタフェース" class="external-link">Serializable</a>, org.thinkit.framework.envali.entity.ValidatableEntity)</li>
 <li class="circle">org.thinkit.generator.catalog.engine.dto.<a href="org/thinkit/generator/catalog/engine/dto/CatalogEnumeration.html" title="org.thinkit.generator.catalog.engine.dto内のクラス"><span class="type-name-link">CatalogEnumeration</span></a> (implements java.io.<a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/io/Serializable.html" title="java.io内のクラスまたはインタフェース" class="external-link">Serializable</a>, org.thinkit.framework.envali.entity.ValidatableEntity)</li>
 <li class="circle">org.thinkit.generator.catalog.engine.dto.<a href="org/thinkit/generator/catalog/engine/dto/CatalogField.html" title="org.thinkit.generator.catalog.engine.dto内のクラス"><span class="type-name-link">CatalogField</span></a> (implements java.io.<a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/io/Serializable.html" title="java.io内のクラスまたはインタフェース" class="external-link">Serializable</a>, org.thinkit.framework.envali.entity.ValidatableEntity)</li>
-<li class="circle">org.thinkit.generator.catalog.engine.dto.<a href="org/thinkit/generator/catalog/engine/dto/CatalogMatrix.html" title="org.thinkit.generator.catalog.engine.dto内のクラス"><span class="type-name-link">CatalogMatrix</span></a> (implements org.thinkit.generator.common.dto.ResourceMatrix, java.io.<a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/io/Serializable.html" title="java.io内のクラスまたはインタフェース" class="external-link">Serializable</a>, org.thinkit.framework.envali.entity.ValidatableEntity)</li>
+<li class="circle">org.thinkit.generator.catalog.engine.dto.<a href="org/thinkit/generator/catalog/engine/dto/CatalogMatrix.html" title="org.thinkit.generator.catalog.engine.dto内のクラス"><span class="type-name-link">CatalogMatrix</span></a> (implements org.thinkit.generator.common.duke.dto.JavaResourceMatrix, java.io.<a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/io/Serializable.html" title="java.io内のクラスまたはインタフェース" class="external-link">Serializable</a>, org.thinkit.framework.envali.entity.ValidatableEntity)</li>
 <li class="circle">org.thinkit.generator.catalog.engine.dto.<a href="org/thinkit/generator/catalog/engine/dto/CatalogMeta.html" title="org.thinkit.generator.catalog.engine.dto内のクラス"><span class="type-name-link">CatalogMeta</span></a> (implements java.io.<a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/io/Serializable.html" title="java.io内のクラスまたはインタフェース" class="external-link">Serializable</a>, org.thinkit.framework.envali.entity.ValidatableEntity)</li>
+<li class="circle">org.thinkit.generator.catalog.engine.content.entity.<a href="org/thinkit/generator/catalog/engine/content/entity/CatalogPackage.html" title="org.thinkit.generator.catalog.engine.content.entity内のクラス"><span class="type-name-link">CatalogPackage</span></a> (implements org.thinkit.framework.content.entity.ContentEntity, java.io.<a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/io/Serializable.html" title="java.io内のクラスまたはインタフェース" class="external-link">Serializable</a>)</li>
+<li class="circle">org.thinkit.generator.catalog.engine.content.<a href="org/thinkit/generator/catalog/engine/content/CatalogPackageLoader.html" title="org.thinkit.generator.catalog.engine.content内のクラス"><span class="type-name-link">CatalogPackageLoader</span></a> (implements org.thinkit.framework.content.Content&lt;R&gt;)</li>
 <li class="circle">org.thinkit.generator.catalog.engine.dto.<a href="org/thinkit/generator/catalog/engine/dto/CatalogResource.html" title="org.thinkit.generator.catalog.engine.dto内のクラス"><span class="type-name-link">CatalogResource</span></a> (implements java.io.<a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/io/Serializable.html" title="java.io内のクラスまたはインタフェース" class="external-link">Serializable</a>)</li>
-<li class="circle">org.thinkit.generator.catalog.engine.formatter.<a href="org/thinkit/generator/catalog/engine/formatter/CatalogResourceFormatter.html" title="org.thinkit.generator.catalog.engine.formatter内のクラス"><span class="type-name-link">CatalogResourceFormatter</span></a> (implements org.thinkit.generator.common.formatter.ResourceFormatter&lt;I,&#8203;R&gt;)</li>
-<li class="circle">org.thinkit.generator.common.factory.resource.Copyright (implements org.thinkit.generator.common.factory.Component)
+<li class="circle">org.thinkit.generator.catalog.engine.formatter.<a href="org/thinkit/generator/catalog/engine/formatter/CatalogResourceFormatter.html" title="org.thinkit.generator.catalog.engine.formatter内のクラス"><span class="type-name-link">CatalogResourceFormatter</span></a> (implements org.thinkit.generator.common.duke.formatter.JavaResourceFormatter&lt;I,&#8203;R&gt;)</li>
+<li class="circle">org.thinkit.generator.common.duke.factory.JavaComponent (implements org.thinkit.generator.common.duke.factory.Component)
+<ul>
+<li class="circle">org.thinkit.generator.common.duke.factory.Annotation
+<ul>
+<li class="circle">org.thinkit.generator.catalog.engine.factory.<a href="org/thinkit/generator/catalog/engine/factory/CatalogAnnotation.html" title="org.thinkit.generator.catalog.engine.factory内のクラス"><span class="type-name-link">CatalogAnnotation</span></a></li>
+</ul>
+</li>
+<li class="circle">org.thinkit.generator.common.duke.factory.AnnotationParameter
+<ul>
+<li class="circle">org.thinkit.generator.catalog.engine.factory.<a href="org/thinkit/generator/catalog/engine/factory/CatalogAnnotationParameter.html" title="org.thinkit.generator.catalog.engine.factory内のクラス"><span class="type-name-link">CatalogAnnotationParameter</span></a></li>
+</ul>
+</li>
+<li class="circle">org.thinkit.generator.common.duke.factory.ClassBody
+<ul>
+<li class="circle">org.thinkit.generator.catalog.engine.factory.<a href="org/thinkit/generator/catalog/engine/factory/CatalogClassBody.html" title="org.thinkit.generator.catalog.engine.factory内のクラス"><span class="type-name-link">CatalogClassBody</span></a></li>
+</ul>
+</li>
+<li class="circle">org.thinkit.generator.common.duke.factory.Copyright
 <ul>
 <li class="circle">org.thinkit.generator.catalog.engine.factory.<a href="org/thinkit/generator/catalog/engine/factory/CatalogCopyright.html" title="org.thinkit.generator.catalog.engine.factory内のクラス"><span class="type-name-link">CatalogCopyright</span></a></li>
 </ul>
 </li>
-<li class="circle">org.thinkit.generator.common.factory.resource.Description (implements org.thinkit.generator.common.factory.Component)
+<li class="circle">org.thinkit.generator.common.duke.factory.DependentPackage
+<ul>
+<li class="circle">org.thinkit.generator.catalog.engine.factory.<a href="org/thinkit/generator/catalog/engine/factory/CatalogDependentPackage.html" title="org.thinkit.generator.catalog.engine.factory内のクラス"><span class="type-name-link">CatalogDependentPackage</span></a></li>
+</ul>
+</li>
+<li class="circle">org.thinkit.generator.common.duke.factory.Description
 <ul>
 <li class="circle">org.thinkit.generator.catalog.engine.factory.<a href="org/thinkit/generator/catalog/engine/factory/CatalogDescription.html" title="org.thinkit.generator.catalog.engine.factory内のクラス"><span class="type-name-link">CatalogDescription</span></a></li>
-<li class="circle">org.thinkit.generator.common.factory.resource.ClassDescription
+<li class="circle">org.thinkit.generator.common.duke.factory.ClassDescription
 <ul>
 <li class="circle">org.thinkit.generator.catalog.engine.factory.<a href="org/thinkit/generator/catalog/engine/factory/CatalogClassDescription.html" title="org.thinkit.generator.catalog.engine.factory内のクラス"><span class="type-name-link">CatalogClassDescription</span></a></li>
 </ul>
 </li>
-<li class="circle">org.thinkit.generator.common.factory.resource.FunctionDescription
+<li class="circle">org.thinkit.generator.common.duke.factory.FunctionDescription
 <ul>
 <li class="circle">org.thinkit.generator.catalog.engine.factory.<a href="org/thinkit/generator/catalog/engine/factory/CatalogMethodDescription.html" title="org.thinkit.generator.catalog.engine.factory内のクラス"><span class="type-name-link">CatalogMethodDescription</span></a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="circle">org.thinkit.generator.common.factory.resource.DescriptionTag (implements org.thinkit.generator.common.factory.Component)
+<li class="circle">org.thinkit.generator.common.duke.factory.DescriptionTag
 <ul>
 <li class="circle">org.thinkit.generator.catalog.engine.factory.<a href="org/thinkit/generator/catalog/engine/factory/CatalogDescriptionTag.html" title="org.thinkit.generator.catalog.engine.factory内のクラス"><span class="type-name-link">CatalogDescriptionTag</span></a></li>
 </ul>
 </li>
-<li class="circle">org.thinkit.generator.common.factory.resource.EnumDefinition (implements org.thinkit.generator.common.factory.Component)
+<li class="circle">org.thinkit.generator.common.duke.factory.EnumDefinition
 <ul>
 <li class="circle">org.thinkit.generator.catalog.engine.factory.<a href="org/thinkit/generator/catalog/engine/factory/CatalogEnumDefinition.html" title="org.thinkit.generator.catalog.engine.factory内のクラス"><span class="type-name-link">CatalogEnumDefinition</span></a></li>
 </ul>
 </li>
-<li class="circle">org.thinkit.generator.common.factory.resource.Enumeration (implements org.thinkit.generator.common.factory.Component)
+<li class="circle">org.thinkit.generator.common.duke.factory.Enumeration
 <ul>
 <li class="circle">org.thinkit.generator.catalog.engine.factory.<a href="org/thinkit/generator/catalog/engine/factory/CatalogEnumeration.html" title="org.thinkit.generator.catalog.engine.factory内のクラス"><span class="type-name-link">CatalogEnumeration</span></a></li>
 </ul>
 </li>
-<li class="circle">org.thinkit.generator.common.factory.resource.Field (implements org.thinkit.generator.common.factory.Component)
+<li class="circle">org.thinkit.generator.common.duke.factory.Field
 <ul>
 <li class="circle">org.thinkit.generator.catalog.engine.factory.<a href="org/thinkit/generator/catalog/engine/factory/CatalogField.html" title="org.thinkit.generator.catalog.engine.factory内のクラス"><span class="type-name-link">CatalogField</span></a></li>
 </ul>
 </li>
-<li class="circle">org.thinkit.generator.common.factory.resource.FieldDefinition (implements org.thinkit.generator.common.factory.Component)
+<li class="circle">org.thinkit.generator.common.duke.factory.FieldDefinition
 <ul>
 <li class="circle">org.thinkit.generator.catalog.engine.factory.<a href="org/thinkit/generator/catalog/engine/factory/CatalogFieldDefinition.html" title="org.thinkit.generator.catalog.engine.factory内のクラス"><span class="type-name-link">CatalogFieldDefinition</span></a></li>
 </ul>
 </li>
-<li class="circle">org.thinkit.generator.common.factory.resource.Function (implements org.thinkit.generator.common.factory.Component)
+<li class="circle">org.thinkit.generator.common.duke.factory.Function
 <ul>
-<li class="circle">org.thinkit.generator.common.factory.resource.Constructor
+<li class="circle">org.thinkit.generator.common.duke.factory.Constructor
 <ul>
 <li class="circle">org.thinkit.generator.catalog.engine.factory.<a href="org/thinkit/generator/catalog/engine/factory/CatalogConstructor.html" title="org.thinkit.generator.catalog.engine.factory内のクラス"><span class="type-name-link">CatalogConstructor</span></a></li>
 </ul>
 </li>
-<li class="circle">org.thinkit.generator.common.factory.resource.Method
+<li class="circle">org.thinkit.generator.common.duke.factory.Method
 <ul>
 <li class="circle">org.thinkit.generator.catalog.engine.factory.<a href="org/thinkit/generator/catalog/engine/factory/CatalogMethod.html" title="org.thinkit.generator.catalog.engine.factory内のクラス"><span class="type-name-link">CatalogMethod</span></a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="circle">org.thinkit.generator.common.factory.resource.Generics (implements org.thinkit.generator.common.factory.Component)
+<li class="circle">org.thinkit.generator.common.duke.factory.Generics
 <ul>
 <li class="circle">org.thinkit.generator.catalog.engine.factory.<a href="org/thinkit/generator/catalog/engine/factory/CatalogGenerics.html" title="org.thinkit.generator.catalog.engine.factory内のクラス"><span class="type-name-link">CatalogGenerics</span></a></li>
 </ul>
 </li>
-<li class="circle">org.thinkit.generator.common.factory.resource.Inheritance (implements org.thinkit.generator.common.factory.Component)
+<li class="circle">org.thinkit.generator.common.duke.factory.Inheritance
 <ul>
 <li class="circle">org.thinkit.generator.catalog.engine.factory.<a href="org/thinkit/generator/catalog/engine/factory/CatalogInheritance.html" title="org.thinkit.generator.catalog.engine.factory内のクラス"><span class="type-name-link">CatalogInheritance</span></a></li>
 </ul>
 </li>
-<li class="circle">org.thinkit.generator.common.factory.resource.Interface (implements org.thinkit.generator.common.factory.Component)
+<li class="circle">org.thinkit.generator.common.duke.factory.Interface
 <ul>
 <li class="circle">org.thinkit.generator.catalog.engine.factory.<a href="org/thinkit/generator/catalog/engine/factory/CatalogInterface.html" title="org.thinkit.generator.catalog.engine.factory内のクラス"><span class="type-name-link">CatalogInterface</span></a></li>
 </ul>
 </li>
-<li class="circle">org.thinkit.generator.common.factory.resource.strategy.MethodProcessContext
+<li class="circle">org.thinkit.generator.common.duke.factory.Package
 <ul>
-<li class="circle">org.thinkit.generator.catalog.engine.factory.strategy.<a href="org/thinkit/generator/catalog/engine/factory/strategy/CatalogMethodProcessContext.html" title="org.thinkit.generator.catalog.engine.factory.strategy内のクラス"><span class="type-name-link">CatalogMethodProcessContext</span></a></li>
+<li class="circle">org.thinkit.generator.catalog.engine.factory.<a href="org/thinkit/generator/catalog/engine/factory/CatalogPackage.html" title="org.thinkit.generator.catalog.engine.factory内のクラス"><span class="type-name-link">CatalogPackage</span></a></li>
 </ul>
 </li>
-<li class="circle">org.thinkit.generator.common.factory.resource.strategy.MethodProcessStrategy
-<ul>
-<li class="circle">org.thinkit.generator.catalog.engine.factory.strategy.<a href="org/thinkit/generator/catalog/engine/factory/strategy/CatalogDefaultMethodProcess.html" title="org.thinkit.generator.catalog.engine.factory.strategy内のクラス"><span class="type-name-link">CatalogDefaultMethodProcess</span></a></li>
-<li class="circle">org.thinkit.generator.catalog.engine.factory.strategy.<a href="org/thinkit/generator/catalog/engine/factory/strategy/CatalogGetterMethodProcess.html" title="org.thinkit.generator.catalog.engine.factory.strategy内のクラス"><span class="type-name-link">CatalogGetterMethodProcess</span></a></li>
-<li class="circle">org.thinkit.generator.catalog.engine.factory.strategy.<a href="org/thinkit/generator/catalog/engine/factory/strategy/CatalogSetterMethodProcess.html" title="org.thinkit.generator.catalog.engine.factory.strategy内のクラス"><span class="type-name-link">CatalogSetterMethodProcess</span></a></li>
-</ul>
-</li>
-<li class="circle">org.thinkit.generator.common.factory.resource.Parameter (implements org.thinkit.generator.common.factory.Component)
+<li class="circle">org.thinkit.generator.common.duke.factory.Parameter
 <ul>
 <li class="circle">org.thinkit.generator.catalog.engine.factory.<a href="org/thinkit/generator/catalog/engine/factory/CatalogParameter.html" title="org.thinkit.generator.catalog.engine.factory内のクラス"><span class="type-name-link">CatalogParameter</span></a></li>
 </ul>
 </li>
-<li class="circle">org.thinkit.generator.common.factory.resource.Process (implements org.thinkit.generator.common.factory.Component)
+<li class="circle">org.thinkit.generator.common.duke.factory.Process
 <ul>
-<li class="circle">org.thinkit.generator.common.factory.resource.ConstructorProcess
+<li class="circle">org.thinkit.generator.common.duke.factory.ConstructorProcess
 <ul>
 <li class="circle">org.thinkit.generator.catalog.engine.factory.<a href="org/thinkit/generator/catalog/engine/factory/CatalogConstructorProcess.html" title="org.thinkit.generator.catalog.engine.factory内のクラス"><span class="type-name-link">CatalogConstructorProcess</span></a></li>
 </ul>
 </li>
-<li class="circle">org.thinkit.generator.common.factory.resource.MethodProcess
+<li class="circle">org.thinkit.generator.common.duke.factory.MethodProcess
 <ul>
 <li class="circle">org.thinkit.generator.catalog.engine.factory.<a href="org/thinkit/generator/catalog/engine/factory/CatalogMethodProcess.html" title="org.thinkit.generator.catalog.engine.factory内のクラス"><span class="type-name-link">CatalogMethodProcess</span></a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="circle">org.thinkit.generator.common.factory.resource.Resource
+</ul>
+</li>
+<li class="circle">org.thinkit.generator.common.duke.strategy.MethodProcessContext
+<ul>
+<li class="circle">org.thinkit.generator.catalog.engine.strategy.<a href="org/thinkit/generator/catalog/engine/strategy/CatalogMethodProcessContext.html" title="org.thinkit.generator.catalog.engine.strategy内のクラス"><span class="type-name-link">CatalogMethodProcessContext</span></a></li>
+</ul>
+</li>
+<li class="circle">org.thinkit.generator.common.duke.strategy.MethodProcessStrategy
+<ul>
+<li class="circle">org.thinkit.generator.catalog.engine.strategy.<a href="org/thinkit/generator/catalog/engine/strategy/CatalogDefaultMethodProcess.html" title="org.thinkit.generator.catalog.engine.strategy内のクラス"><span class="type-name-link">CatalogDefaultMethodProcess</span></a></li>
+<li class="circle">org.thinkit.generator.catalog.engine.strategy.<a href="org/thinkit/generator/catalog/engine/strategy/CatalogGetterMethodProcess.html" title="org.thinkit.generator.catalog.engine.strategy内のクラス"><span class="type-name-link">CatalogGetterMethodProcess</span></a></li>
+<li class="circle">org.thinkit.generator.catalog.engine.strategy.<a href="org/thinkit/generator/catalog/engine/strategy/CatalogSetterMethodProcess.html" title="org.thinkit.generator.catalog.engine.strategy内のクラス"><span class="type-name-link">CatalogSetterMethodProcess</span></a></li>
+</ul>
+</li>
+<li class="circle">org.thinkit.generator.common.duke.factory.Resource
 <ul>
 <li class="circle">org.thinkit.generator.catalog.engine.factory.<a href="org/thinkit/generator/catalog/engine/factory/CatalogResource.html" title="org.thinkit.generator.catalog.engine.factory内のクラス"><span class="type-name-link">CatalogResource</span></a></li>
 </ul>
 </li>
-<li class="circle">org.thinkit.generator.common.factory.resource.ResourceFactory
+<li class="circle">org.thinkit.generator.common.duke.factory.ResourceFactory
 <ul>
 <li class="circle">org.thinkit.generator.catalog.engine.factory.<a href="org/thinkit/generator/catalog/engine/factory/CatalogResourceFactory.html" title="org.thinkit.generator.catalog.engine.factory内のクラス"><span class="type-name-link">CatalogResourceFactory</span></a></li>
 </ul>
