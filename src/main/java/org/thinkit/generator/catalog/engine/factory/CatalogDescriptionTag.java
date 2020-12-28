@@ -14,7 +14,7 @@
 
 package org.thinkit.generator.catalog.engine.factory;
 
-import org.thinkit.generator.common.duke.catalog.Annotation;
+import org.thinkit.generator.common.duke.catalog.AnnotationPattern;
 import org.thinkit.generator.common.duke.factory.DescriptionTag;
 
 import lombok.EqualsAndHashCode;
@@ -37,36 +37,36 @@ public final class CatalogDescriptionTag extends DescriptionTag {
     /**
      * 引数として渡された情報を基に {@link CatalogDescriptionTag} クラスの新しいインスタンスを生成します。
      *
-     * @param variableName 変数名
-     * @param description  説明
-     * @param annotation   アノテーション
+     * @param variableName      変数名
+     * @param description       説明
+     * @param annotationPattern アノテーションパターン
      *
      * @exception NullPointerException 引数として {@code null} が渡された場合
      */
     private CatalogDescriptionTag(@NonNull String variableName, @NonNull String description,
-            @NonNull Annotation annotation) {
-        super(variableName, description, annotation);
+            @NonNull AnnotationPattern annotationPattern) {
+        super(variableName, description, annotationPattern);
     }
 
     /**
      * 引数として渡された情報を基に {@link CatalogDescriptionTag} クラスの新しいインスタンスを生成し返却します。
      *
-     * @param variableName 変数名
-     * @param description  説明
-     * @param annotation   アノテーション
+     * @param variableName      変数名
+     * @param description       説明
+     * @param annotationPattern アノテーションパターン
      * @return {@link CatalogDescriptionTag} クラスの新しいインスタンス
      *
      * @exception NullPointerException 引数として {@code null} が渡された場合
      */
     protected static DescriptionTag of(@NonNull String variableName, @NonNull String description,
-            @NonNull Annotation annotation) {
-        return new CatalogDescriptionTag(variableName, description, annotation);
+            @NonNull AnnotationPattern annotationPattern) {
+        return new CatalogDescriptionTag(variableName, description, annotationPattern);
     }
 
     @Override
     public String createResource() {
 
-        final Annotation annotation = super.getAnnotation();
+        final AnnotationPattern annotation = super.getAnnotationPattern();
 
         return switch (annotation) {
             case PARAM -> """

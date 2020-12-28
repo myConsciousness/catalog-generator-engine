@@ -19,10 +19,8 @@ import com.google.googlejavaformat.java.FormatterException;
 import com.google.googlejavaformat.java.JavaFormatterOptions;
 import com.google.googlejavaformat.java.JavaFormatterOptions.Style;
 
-import org.thinkit.common.catalog.Brace;
-import org.thinkit.common.catalog.Delimiter;
 import org.thinkit.common.catalog.Indentation;
-import org.thinkit.generator.common.duke.factory.ClassDescription;
+import org.thinkit.generator.common.duke.factory.ClassBody;
 import org.thinkit.generator.common.duke.factory.Copyright;
 import org.thinkit.generator.common.duke.factory.Package;
 import org.thinkit.generator.common.duke.factory.Resource;
@@ -51,32 +49,29 @@ public final class CatalogResource extends Resource {
     /**
      * コンストラクタ
      *
-     * @param copyright        著作権定義
-     * @param packageName      パッケージ定義
-     * @param classDescription クラスの説明定義
-     * @param resourceName     カタログのクラス名
+     * @param copyright   著作権定義
+     * @param packageName パッケージ定義
+     * @param classBody   クラスボディ部
      *
      * @exception NullPointerException 引数として {@code null} が渡された場合
      */
-    private CatalogResource(@NonNull Copyright copyright, @NonNull Package packageName,
-            @NonNull ClassDescription classDescription, @NonNull String resourceName) {
-        super(copyright, packageName, classDescription, resourceName);
+    private CatalogResource(@NonNull Copyright copyright, @NonNull Package packageName, @NonNull ClassBody classBody) {
+        super(copyright, packageName, classBody);
     }
 
     /**
      * 引数として渡された情報を基に {@link CatalogResource} クラスの新しいインスタンスを生成し返却します。
      *
-     * @param copyright        著作権定義
-     * @param packageName      パッケージ定義
-     * @param classDescription クラスの説明定義
-     * @param resourceName     カタログのクラス名
+     * @param copyright   著作権定義
+     * @param packageName パッケージ定義
+     * @param classBody   クラスボディ部
      * @return {@link CatalogResource} クラスの新しいインスタンス
      *
      * @exception NullPointerException 引数として {@code null} が渡された場合
      */
     protected static Resource of(@NonNull Copyright copyright, @NonNull Package packageName,
-            @NonNull ClassDescription classDescription, @NonNull String resourceName) {
-        return new CatalogResource(copyright, packageName, classDescription, resourceName);
+            @NonNull ClassBody classBody) {
+        return new CatalogResource(copyright, packageName, classBody);
     }
 
     @Override
@@ -87,7 +82,6 @@ public final class CatalogResource extends Resource {
         this.createCopyright(resource);
         this.createPackage(resource);
         this.createDependentPackage(resource);
-        this.createClassDescription(resource);
         this.createClassBody(resource);
 
         return this.format(resource);
@@ -134,103 +128,14 @@ public final class CatalogResource extends Resource {
     }
 
     /**
-     * クラスの説明を表現する文字列リソースを生成しカタログリソースへ追加します。
-     *
-     * @param resource カタログリソース
-     *
-     * @exception NullPointerException 引数として {@code null} が渡された場合
-     */
-    private void createClassDescription(@NonNull StringBuilder resource) {
-        resource.append(super.getClassDescription().createResource());
-        resource.append(RETURN_CODE);
-    }
-
-    /**
-     * クラスのボディ部を表現する文字列リソースを生成しカタログリソースへ追加します。
+     * クラスボディを表現する文字列リソースを生成しカタログリソースへ追加します。
      *
      * @param resource カタログリソース
      *
      * @exception NullPointerException 引数として {@code null} が渡された場合
      */
     private void createClassBody(@NonNull StringBuilder resource) {
-
-        resource.append(String.format("public enum %s implements %s {", super.getResourceName(),
-                super.getInterfaces().get(0).createResource()));
-        resource.append(RETURN_CODE).append(RETURN_CODE);
-
-        this.createEnumeration(resource);
-        this.createField(resource);
-        this.createConstructor(resource);
-        this.createMethod(resource);
-
-        resource.append(Brace.END.getTag());
-        resource.append(RETURN_CODE);
-    }
-
-    /**
-     * 列挙子を表現する文字列リソースを生成しカタログリソースへ追加します。
-     *
-     * @param resource カタログリソース
-     *
-     * @exception NullPointerException 引数として {@code null} が渡された場合
-     */
-    private void createEnumeration(@NonNull StringBuilder resource) {
-        super.getEnumerations().forEach(enumeration -> {
-            resource.append(String.format("%s,", enumeration.createResource()));
-            resource.append(RETURN_CODE).append(RETURN_CODE);
-        });
-
-        resource.setLength(resource.length() - (1 + RETURN_CODE.length() * 2));
-        resource.append(Delimiter.SEMICOLON.getTag());
-        resource.append(RETURN_CODE).append(RETURN_CODE);
-    }
-
-    /**
-     * フィールドを表現する文字列リソースを生成しカタログリソースへ追加します。
-     *
-     * @param resource カタログリソース
-     *
-     * @exception NullPointerException 引数として {@code null} が渡された場合
-     */
-    private void createField(@NonNull StringBuilder resource) {
-        super.getFields().forEach(field -> {
-            resource.append(field.createResource());
-            resource.append(RETURN_CODE).append(RETURN_CODE);
-        });
-
-        resource.setLength(resource.length() - RETURN_CODE.length());
-    }
-
-    /**
-     * コンストラクタを表現する文字列リソースを生成しカタログリソースへ追加します。
-     *
-     * @param resource カタログリソース
-     *
-     * @exception NullPointerException 引数として {@code null} が渡された場合
-     */
-    private void createConstructor(@NonNull StringBuilder resource) {
-        super.getConstructors().forEach(constructor -> {
-            resource.append(constructor.createResource());
-            resource.append(RETURN_CODE).append(RETURN_CODE);
-        });
-
-        resource.setLength(resource.length() - RETURN_CODE.length());
-    }
-
-    /**
-     * メソッドを表現する文字列リソースを生成しカタログリソースへ追加します。
-     *
-     * @param resource カタログリソース
-     *
-     * @exception NullPointerException 引数として {@code null} が渡された場合
-     */
-    private void createMethod(@NonNull StringBuilder resource) {
-        super.getMethods().forEach(method -> {
-            resource.append(method.createResource());
-            resource.append(RETURN_CODE).append(RETURN_CODE);
-        });
-
-        resource.setLength(resource.length() - RETURN_CODE.length());
+        resource.append(super.getClassBody().createResource());
     }
 
     /**

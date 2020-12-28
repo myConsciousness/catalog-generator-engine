@@ -19,17 +19,19 @@ import org.thinkit.framework.content.ContentInvoker;
 import org.thinkit.framework.envali.Envali;
 import org.thinkit.generator.catalog.engine.catalog.CatalogType;
 import org.thinkit.generator.catalog.engine.content.CatalogPackageLoader;
-import org.thinkit.generator.catalog.engine.content.entity.CatalogPackage;
 import org.thinkit.generator.catalog.engine.dto.CatalogCreator;
 import org.thinkit.generator.catalog.engine.dto.CatalogDefinition;
 import org.thinkit.generator.catalog.engine.dto.CatalogEnumeration;
 import org.thinkit.generator.catalog.engine.dto.CatalogField;
 import org.thinkit.generator.catalog.engine.dto.CatalogMatrix;
+import org.thinkit.generator.catalog.engine.dto.CatalogMeta;
 import org.thinkit.generator.catalog.engine.dto.CatalogResource;
 import org.thinkit.generator.catalog.engine.dto.CatalogResourceGroup;
 import org.thinkit.generator.catalog.engine.factory.CatalogResourceFactory;
-import org.thinkit.generator.common.duke.catalog.Annotation;
+import org.thinkit.generator.common.duke.catalog.AnnotationPattern;
+import org.thinkit.generator.common.duke.catalog.LombokState;
 import org.thinkit.generator.common.duke.catalog.Modifier;
+import org.thinkit.generator.common.duke.factory.ClassBody;
 import org.thinkit.generator.common.duke.factory.Constructor;
 import org.thinkit.generator.common.duke.factory.ConstructorProcess;
 import org.thinkit.generator.common.duke.factory.Copyright;
@@ -112,8 +114,7 @@ public final class CatalogResourceFormatter implements JavaResourceFormatter<Cat
         final CatalogResourceGroup resources = CatalogResourceGroup.of();
 
         catalogMatrix.getCatalogDefinitions().forEach(catalogDefinition -> {
-            resources.add(this.createCatalogResource(catalogDefinition.getCatalogMeta().getCatalogType(), copyright,
-                    creator, catalogDefinition));
+            resources.add(this.createCatalogResource(copyright, creator, catalogDefinition));
         });
 
         return resources;
@@ -123,7 +124,6 @@ public final class CatalogResourceFormatter implements JavaResourceFormatter<Cat
      * 引数として渡された情報を基にカタログクラスのリソースを生成し、生成されたリソースをデータクラス {@link CatalogResource}
      * に格納し返却します。
      *
-     * @param catalogType       カタログ種別
      * @param copyright         著作権
      * @param creator           作成者
      * @param catalogDefinition カタログ定義
@@ -131,40 +131,69 @@ public final class CatalogResourceFormatter implements JavaResourceFormatter<Cat
      *
      * @exception NullPointerException 引数として {@code null} が渡された場合
      */
-    private CatalogResource createCatalogResource(@NonNull CatalogType catalogType, @NonNull Copyright copyright,
-            @NonNull String creator, @NonNull CatalogDefinition catalogDefinition) {
+    private CatalogResource createCatalogResource(@NonNull Copyright copyright, @NonNull String creator,
+            @NonNull CatalogDefinition catalogDefinition) {
 
         final String packageName = catalogDefinition.getPackageName();
         final String className = catalogDefinition.getClassName();
+        final CatalogMeta catalogMeta = catalogDefinition.getCatalogMeta();
+        final CatalogType catalogType = catalogMeta.getCatalogType();
 
         final ResourceFactory factory = CatalogResourceFactory.getInstance();
+
         final Resource resource = factory.createResource(copyright, factory.createPackage(packageName),
-                factory.createClassDescription(creator, catalogDefinition.getCatalogMeta().getVersion()), className);
-        resource.add(this.createInterface(catalogType, catalogDefinition));
-
-        final CatalogPackage catalogPackage = ContentInvoker.of(CatalogPackageLoader.of(catalogType)).invoke();
-
-        resource.add(factory.createDependentPackage(catalogPackage.getPackageName()));
-
-        catalogDefinition.getCatalogEnumerations().forEach(catalogEnumeration -> {
-            resource.add(this.createEnumeration(catalogType, catalogEnumeration));
-        });
-
-        final Constructor constructor = factory.createConstructor(className,
-                factory.createFunctionDescription(String.format(FMT_CONSTRUCTOR_DESCRIPTION, className)));
-
-        catalogDefinition.getCatalogFields().forEach(catalogField -> {
-            resource.add(this.createField(catalogField));
-            resource.add(this.createGetterMethod(catalogField));
-
-            constructor.add(this.createDescriptionTag(catalogField));
-            constructor.add(this.createParameter(catalogField));
-            constructor.add(this.createConstructorProcess(catalogField));
-        });
-
-        resource.add(constructor);
+                this.createClassBody(creator, catalogDefinition, catalogMeta));
+        resource.add(factory.createDependentPackage(
+                ContentInvoker.of(CatalogPackageLoader.of(catalogType)).invoke().getPackageName()));
 
         return CatalogResource.of(packageName, className, resource.createResource());
+    }
+
+    private ClassBody createClassBody(@NonNull String creator, @NonNull CatalogDefinition catalogDefinition,
+            @NonNull CatalogMeta catalogMeta) {
+
+        final String className = catalogDefinition.getClassName();
+        final CatalogType catalogType = catalogMeta.getCatalogType();
+
+        final ResourceFactory factory = CatalogResourceFactory.getInstance();
+        final ClassBody classBody = factory
+                .createClassBody(factory.createClassDescription(creator, catalogMeta.getVersion()), className);
+
+        classBody.add(this.createInterface(catalogType, catalogDefinition));
+
+        catalogDefinition.getCatalogEnumerations().forEach(catalogEnumeration -> {
+            classBody.add(this.createEnumeration(catalogType, catalogEnumeration));
+        });
+
+        final LombokState lombokState = catalogMeta.getLombokState();
+
+        switch (lombokState) {
+            case LOMBOK -> {
+                classBody.add(factory.createAnnotation(AnnotationPattern.LOMBOK_REQUIRED_ARGS_CONSTRUCTOR));
+
+                catalogDefinition.getCatalogFields().forEach(catalogField -> {
+                    classBody.add(this.createField(catalogField, lombokState));
+                });
+            }
+
+            case NONE -> {
+                final Constructor constructor = factory.createConstructor(className,
+                        factory.createFunctionDescription(String.format(FMT_CONSTRUCTOR_DESCRIPTION, className)));
+
+                catalogDefinition.getCatalogFields().forEach(catalogField -> {
+                    classBody.add(this.createField(catalogField, lombokState));
+                    classBody.add(this.createGetterMethod(catalogField));
+
+                    constructor.add(this.createDescriptionTag(catalogField));
+                    constructor.add(this.createParameter(catalogField));
+                    constructor.add(this.createConstructorProcess(catalogField));
+                });
+
+                classBody.add(constructor);
+            }
+        }
+
+        return classBody;
     }
 
     /**
@@ -229,17 +258,25 @@ public final class CatalogResourceFormatter implements JavaResourceFormatter<Cat
      * {@link CatalogField} クラスに格納されたリソース情報を基にカタログクラスのフィールドの定義オブジェクトを生成し返却します。
      *
      * @param catalogField カタログフィールド
+     * @param lombokState  Lombok適用状態
      * @return フィールドオブジェクト
      *
      * @exception NullPointerException 引数として {@code null} が渡された場合
      */
-    private Field createField(@NonNull CatalogField catalogField) {
+    private Field createField(@NonNull CatalogField catalogField, @NonNull LombokState lombokState) {
 
         final ResourceFactory factory = CatalogResourceFactory.getInstance();
         final FieldDefinition fieldDefinition = factory.createFieldDefinition(catalogField.getDataType(),
                 catalogField.getVariableName());
+        final Field field = factory.createField(fieldDefinition,
+                factory.createDescription(catalogField.getDescription()));
 
-        return factory.createField(fieldDefinition, factory.createDescription(catalogField.getDescription()));
+        if (lombokState == LombokState.LOMBOK) {
+            fieldDefinition.applyLombok();
+            field.add(factory.createAnnotation(AnnotationPattern.LOMBOK_GETTER));
+        }
+
+        return field;
     }
 
     /**
@@ -252,7 +289,7 @@ public final class CatalogResourceFormatter implements JavaResourceFormatter<Cat
      */
     private DescriptionTag createDescriptionTag(@NonNull CatalogField catalogField) {
         return CatalogResourceFactory.getInstance().createDescriptionTag(catalogField.getVariableName(),
-                catalogField.getDescription(), Annotation.PARAM);
+                catalogField.getDescription(), AnnotationPattern.PARAM);
     }
 
     /**
@@ -294,23 +331,10 @@ public final class CatalogResourceFormatter implements JavaResourceFormatter<Cat
         final String variableName = catalogField.getVariableName();
 
         final Method getterMethod = factory.createMethod(Modifier.PUBLIC, catalogField.getDataType(),
-                String.format("get%s", this.toInitialUpperCase(variableName)), factory.createFunctionDescription(""));
+                String.format("get%s", StringUtils.capitalize(variableName)), factory.createFunctionDescription(""));
 
         getterMethod.add(factory.createMethodProcess(variableName).toGetter());
 
         return getterMethod;
-    }
-
-    private String toInitialUpperCase(String literal) {
-
-        if (StringUtils.isEmpty(literal)) {
-            return "";
-        }
-
-        if (literal.length() == 1) {
-            return literal.toUpperCase();
-        }
-
-        return literal.substring(0, 1).toUpperCase() + literal.substring(1);
     }
 }

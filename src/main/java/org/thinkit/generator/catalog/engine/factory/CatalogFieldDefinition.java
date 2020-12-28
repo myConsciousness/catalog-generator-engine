@@ -60,8 +60,19 @@ public final class CatalogFieldDefinition extends FieldDefinition {
 
     @Override
     public String createResource() {
-        return """
-                private %s %s;
-                """.formatted(super.getDataType(), super.getVariableName());
+        return switch (super.getLombokState()) {
+            case LOMBOK -> {
+                yield """
+                        private final %s %s;
+                        """.formatted(super.getDataType(), super.getVariableName());
+            }
+
+            case NONE -> {
+                yield """
+                        private %s %s;
+                        """.formatted(super.getDataType(), super.getVariableName());
+
+            }
+        };
     }
 }

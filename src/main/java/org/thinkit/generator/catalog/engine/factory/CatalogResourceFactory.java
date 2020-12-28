@@ -14,8 +14,11 @@
 
 package org.thinkit.generator.catalog.engine.factory;
 
-import org.thinkit.generator.common.duke.catalog.Annotation;
+import org.thinkit.generator.common.duke.catalog.AnnotationPattern;
 import org.thinkit.generator.common.duke.catalog.Modifier;
+import org.thinkit.generator.common.duke.factory.Annotation;
+import org.thinkit.generator.common.duke.factory.AnnotationParameter;
+import org.thinkit.generator.common.duke.factory.ClassBody;
 import org.thinkit.generator.common.duke.factory.ClassDescription;
 import org.thinkit.generator.common.duke.factory.Constructor;
 import org.thinkit.generator.common.duke.factory.ConstructorProcess;
@@ -179,8 +182,8 @@ public final class CatalogResourceFactory extends ResourceFactory {
 
     @Override
     public DescriptionTag createDescriptionTag(@NonNull String variableName, @NonNull String description,
-            @NonNull Annotation annotation) {
-        return CatalogDescriptionTag.of(variableName, description, annotation);
+            @NonNull AnnotationPattern annotationPattern) {
+        return CatalogDescriptionTag.of(variableName, description, annotationPattern);
     }
 
     @Override
@@ -227,8 +230,23 @@ public final class CatalogResourceFactory extends ResourceFactory {
     }
 
     @Override
+    public Annotation createAnnotation(@NonNull AnnotationPattern annotationPattern) {
+        return CatalogAnnotation.of(annotationPattern);
+    }
+
+    @Override
+    public AnnotationParameter createAnnotationParameter(@NonNull String fieldName) {
+        return CatalogAnnotationParameter.of(fieldName);
+    }
+
+    @Override
+    public ClassBody createClassBody(@NonNull ClassDescription classDescription, @NonNull String resourceName) {
+        return CatalogClassBody.of(classDescription, resourceName);
+    }
+
+    @Override
     public Resource createResource(@NonNull Copyright copyright, @NonNull Package packageName,
-            @NonNull ClassDescription classDescription, @NonNull String resourceName) {
-        return CatalogResource.of(copyright, packageName, classDescription, resourceName);
+            @NonNull ClassBody classBody) {
+        return CatalogResource.of(copyright, packageName, classBody);
     }
 }
