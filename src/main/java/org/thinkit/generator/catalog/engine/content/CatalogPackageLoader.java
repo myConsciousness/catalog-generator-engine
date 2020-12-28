@@ -38,7 +38,7 @@ import lombok.ToString;
  */
 @ToString
 @EqualsAndHashCode
-@ContentMapping(content = "CatalogPackage")
+@ContentMapping(content = "org/thinkit/generator/catalog/engine/CatalogPackage")
 public final class CatalogPackageLoader implements Content<CatalogPackage> {
 
     /**
