@@ -101,7 +101,7 @@ public final class CatalogField implements ValidatableEntity, Serializable {
      * @param variableName 変数名
      * @param dataType     データ型
      * @param description  説明
-     * @return {@link catalogField} クラスの新しいインスタンス
+     * @return {@link CatalogField} クラスの新しいインスタンス
      *
      * @exception NullPointerException 引数として {@code null} が渡された場合
      */
