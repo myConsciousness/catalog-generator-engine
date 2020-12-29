@@ -1,0 +1,27 @@
+{
+    "metadata": {
+      "author": "Kato Shinya",
+      "since": "1.0.0",
+      "creationDate": "2020/12/29",
+      "encoding": "UTF-8",
+      "description": "Lombokパッケージを管理するコンテンツです。"
+    },
+
+    "selectionNodes": [
+      {
+        "node": {
+          "conditionId": "",
+          "lombokPackage": "lombok.Getter"
+        }
+      },
+
+      {
+          "node": {
+            "conditionId": "",
+            "lombokPackage": "lombok.RequiredArgsConstructor"
+          }
+      }
+    ],
+
+    "conditionNodes": []
+  }
