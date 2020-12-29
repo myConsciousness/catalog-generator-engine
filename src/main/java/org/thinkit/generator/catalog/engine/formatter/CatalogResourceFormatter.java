@@ -149,6 +149,16 @@ public final class CatalogResourceFormatter implements JavaResourceFormatter<Cat
         return CatalogResource.of(packageName, className, resource.createResource());
     }
 
+    /**
+     * 引数として渡された情報を基にカタログクラスのボディ部オブジェクトを生成し返却します。
+     *
+     * @param creator           作成者
+     * @param catalogDefinition カタログ定義
+     * @param catalogMeta       カタログメタ
+     * @return カタログクラスのボディ部オブジェクト
+     *
+     * @exception NullPointerException 引数として {@code null} が渡された場合
+     */
     private ClassBody createClassBody(@NonNull String creator, @NonNull CatalogDefinition catalogDefinition,
             @NonNull CatalogMeta catalogMeta) {
 
@@ -169,6 +179,7 @@ public final class CatalogResourceFormatter implements JavaResourceFormatter<Cat
 
         switch (lombokState) {
             case LOMBOK -> {
+                classBody.applyLombok();
                 classBody.add(factory.createAnnotation(AnnotationPattern.LOMBOK_REQUIRED_ARGS_CONSTRUCTOR));
 
                 catalogDefinition.getCatalogFields().forEach(catalogField -> {
@@ -273,6 +284,8 @@ public final class CatalogResourceFormatter implements JavaResourceFormatter<Cat
 
         if (lombokState == LombokState.LOMBOK) {
             fieldDefinition.applyLombok();
+            field.applyLombok();
+
             field.add(factory.createAnnotation(AnnotationPattern.LOMBOK_GETTER));
         }
 

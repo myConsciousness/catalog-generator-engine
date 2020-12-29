@@ -65,6 +65,14 @@ public final class CatalogField extends Field {
     public String createResource() {
 
         final StringBuilder field = new StringBuilder();
+
+        if (this.isAppliedLombok()) {
+            super.getAnnotations().forEach(annotation -> {
+                field.append(annotation.createResource());
+                field.append(Indentation.RETURN.getTag());
+            });
+        }
+
         field.append(super.getDescription().createResource()).append(Indentation.returnCode());
         field.append(super.getFieldDefinition().createResource());
 

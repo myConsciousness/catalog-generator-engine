@@ -35,9 +35,9 @@ import lombok.ToString;
 public final class CatalogClassBody extends ClassBody {
 
     /**
-     * 改行コード
+     * 改行
      */
-    private static final String RETURN_CODE = Indentation.RETURN.getTag();
+    private static final String RETURN = Indentation.RETURN.getTag();
 
     /**
      * コンストラクタ
@@ -84,7 +84,7 @@ public final class CatalogClassBody extends ClassBody {
      */
     private void createClassDescription(@NonNull StringBuilder classBody) {
         classBody.append(super.getClassDescription().createResource());
-        classBody.append(RETURN_CODE);
+        classBody.append(RETURN);
     }
 
     /**
@@ -96,9 +96,16 @@ public final class CatalogClassBody extends ClassBody {
      */
     private void createClassBody(@NonNull StringBuilder classBody) {
 
+        if (this.isAppliedLombok()) {
+            super.getAnnotations().forEach(annotation -> {
+                classBody.append(annotation.createResource());
+                classBody.append(RETURN);
+            });
+        }
+
         classBody.append(String.format("public enum %s implements %s {", super.getResourceName(),
                 super.getInterfaces().get(0).createResource()));
-        classBody.append(RETURN_CODE).append(RETURN_CODE);
+        classBody.append(RETURN).append(RETURN);
 
         this.createEnumeration(classBody);
         this.createField(classBody);
@@ -106,7 +113,7 @@ public final class CatalogClassBody extends ClassBody {
         this.createMethod(classBody);
 
         classBody.append(Brace.END.getTag());
-        classBody.append(RETURN_CODE);
+        classBody.append(RETURN);
     }
 
     /**
@@ -119,12 +126,12 @@ public final class CatalogClassBody extends ClassBody {
     private void createEnumeration(@NonNull StringBuilder classBody) {
         super.getEnumerations().forEach(enumeration -> {
             classBody.append(String.format("%s,", enumeration.createResource()));
-            classBody.append(RETURN_CODE).append(RETURN_CODE);
+            classBody.append(RETURN).append(RETURN);
         });
 
-        classBody.setLength(classBody.length() - (1 + RETURN_CODE.length() * 2));
+        classBody.setLength(classBody.length() - (1 + RETURN.length() * 2));
         classBody.append(Delimiter.SEMICOLON.getTag());
-        classBody.append(RETURN_CODE).append(RETURN_CODE);
+        classBody.append(RETURN).append(RETURN);
     }
 
     /**
@@ -137,10 +144,10 @@ public final class CatalogClassBody extends ClassBody {
     private void createField(@NonNull StringBuilder classBody) {
         super.getFields().forEach(field -> {
             classBody.append(field.createResource());
-            classBody.append(RETURN_CODE).append(RETURN_CODE);
+            classBody.append(RETURN).append(RETURN);
         });
 
-        classBody.setLength(classBody.length() - RETURN_CODE.length());
+        classBody.setLength(classBody.length() - RETURN.length());
     }
 
     /**
@@ -153,10 +160,10 @@ public final class CatalogClassBody extends ClassBody {
     private void createConstructor(@NonNull StringBuilder classBody) {
         super.getConstructors().forEach(constructor -> {
             classBody.append(constructor.createResource());
-            classBody.append(RETURN_CODE).append(RETURN_CODE);
+            classBody.append(RETURN).append(RETURN);
         });
 
-        classBody.setLength(classBody.length() - RETURN_CODE.length());
+        classBody.setLength(classBody.length() - RETURN.length());
     }
 
     /**
@@ -169,9 +176,9 @@ public final class CatalogClassBody extends ClassBody {
     private void createMethod(@NonNull StringBuilder classBody) {
         super.getMethods().forEach(method -> {
             classBody.append(method.createResource());
-            classBody.append(RETURN_CODE).append(RETURN_CODE);
+            classBody.append(RETURN).append(RETURN);
         });
 
-        classBody.setLength(classBody.length() - RETURN_CODE.length());
+        classBody.setLength(classBody.length() - RETURN.length());
     }
 }
