@@ -44,32 +44,81 @@ public final class CatalogResourceFormatterTest {
     @Test
     void testFormatWhenCatalogTypeIsCatalog() {
 
-        final List<CatalogEnumeration> catalogEnumerations = new ArrayList<>();
-
-        for (int i = 0; i < 3; i++) {
-            catalogEnumerations.add(CatalogEnumeration.of(String.format("TEST%s", i + 1), i, "",
-                    String.format("Description %s", i + 1)));
-        }
-
-        final List<CatalogField> catalogFields = new ArrayList<>();
-        catalogFields.add(CatalogField.of("code", "int", "The code"));
-
-        final CatalogDefinition definition = CatalogDefinition.of(
-                CatalogMeta.of("1.0.0", CatalogType.CATALOG, List.of("org.thinkit.api.catalog.Catalog"),
-                        LombokState.NONE),
-                "org.thinkit.generator.catalog.test", "TestCatalog", "", catalogEnumerations, catalogFields);
-
-        final CatalogResourceGroup catalogResourceGroup = assertDoesNotThrow(() -> CatalogResourceFormatter
-                .newInstance().format(CatalogMatrix.of(CatalogCreator.of("Shinya"), List.of(definition))));
+        final CatalogResourceGroup catalogResourceGroup = assertDoesNotThrow(
+                () -> CatalogResourceFormatter.newInstance()
+                        .format(CatalogMatrix.of(CatalogCreator.of("Shinya"), List.of(this.getCatalogDefinition()))));
 
         assertNotNull(catalogResourceGroup);
         assertTrue(catalogResourceGroup.size() == 1);
+        assertEquals("org.thinkit.generator.catalog.test", catalogResourceGroup.get(0).getPackageName());
+        assertEquals("TestCatalog", catalogResourceGroup.get(0).getClassName());
         assertEquals(TEMPLATE_CATALOG_CLASS, catalogResourceGroup.get(0).getResource());
     }
 
     @Test
     void testFormatWhenCatalogTypeIsCatalogWithLombok() {
 
+        final CatalogResourceGroup catalogResourceGroup = assertDoesNotThrow(
+                () -> CatalogResourceFormatter.newInstance().format(
+                        CatalogMatrix.of(CatalogCreator.of("Shinya"), List.of(this.getCatalogDefinitionWithLombok()))));
+
+        assertNotNull(catalogResourceGroup);
+        assertTrue(catalogResourceGroup.size() == 1);
+        assertEquals("org.thinkit.generator.catalog.test", catalogResourceGroup.get(0).getPackageName());
+        assertEquals("TestCatalog", catalogResourceGroup.get(0).getClassName());
+        assertEquals(TEMPLATE_LOMBOK_CATALOG_CLASS, catalogResourceGroup.get(0).getResource());
+    }
+
+    @Test
+    void testFormatWhenCatalogTypeIsBiCatalog() {
+
+        final CatalogResourceGroup catalogResourceGroup = assertDoesNotThrow(
+                () -> CatalogResourceFormatter.newInstance()
+                        .format(CatalogMatrix.of(CatalogCreator.of("Shinya"), List.of(this.getBiCatalogDefintiion()))));
+
+        assertNotNull(catalogResourceGroup);
+        assertTrue(catalogResourceGroup.size() == 1);
+        assertEquals("org.thinkit.generator.catalog.test", catalogResourceGroup.get(0).getPackageName());
+        assertEquals("TestBiCatalog", catalogResourceGroup.get(0).getClassName());
+        assertEquals(TEMPLATE_BICATALOG_CLASS, catalogResourceGroup.get(0).getResource());
+    }
+
+    @Test
+    void testFormatWhenCatalogTypeIsBiCatalogWithLombok() {
+
+        final CatalogResourceGroup catalogResourceGroup = assertDoesNotThrow(
+                () -> CatalogResourceFormatter.newInstance().format(CatalogMatrix.of(CatalogCreator.of("Shinya"),
+                        List.of(this.getBiCatalogDefintiionWithLombok()))));
+
+        assertNotNull(catalogResourceGroup);
+        assertTrue(catalogResourceGroup.size() == 1);
+        assertEquals("org.thinkit.generator.catalog.test", catalogResourceGroup.get(0).getPackageName());
+        assertEquals("TestBiCatalog", catalogResourceGroup.get(0).getClassName());
+        assertEquals(TEMPLATE_LOMBOK_BICATALOG_CLASS, catalogResourceGroup.get(0).getResource());
+    }
+
+    @Test
+    void testFormatWhenMultipleDefinitions() {
+
+        final List<String> templates = List.of(TEMPLATE_CATALOG_CLASS, TEMPLATE_LOMBOK_CATALOG_CLASS,
+                TEMPLATE_BICATALOG_CLASS, TEMPLATE_LOMBOK_BICATALOG_CLASS);
+
+        final CatalogResourceGroup catalogResourceGroup = assertDoesNotThrow(
+                () -> CatalogResourceFormatter.newInstance()
+                        .format(CatalogMatrix.of(CatalogCreator.of("Shinya"),
+                                List.of(this.getCatalogDefinition(), this.getCatalogDefinitionWithLombok(),
+                                        this.getBiCatalogDefintiion(), this.getBiCatalogDefintiionWithLombok()))));
+
+        assertNotNull(catalogResourceGroup);
+        assertTrue(catalogResourceGroup.size() == 4);
+
+        for (int i = 0, size = catalogResourceGroup.size(); i < size; i++) {
+            assertEquals(templates.get(i), catalogResourceGroup.get(i).getResource());
+        }
+    }
+
+    private CatalogDefinition getCatalogDefinition() {
+
         final List<CatalogEnumeration> catalogEnumerations = new ArrayList<>();
 
         for (int i = 0; i < 3; i++) {
@@ -80,21 +129,27 @@ public final class CatalogResourceFormatterTest {
         final List<CatalogField> catalogFields = new ArrayList<>();
         catalogFields.add(CatalogField.of("code", "int", "The code"));
 
-        final CatalogDefinition definition = CatalogDefinition.of(
-                CatalogMeta.of("1.0.0", CatalogType.CATALOG, List.of("org.thinkit.api.catalog.Catalog"),
-                        LombokState.LOMBOK),
+        return CatalogDefinition.of(CatalogMeta.of("1.0.0", CatalogType.CATALOG, List.of(), LombokState.NONE),
                 "org.thinkit.generator.catalog.test", "TestCatalog", "", catalogEnumerations, catalogFields);
-
-        final CatalogResourceGroup catalogResourceGroup = assertDoesNotThrow(() -> CatalogResourceFormatter
-                .newInstance().format(CatalogMatrix.of(CatalogCreator.of("Shinya"), List.of(definition))));
-
-        assertNotNull(catalogResourceGroup);
-        assertTrue(catalogResourceGroup.size() == 1);
-        assertEquals(TEMPLATE_LOMBOK_CATALOG_CLASS, catalogResourceGroup.get(0).getResource());
     }
 
-    @Test
-    void testFormatWhenCatalogTypeIsBiCatalog() {
+    private CatalogDefinition getCatalogDefinitionWithLombok() {
+
+        final List<CatalogEnumeration> catalogEnumerations = new ArrayList<>();
+
+        for (int i = 0; i < 3; i++) {
+            catalogEnumerations.add(CatalogEnumeration.of(String.format("TEST%s", i + 1), i, "",
+                    String.format("Description %s", i + 1)));
+        }
+
+        final List<CatalogField> catalogFields = new ArrayList<>();
+        catalogFields.add(CatalogField.of("code", "int", "The code"));
+
+        return CatalogDefinition.of(CatalogMeta.of("1.0.0", CatalogType.CATALOG, List.of(), LombokState.LOMBOK),
+                "org.thinkit.generator.catalog.test", "TestCatalog", "", catalogEnumerations, catalogFields);
+    }
+
+    private CatalogDefinition getBiCatalogDefintiion() {
 
         final List<CatalogEnumeration> catalogEnumerations = new ArrayList<>();
 
@@ -107,20 +162,11 @@ public final class CatalogResourceFormatterTest {
         catalogFields.add(CatalogField.of("code", "int", "The code"));
         catalogFields.add(CatalogField.of("tag", "String", "The tag"));
 
-        final CatalogDefinition definition = CatalogDefinition.of(
-                CatalogMeta.of("1.0.0", CatalogType.BI_CATALOG, List.of(), LombokState.NONE),
+        return CatalogDefinition.of(CatalogMeta.of("1.0.0", CatalogType.BI_CATALOG, List.of(), LombokState.NONE),
                 "org.thinkit.generator.catalog.test", "TestBiCatalog", "String", catalogEnumerations, catalogFields);
-
-        final CatalogResourceGroup catalogResourceGroup = assertDoesNotThrow(() -> CatalogResourceFormatter
-                .newInstance().format(CatalogMatrix.of(CatalogCreator.of("Shinya"), List.of(definition))));
-
-        assertNotNull(catalogResourceGroup);
-        assertTrue(catalogResourceGroup.size() == 1);
-        assertEquals(TEMPLATE_BICATALOG_CLASS, catalogResourceGroup.get(0).getResource());
     }
 
-    @Test
-    void testFormatWhenCatalogTypeIsBiCatalogWithLombok() {
+    private CatalogDefinition getBiCatalogDefintiionWithLombok() {
 
         final List<CatalogEnumeration> catalogEnumerations = new ArrayList<>();
 
@@ -133,16 +179,8 @@ public final class CatalogResourceFormatterTest {
         catalogFields.add(CatalogField.of("code", "int", "The code"));
         catalogFields.add(CatalogField.of("tag", "String", "The tag"));
 
-        final CatalogDefinition definition = CatalogDefinition.of(
-                CatalogMeta.of("1.0.0", CatalogType.BI_CATALOG, List.of(), LombokState.LOMBOK),
+        return CatalogDefinition.of(CatalogMeta.of("1.0.0", CatalogType.BI_CATALOG, List.of(), LombokState.LOMBOK),
                 "org.thinkit.generator.catalog.test", "TestBiCatalog", "String", catalogEnumerations, catalogFields);
-
-        final CatalogResourceGroup catalogResourceGroup = assertDoesNotThrow(() -> CatalogResourceFormatter
-                .newInstance().format(CatalogMatrix.of(CatalogCreator.of("Shinya"), List.of(definition))));
-
-        assertNotNull(catalogResourceGroup);
-        assertTrue(catalogResourceGroup.size() == 1);
-        assertEquals(TEMPLATE_LOMBOK_BICATALOG_CLASS, catalogResourceGroup.get(0).getResource());
     }
 
     /**
