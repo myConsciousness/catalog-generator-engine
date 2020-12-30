@@ -52,7 +52,7 @@ public final class LombokPackageLoader implements Content<LombokPackageGroup> {
      *
      * @exception NullPointerException 引数として {@code null} が渡された場合
      */
-    public static Content<LombokPackageGroup> of() {
+    public static Content<LombokPackageGroup> newInstance() {
         return new LombokPackageLoader();
     }
 

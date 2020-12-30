@@ -109,8 +109,11 @@ public final class CatalogClassBody extends ClassBody {
 
         this.createEnumeration(classBody);
         this.createField(classBody);
-        this.createConstructor(classBody);
-        this.createMethod(classBody);
+
+        if (!this.isAppliedLombok()) {
+            this.createConstructor(classBody);
+            this.createMethod(classBody);
+        }
 
         classBody.append(Brace.END.getTag());
         classBody.append(RETURN);

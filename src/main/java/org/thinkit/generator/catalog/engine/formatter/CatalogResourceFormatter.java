@@ -19,6 +19,7 @@ import org.thinkit.framework.content.ContentInvoker;
 import org.thinkit.framework.envali.Envali;
 import org.thinkit.generator.catalog.engine.catalog.CatalogType;
 import org.thinkit.generator.catalog.engine.content.CatalogPackageLoader;
+import org.thinkit.generator.catalog.engine.content.LombokPackageLoader;
 import org.thinkit.generator.catalog.engine.dto.CatalogCreator;
 import org.thinkit.generator.catalog.engine.dto.CatalogDefinition;
 import org.thinkit.generator.catalog.engine.dto.CatalogEnumeration;
@@ -145,6 +146,12 @@ public final class CatalogResourceFormatter implements JavaResourceFormatter<Cat
                 this.createClassBody(creator, catalogDefinition, catalogMeta));
         resource.add(factory.createDependentPackage(
                 ContentInvoker.of(CatalogPackageLoader.of(catalogType)).invoke().getPackageName()));
+
+        if (catalogMeta.getLombokState() == LombokState.LOMBOK) {
+            ContentInvoker.of(LombokPackageLoader.newInstance()).invoke().forEach(lombokPackage -> {
+                resource.add(factory.createDependentPackage(lombokPackage.getPackageName()));
+            });
+        }
 
         return CatalogResource.of(packageName, className, resource.createResource());
     }
