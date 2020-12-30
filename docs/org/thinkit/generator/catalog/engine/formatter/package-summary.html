@@ -52,6 +52,21 @@ loadScripts(document, 'script');</script>
 <div class="header">
 <h1 title="パッケージ" class="title">パッケージ&nbsp;org.thinkit.generator.catalog.engine.formatter</h1>
 </div>
+<section class="package-description" id="package.description">
+<div class="block">与えられた入力を実際に解析可能なカタログリソースへ整形するフォーマッタークラスを管理するパッケージです。
+
+ <pre>
+ 操作例:
+ <code>
+ CatalogResourceFormatter.newInstance().format(catalogMatrix).foreach(catalogResource -> {
+      * // do something like
+      catalogResource.getPackageName();
+      catalogResource.getClassName();
+      catalogResource.getResource();
+ });
+ </code>
+ </pre></div>
+</section>
 <section class="summary">
 <ul class="summary-list">
 <li>
