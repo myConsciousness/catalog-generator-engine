@@ -153,7 +153,8 @@ public final class CatalogResourceFormatter implements JavaResourceFormatter<Cat
             });
         }
 
-        return CatalogResource.of(packageName, className, resource.createResource());
+        return CatalogResource.builder().packageName(packageName).className(className)
+                .resource(resource.createResource()).build();
     }
 
     /**

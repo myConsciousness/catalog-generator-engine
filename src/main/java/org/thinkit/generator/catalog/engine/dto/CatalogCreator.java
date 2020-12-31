@@ -19,9 +19,11 @@ import java.io.Serializable;
 import org.thinkit.framework.envali.annotation.RequireNonEmpty;
 import org.thinkit.framework.envali.entity.ValidatableEntity;
 
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import lombok.NonNull;
 import lombok.ToString;
 
 /**
@@ -33,6 +35,8 @@ import lombok.ToString;
  */
 @ToString
 @EqualsAndHashCode
+@Builder(toBuilder = true)
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 public final class CatalogCreator implements ValidatableEntity, Serializable {
 
     /**
@@ -45,57 +49,5 @@ public final class CatalogCreator implements ValidatableEntity, Serializable {
      */
     @Getter
     @RequireNonEmpty
-    private String creator;
-
-    /**
-     * デフォルトコンストラクタ
-     */
-    private CatalogCreator() {
-    }
-
-    /**
-     * 引数として渡された情報を基に {@link CatalogCreator} クラスの新しいインスタンスを生成します。
-     *
-     * @param creator 作成者
-     *
-     * @exception NullPointerException 引数として {@code null} が渡された場合
-     */
-    private CatalogCreator(@NonNull String creator) {
-        this.creator = creator;
-    }
-
-    /**
-     * 引数として渡されたカタログ作成者の情報をコピーした {@link CatalogCreator} クラスの新しいインスタンスを生成します。
-     *
-     * @param catalogCreator カタログ作成者
-     *
-     * @exception NullPointerException 引数として {@code null} が渡された場合
-     */
-    private CatalogCreator(@NonNull CatalogCreator catalogCreator) {
-        this.creator = catalogCreator.getCreator();
-    }
-
-    /**
-     * 引数として渡された情報を基に {@link CatalogCreator} クラスの新しいインスタンスを生成し返却します。
-     *
-     * @param creator 作成者
-     * @return {@link CatalogCreator} クラスの新しいインスタンス
-     *
-     * @exception NullPointerException 引数として {@code null} が渡された場合
-     */
-    public static CatalogCreator of(@NonNull String creator) {
-        return new CatalogCreator(creator);
-    }
-
-    /**
-     * 引数として渡されたカタログ作成者の情報をコピーした {@link CatalogCreator} クラスの新しいインスタンスを生成し返却します。
-     *
-     * @param catalogCreator カタログ作成者
-     * @return {@link CatalogCreator} クラスの新しいインスタンス
-     *
-     * @exception NullPointerException 引数として {@code null} が渡された場合
-     */
-    public static CatalogCreator of(@NonNull CatalogCreator catalogCreator) {
-        return new CatalogCreator(catalogCreator);
-    }
+    private final String creator;
 }

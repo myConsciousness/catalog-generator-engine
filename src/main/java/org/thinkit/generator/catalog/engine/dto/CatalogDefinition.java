@@ -15,16 +15,18 @@
 package org.thinkit.generator.catalog.engine.dto;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.thinkit.framework.envali.annotation.NestedEntity;
 import org.thinkit.framework.envali.annotation.RequireNonEmpty;
+import org.thinkit.framework.envali.annotation.RequireNonNull;
 import org.thinkit.framework.envali.entity.ValidatableEntity;
 
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import lombok.NonNull;
 import lombok.ToString;
 
 /**
@@ -36,6 +38,8 @@ import lombok.ToString;
  */
 @ToString
 @EqualsAndHashCode
+@Builder(toBuilder = true)
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 public final class CatalogDefinition implements ValidatableEntity, Serializable {
 
     /**
@@ -47,6 +51,7 @@ public final class CatalogDefinition implements ValidatableEntity, Serializable 
      * カタログメタ
      */
     @Getter
+    @RequireNonNull
     @NestedEntity
     private CatalogMeta catalogMeta;
 
@@ -61,6 +66,7 @@ public final class CatalogDefinition implements ValidatableEntity, Serializable 
      * クラス名
      */
     @Getter
+    @RequireNonNull
     @RequireNonEmpty
     private String className;
 
@@ -68,12 +74,14 @@ public final class CatalogDefinition implements ValidatableEntity, Serializable 
      * タグのデータ型
      */
     @Getter
-    private String tagDataType;
+    @Builder.Default
+    private String tagDataType = "";
 
     /**
      * 列挙子グループ
      */
     @Getter
+    @RequireNonNull
     @RequireNonEmpty
     @NestedEntity
     private List<CatalogEnumeration> catalogEnumerations;
@@ -82,84 +90,8 @@ public final class CatalogDefinition implements ValidatableEntity, Serializable 
      * フィールドグループ
      */
     @Getter
+    @RequireNonNull
     @RequireNonEmpty
     @NestedEntity
     private List<CatalogField> catalogFields;
-
-    /**
-     * デフォルトコンストラクタ
-     */
-    private CatalogDefinition() {
-    }
-
-    /**
-     * 引数として渡された情報を基に {@link CatalogDefinition} クラスの新しいインスタンスを生成します。
-     *
-     * @param catalogMeta         カタログメタ
-     * @param packageName         パッケージ名
-     * @param className           クラス名
-     * @param tagDataType         タグのデータ型
-     * @param catalogEnumerations カタログ列挙子グループ
-     * @param catalogFields       カタログフィールドグループ
-     *
-     * @exception NullPointerException 引数として {@code null} が渡された場合
-     */
-    private CatalogDefinition(@NonNull CatalogMeta catalogMeta, @NonNull String packageName, @NonNull String className,
-            @NonNull String tagDataType, @NonNull List<CatalogEnumeration> catalogEnumerations,
-            @NonNull List<CatalogField> catalogFields) {
-        this.catalogMeta = catalogMeta;
-        this.packageName = packageName;
-        this.className = className;
-        this.tagDataType = tagDataType;
-        this.catalogEnumerations = catalogEnumerations;
-        this.catalogFields = catalogFields;
-    }
-
-    /**
-     * 引数として渡されたカタログ情報をコピーした {@link CatalogDefinition} クラスの新しいインスタンスを生成します。
-     *
-     * @param catalogDefinition カタログ定義
-     *
-     * @exception NullPointerException 引数として {@code null} が渡された場合
-     */
-    private CatalogDefinition(@NonNull CatalogDefinition catalogDefinition) {
-        this.catalogMeta = CatalogMeta.of(catalogDefinition.getCatalogMeta());
-        this.packageName = catalogDefinition.getPackageName();
-        this.className = catalogDefinition.getClassName();
-        this.tagDataType = catalogDefinition.getTagDataType();
-        this.catalogEnumerations = new ArrayList<>(catalogDefinition.getCatalogEnumerations());
-        this.catalogFields = new ArrayList<>(catalogDefinition.getCatalogFields());
-    }
-
-    /**
-     * 引数として渡された情報を基に {@link CatalogDefinition} クラスの新しいインスタンスを生成し返却します。
-     *
-     * @param catalogMeta         カタログメタ
-     * @param packageName         パッケージ名
-     * @param className           クラス名
-     * @param tagDataType         タグのデータ型
-     * @param catalogEnumerations カタログ列挙子グループ
-     * @param catalogFields       カタログフィールドグループ
-     * @return {@link CatalogDefinition} クラスの新しいインスタンス
-     *
-     * @exception NullPointerException 引数として {@code null} が渡された場合
-     */
-    public static CatalogDefinition of(@NonNull CatalogMeta catalogMeta, @NonNull String packageName,
-            @NonNull String className, @NonNull String tagDataType,
-            @NonNull List<CatalogEnumeration> catalogEnumerations, @NonNull List<CatalogField> catalogFields) {
-        return new CatalogDefinition(catalogMeta, packageName, className, tagDataType, catalogEnumerations,
-                catalogFields);
-    }
-
-    /**
-     * 引数として渡されたカタログ情報をコピーした {@link CatalogDefinition} クラスの新しいインスタンスを生成し返却します。
-     *
-     * @param catalogDefinition カタログ定義
-     * @return {@link CatalogDefinition} クラスの新しいインスタンス
-     *
-     * @exception NullPointerException 引数として {@code null} が渡された場合
-     */
-    public static CatalogDefinition of(@NonNull CatalogDefinition catalogDefinition) {
-        return new CatalogDefinition(catalogDefinition);
-    }
 }

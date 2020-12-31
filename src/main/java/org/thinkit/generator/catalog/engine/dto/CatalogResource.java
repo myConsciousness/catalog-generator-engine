@@ -16,6 +16,9 @@ package org.thinkit.generator.catalog.engine.dto;
 
 import java.io.Serializable;
 
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NonNull;
@@ -30,6 +33,8 @@ import lombok.ToString;
  */
 @ToString
 @EqualsAndHashCode
+@Builder(toBuilder = true)
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 public final class CatalogResource implements Serializable {
 
     /**
@@ -41,77 +46,20 @@ public final class CatalogResource implements Serializable {
      * パッケージ名
      */
     @Getter
+    @NonNull
     private String packageName;
 
     /**
      * クラス名
      */
     @Getter
+    @NonNull
     private String className;
 
     /**
      * リソース
      */
     @Getter
+    @NonNull
     private String resource;
-
-    /**
-     * デフォルトコンストラクタ
-     */
-    private CatalogResource() {
-    }
-
-    /**
-     * 引数として渡された情報を基に {@link CatalogResource} クラスの新しいインスタンスを生成します。
-     *
-     * @param packageName パッケージ名
-     * @param className   クラス名
-     * @param resource    リソース
-     *
-     * @exception NullPointerException 引数として {@code null} が渡された場合
-     */
-    private CatalogResource(@NonNull String packageName, @NonNull String className, @NonNull String resource) {
-        this.packageName = packageName;
-        this.className = className;
-        this.resource = resource;
-    }
-
-    /**
-     * 引数として渡されたカタログリソースをコピーした {@link CatalogResource} クラスの新しいインスタンスを生成します。
-     *
-     * @param catalogResource カタログリソース
-     *
-     * @exception NullPointerException 引数として {@code null} が渡された場合
-     */
-    private CatalogResource(@NonNull CatalogResource catalogResource) {
-        this.packageName = catalogResource.getPackageName();
-        this.className = catalogResource.getClassName();
-        this.resource = catalogResource.getResource();
-    }
-
-    /**
-     * 引数として渡された情報を基に {@link CatalogResource} クラスの新しいインスタンスを生成します。
-     *
-     * @param packageName パッケージ名
-     * @param className   クラス名
-     * @param resource    リソース
-     * @return {@link CatalogResource} クラスの新しいインスタンス
-     *
-     * @exception NullPointerException 引数として {@code null} が渡された場合
-     */
-    public static CatalogResource of(@NonNull String packageName, @NonNull String className, @NonNull String resource) {
-        return new CatalogResource(packageName, className, resource);
-    }
-
-    /**
-     * 引数として渡されたカタログリソースをコピーした {@link CatalogResource} クラスの新しいインスタンスを生成します。
-     *
-     * @param catalogResource カタログリソース
-     * @return {@link CatalogResource} クラスの新しいインスタンス
-     *
-     * @exception NullPointerException 引数として {@code null} が渡された場合
-     */
-    public static CatalogResource of(@NonNull CatalogResource catalogResource) {
-        return new CatalogResource(catalogResource);
-    }
 }

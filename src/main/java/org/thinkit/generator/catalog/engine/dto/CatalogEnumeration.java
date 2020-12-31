@@ -17,12 +17,15 @@ package org.thinkit.generator.catalog.engine.dto;
 import java.io.Serializable;
 
 import org.thinkit.framework.envali.annotation.RequireNonEmpty;
+import org.thinkit.framework.envali.annotation.RequireNonNull;
 import org.thinkit.framework.envali.annotation.RequirePositive;
 import org.thinkit.framework.envali.entity.ValidatableEntity;
 
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import lombok.NonNull;
 import lombok.ToString;
 
 /**
@@ -34,6 +37,8 @@ import lombok.ToString;
  */
 @ToString
 @EqualsAndHashCode
+@Builder(toBuilder = true)
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 public final class CatalogEnumeration implements ValidatableEntity, Serializable {
 
     /**
@@ -59,7 +64,9 @@ public final class CatalogEnumeration implements ValidatableEntity, Serializable
      * タグ
      */
     @Getter
-    private String tag;
+    @RequireNonNull
+    @Builder.Default
+    private String tag = "";
 
     /**
      * 説明
@@ -67,69 +74,4 @@ public final class CatalogEnumeration implements ValidatableEntity, Serializable
     @Getter
     @RequireNonEmpty
     private String description;
-
-    /**
-     * デフォルトコンストラクタ
-     */
-    private CatalogEnumeration() {
-    }
-
-    /**
-     * 引数として渡された情報を基に {@link CatalogEnumeration} クラスの新しいインスタンスを生成します。
-     *
-     * @param literal     列挙子リテラル
-     * @param code        コード値
-     * @param tag         タグ
-     * @param description 説明
-     *
-     * @exception NullPointerException 引数として {@code null} が渡された場合
-     */
-    private CatalogEnumeration(@NonNull String literal, int code, @NonNull String tag, @NonNull String description) {
-        this.literal = literal;
-        this.code = code;
-        this.tag = tag;
-        this.description = description;
-    }
-
-    /**
-     * 引数として渡された情報を基に {@link CatalogEnumeration} クラスの新しいインスタンスを生成します。
-     *
-     * @param catalogEnumeration カタログ列挙子
-     *
-     * @exception NullPointerException 引数として {@code null} が渡された場合
-     */
-    private CatalogEnumeration(@NonNull CatalogEnumeration catalogEnumeration) {
-        this.literal = catalogEnumeration.getLiteral();
-        this.code = catalogEnumeration.getCode();
-        this.tag = catalogEnumeration.getTag();
-        this.description = catalogEnumeration.getDescription();
-    }
-
-    /**
-     * 引数として渡された情報を基に {@link CatalogEnumeration} クラスの新しいインスタンスを生成し返却します。
-     *
-     * @param literal     列挙子リテラル
-     * @param code        コード値
-     * @param tag         タグ
-     * @param description 説明
-     * @return {@link CatalogEnumeration} クラスの新しいインスタンス
-     *
-     * @exception NullPointerException 引数として {@code null} が渡された場合
-     */
-    public static CatalogEnumeration of(@NonNull String literal, int code, @NonNull String tag,
-            @NonNull String description) {
-        return new CatalogEnumeration(literal, code, tag, description);
-    }
-
-    /**
-     * 引数として渡された情報を基に {@link CatalogEnumeration} クラスの新しいインスタンスを生成し返却します。
-     *
-     * @param catalogEnumeration カタログ列挙子
-     * @return {@link CatalogEnumeration} クラスの新しいインスタンス
-     *
-     * @exception NullPointerException 引数として {@code null} が渡された場合
-     */
-    public static CatalogEnumeration of(@NonNull CatalogEnumeration catalogEnumeration) {
-        return new CatalogEnumeration(catalogEnumeration);
-    }
 }

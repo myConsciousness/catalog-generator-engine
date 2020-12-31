@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 Kato Shinya.
+ * Copyright 2021 Kato Shinya.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License. You may obtain a copy of the License at
@@ -46,7 +46,9 @@ public final class CatalogResourceFormatterTest {
 
         final CatalogResourceGroup catalogResourceGroup = assertDoesNotThrow(
                 () -> CatalogResourceFormatter.newInstance()
-                        .format(CatalogMatrix.of(CatalogCreator.of("Shinya"), List.of(this.getCatalogDefinition()))));
+                        .format(CatalogMatrix.builder()
+                                .catalogCreator(CatalogCreator.builder().creator("Shinya").build())
+                                .catalogDefinitions(List.of(this.getCatalogDefinition())).build()));
 
         assertNotNull(catalogResourceGroup);
         assertTrue(catalogResourceGroup.size() == 1);
@@ -59,8 +61,10 @@ public final class CatalogResourceFormatterTest {
     void testFormatWhenCatalogTypeIsCatalogWithLombok() {
 
         final CatalogResourceGroup catalogResourceGroup = assertDoesNotThrow(
-                () -> CatalogResourceFormatter.newInstance().format(
-                        CatalogMatrix.of(CatalogCreator.of("Shinya"), List.of(this.getCatalogDefinitionWithLombok()))));
+                () -> CatalogResourceFormatter.newInstance()
+                        .format(CatalogMatrix.builder()
+                                .catalogCreator(CatalogCreator.builder().creator("Shinya").build())
+                                .catalogDefinitions(List.of(this.getCatalogDefinitionWithLombok())).build()));
 
         assertNotNull(catalogResourceGroup);
         assertTrue(catalogResourceGroup.size() == 1);
@@ -74,7 +78,9 @@ public final class CatalogResourceFormatterTest {
 
         final CatalogResourceGroup catalogResourceGroup = assertDoesNotThrow(
                 () -> CatalogResourceFormatter.newInstance()
-                        .format(CatalogMatrix.of(CatalogCreator.of("Shinya"), List.of(this.getBiCatalogDefintiion()))));
+                        .format(CatalogMatrix.builder()
+                                .catalogCreator(CatalogCreator.builder().creator("Shinya").build())
+                                .catalogDefinitions(List.of(this.getBiCatalogDefintiion())).build()));
 
         assertNotNull(catalogResourceGroup);
         assertTrue(catalogResourceGroup.size() == 1);
@@ -87,8 +93,10 @@ public final class CatalogResourceFormatterTest {
     void testFormatWhenCatalogTypeIsBiCatalogWithLombok() {
 
         final CatalogResourceGroup catalogResourceGroup = assertDoesNotThrow(
-                () -> CatalogResourceFormatter.newInstance().format(CatalogMatrix.of(CatalogCreator.of("Shinya"),
-                        List.of(this.getBiCatalogDefintiionWithLombok()))));
+                () -> CatalogResourceFormatter.newInstance()
+                        .format(CatalogMatrix.builder()
+                                .catalogCreator(CatalogCreator.builder().creator("Shinya").build())
+                                .catalogDefinitions(List.of(this.getBiCatalogDefintiionWithLombok())).build()));
 
         assertNotNull(catalogResourceGroup);
         assertTrue(catalogResourceGroup.size() == 1);
@@ -103,11 +111,12 @@ public final class CatalogResourceFormatterTest {
         final List<String> templates = List.of(TEMPLATE_CATALOG_CLASS, TEMPLATE_LOMBOK_CATALOG_CLASS,
                 TEMPLATE_BICATALOG_CLASS, TEMPLATE_LOMBOK_BICATALOG_CLASS);
 
-        final CatalogResourceGroup catalogResourceGroup = assertDoesNotThrow(
-                () -> CatalogResourceFormatter.newInstance()
-                        .format(CatalogMatrix.of(CatalogCreator.of("Shinya"),
-                                List.of(this.getCatalogDefinition(), this.getCatalogDefinitionWithLombok(),
-                                        this.getBiCatalogDefintiion(), this.getBiCatalogDefintiionWithLombok()))));
+        final CatalogResourceGroup catalogResourceGroup = assertDoesNotThrow(() -> CatalogResourceFormatter
+                .newInstance()
+                .format(CatalogMatrix.builder().catalogCreator(CatalogCreator.builder().creator("Shinya").build())
+                        .catalogDefinitions(List.of(this.getCatalogDefinition(), this.getCatalogDefinitionWithLombok(),
+                                this.getBiCatalogDefintiion(), this.getBiCatalogDefintiionWithLombok()))
+                        .build()));
 
         assertNotNull(catalogResourceGroup);
         assertTrue(catalogResourceGroup.size() == 4);
@@ -122,15 +131,16 @@ public final class CatalogResourceFormatterTest {
         final List<CatalogEnumeration> catalogEnumerations = new ArrayList<>();
 
         for (int i = 0; i < 3; i++) {
-            catalogEnumerations.add(CatalogEnumeration.of(String.format("TEST%s", i + 1), i, "",
-                    String.format("Description %s", i + 1)));
+            catalogEnumerations.add(CatalogEnumeration.builder().literal(String.format("TEST%s", i + 1)).code(i)
+                    .description(String.format("Description %s", i + 1)).build());
         }
 
         final List<CatalogField> catalogFields = new ArrayList<>();
-        catalogFields.add(CatalogField.of("code", "int", "The code"));
+        catalogFields.add(CatalogField.builder().variableName("code").dataType("int").description("The code").build());
 
-        return CatalogDefinition.of(CatalogMeta.of("1.0.0", CatalogType.CATALOG, List.of(), LombokState.NONE),
-                "org.thinkit.generator.catalog.test", "TestCatalog", "", catalogEnumerations, catalogFields);
+        return CatalogDefinition.builder().catalogMeta(CatalogMeta.builder().version("1.0.0").build())
+                .packageName("org.thinkit.generator.catalog.test").className("TestCatalog")
+                .catalogEnumerations(catalogEnumerations).catalogFields(catalogFields).build();
     }
 
     private CatalogDefinition getCatalogDefinitionWithLombok() {
@@ -138,15 +148,17 @@ public final class CatalogResourceFormatterTest {
         final List<CatalogEnumeration> catalogEnumerations = new ArrayList<>();
 
         for (int i = 0; i < 3; i++) {
-            catalogEnumerations.add(CatalogEnumeration.of(String.format("TEST%s", i + 1), i, "",
-                    String.format("Description %s", i + 1)));
+            catalogEnumerations.add(CatalogEnumeration.builder().literal(String.format("TEST%s", i + 1)).code(i)
+                    .description(String.format("Description %s", i + 1)).build());
         }
 
         final List<CatalogField> catalogFields = new ArrayList<>();
-        catalogFields.add(CatalogField.of("code", "int", "The code"));
+        catalogFields.add(CatalogField.builder().variableName("code").dataType("int").description("The code").build());
 
-        return CatalogDefinition.of(CatalogMeta.of("1.0.0", CatalogType.CATALOG, List.of(), LombokState.LOMBOK),
-                "org.thinkit.generator.catalog.test", "TestCatalog", "", catalogEnumerations, catalogFields);
+        return CatalogDefinition.builder()
+                .catalogMeta(CatalogMeta.builder().version("1.0.0").lombokState(LombokState.LOMBOK).build())
+                .packageName("org.thinkit.generator.catalog.test").className("TestCatalog")
+                .catalogEnumerations(catalogEnumerations).catalogFields(catalogFields).build();
     }
 
     private CatalogDefinition getBiCatalogDefintiion() {
@@ -154,16 +166,18 @@ public final class CatalogResourceFormatterTest {
         final List<CatalogEnumeration> catalogEnumerations = new ArrayList<>();
 
         for (int i = 0; i < 3; i++) {
-            catalogEnumerations.add(CatalogEnumeration.of(String.format("TEST%s", i + 1), i,
-                    String.format("tag %s", i + 1), String.format("Description %s", i + 1)));
+            catalogEnumerations.add(CatalogEnumeration.builder().literal(String.format("TEST%s", i + 1)).code(i)
+                    .tag(String.format("tag %s", i + 1)).description(String.format("Description %s", i + 1)).build());
         }
 
         final List<CatalogField> catalogFields = new ArrayList<>();
-        catalogFields.add(CatalogField.of("code", "int", "The code"));
-        catalogFields.add(CatalogField.of("tag", "String", "The tag"));
+        catalogFields.add(CatalogField.builder().variableName("code").dataType("int").description("The code").build());
+        catalogFields.add(CatalogField.builder().variableName("tag").dataType("String").description("The tag").build());
 
-        return CatalogDefinition.of(CatalogMeta.of("1.0.0", CatalogType.BI_CATALOG, List.of(), LombokState.NONE),
-                "org.thinkit.generator.catalog.test", "TestBiCatalog", "String", catalogEnumerations, catalogFields);
+        return CatalogDefinition.builder()
+                .catalogMeta(CatalogMeta.builder().version("1.0.0").catalogType(CatalogType.BI_CATALOG).build())
+                .packageName("org.thinkit.generator.catalog.test").tagDataType("String").className("TestBiCatalog")
+                .catalogEnumerations(catalogEnumerations).catalogFields(catalogFields).build();
     }
 
     private CatalogDefinition getBiCatalogDefintiionWithLombok() {
@@ -171,16 +185,19 @@ public final class CatalogResourceFormatterTest {
         final List<CatalogEnumeration> catalogEnumerations = new ArrayList<>();
 
         for (int i = 0; i < 3; i++) {
-            catalogEnumerations.add(CatalogEnumeration.of(String.format("TEST%s", i + 1), i,
-                    String.format("tag %s", i + 1), String.format("Description %s", i + 1)));
+            catalogEnumerations.add(CatalogEnumeration.builder().literal(String.format("TEST%s", i + 1)).code(i)
+                    .tag(String.format("tag %s", i + 1)).description(String.format("Description %s", i + 1)).build());
         }
 
         final List<CatalogField> catalogFields = new ArrayList<>();
-        catalogFields.add(CatalogField.of("code", "int", "The code"));
-        catalogFields.add(CatalogField.of("tag", "String", "The tag"));
+        catalogFields.add(CatalogField.builder().variableName("code").dataType("int").description("The code").build());
+        catalogFields.add(CatalogField.builder().variableName("tag").dataType("String").description("The tag").build());
 
-        return CatalogDefinition.of(CatalogMeta.of("1.0.0", CatalogType.BI_CATALOG, List.of(), LombokState.LOMBOK),
-                "org.thinkit.generator.catalog.test", "TestBiCatalog", "String", catalogEnumerations, catalogFields);
+        return CatalogDefinition.builder()
+                .catalogMeta(CatalogMeta.builder().version("1.0.0").catalogType(CatalogType.BI_CATALOG)
+                        .lombokState(LombokState.LOMBOK).build())
+                .packageName("org.thinkit.generator.catalog.test").tagDataType("String").className("TestBiCatalog")
+                .catalogEnumerations(catalogEnumerations).catalogFields(catalogFields).build();
     }
 
     /**
@@ -188,7 +205,7 @@ public final class CatalogResourceFormatterTest {
      */
     private static final String TEMPLATE_CATALOG_CLASS = """
             /*
-             * Copyright 2020 Shinya.
+             * Copyright 2021 Shinya.
              *
              * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
              * in compliance with the License. You may obtain a copy of the License at
@@ -250,7 +267,7 @@ public final class CatalogResourceFormatterTest {
      */
     private static final String TEMPLATE_BICATALOG_CLASS = """
             /*
-             * Copyright 2020 Shinya.
+             * Copyright 2021 Shinya.
              *
              * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
              * in compliance with the License. You may obtain a copy of the License at
@@ -322,7 +339,7 @@ public final class CatalogResourceFormatterTest {
      */
     private static final String TEMPLATE_LOMBOK_CATALOG_CLASS = """
             /*
-             * Copyright 2020 Shinya.
+             * Copyright 2021 Shinya.
              *
              * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
              * in compliance with the License. You may obtain a copy of the License at
@@ -373,7 +390,7 @@ public final class CatalogResourceFormatterTest {
      */
     private static final String TEMPLATE_LOMBOK_BICATALOG_CLASS = """
             /*
-             * Copyright 2020 Shinya.
+             * Copyright 2021 Shinya.
              *
              * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
              * in compliance with the License. You may obtain a copy of the License at

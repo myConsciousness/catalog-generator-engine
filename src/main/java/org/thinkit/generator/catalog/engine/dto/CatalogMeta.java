@@ -19,13 +19,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.thinkit.framework.envali.annotation.RequireNonEmpty;
+import org.thinkit.framework.envali.annotation.RequireNonNull;
 import org.thinkit.framework.envali.entity.ValidatableEntity;
 import org.thinkit.generator.catalog.engine.catalog.CatalogType;
 import org.thinkit.generator.common.duke.catalog.LombokState;
 
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import lombok.NonNull;
 import lombok.ToString;
 
 /**
@@ -37,6 +40,8 @@ import lombok.ToString;
  */
 @ToString
 @EqualsAndHashCode
+@Builder(toBuilder = true)
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 public final class CatalogMeta implements ValidatableEntity, Serializable {
 
     /**
@@ -55,83 +60,23 @@ public final class CatalogMeta implements ValidatableEntity, Serializable {
      * カタログ種別
      */
     @Getter
-    private CatalogType catalogType;
+    @RequireNonNull
+    @Builder.Default
+    private CatalogType catalogType = CatalogType.CATALOG;
 
     /**
      * 依存パッケージリスト
      */
     @Getter
-    private List<String> dependentPackages;
+    @RequireNonNull
+    @Builder.Default
+    private List<String> dependentPackages = new ArrayList<>(0);
 
     /**
      * Lombok適用状態
      */
     @Getter
-    private LombokState lombokState;
-
-    /**
-     * デフォルトコンストラクタ
-     */
-    private CatalogMeta() {
-    }
-
-    /**
-     * 引数として渡された情報を基に {@link CatalogMeta} クラスの新しいインスタンスを生成します。
-     *
-     * @param version           バージョン
-     * @param catalogType       カタログ種別
-     * @param dependentPackages 依存パッケージリスト
-     * @param lombokState       Lombok適用状態
-     *
-     * @exception NullPointerException 引数として {@code null} が渡された場合
-     */
-    private CatalogMeta(@NonNull String version, @NonNull CatalogType catalogType,
-            @NonNull List<String> dependentPackages, @NonNull LombokState lombokState) {
-        this.version = version;
-        this.catalogType = catalogType;
-        this.dependentPackages = dependentPackages;
-        this.lombokState = lombokState;
-    }
-
-    /**
-     * 引数として渡された情報を基に {@link CatalogMeta} クラスの新しいインスタンスを生成します。
-     *
-     * @param catalogMeta カタログメタ
-     *
-     * @exception NullPointerException 引数として {@code null} が渡された場合
-     */
-    private CatalogMeta(@NonNull CatalogMeta catalogMeta) {
-        this.version = catalogMeta.getVersion();
-        this.catalogType = catalogMeta.getCatalogType();
-        this.dependentPackages = new ArrayList<>(catalogMeta.getDependentPackages());
-        this.lombokState = catalogMeta.getLombokState();
-    }
-
-    /**
-     * 引数として渡された情報を基に {@link CatalogMeta} クラスの新しいインスタンスを生成し返却します。
-     *
-     * @param version           バージョン
-     * @param catalogType       カタログ種別
-     * @param dependentPackages 依存パッケージリスト
-     * @param lombokState       Lombok適用状態
-     * @return {@link CatalogMeta} クラスの新しいインスタンス
-     *
-     * @exception NullPointerException 引数として {@code null} が渡された場合
-     */
-    public static CatalogMeta of(@NonNull String version, @NonNull CatalogType catalogType,
-            @NonNull List<String> dependentPackages, @NonNull LombokState lombokState) {
-        return new CatalogMeta(version, catalogType, dependentPackages, lombokState);
-    }
-
-    /**
-     * 引数として渡された情報を基に {@link CatalogMeta} クラスの新しいインスタンスを生成し返却します。
-     *
-     * @param catalogMeta カタログメタ
-     * @return {@link CatalogMeta} クラスの新しいインスタンス
-     *
-     * @exception NullPointerException 引数として {@code null} が渡された場合
-     */
-    public static CatalogMeta of(@NonNull CatalogMeta catalogMeta) {
-        return new CatalogMeta(catalogMeta);
-    }
+    @RequireNonNull
+    @Builder.Default
+    private LombokState lombokState = LombokState.NONE;
 }

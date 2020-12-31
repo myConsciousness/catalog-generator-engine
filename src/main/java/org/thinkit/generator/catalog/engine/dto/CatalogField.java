@@ -19,9 +19,11 @@ import java.io.Serializable;
 import org.thinkit.framework.envali.annotation.RequireNonEmpty;
 import org.thinkit.framework.envali.entity.ValidatableEntity;
 
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import lombok.NonNull;
 import lombok.ToString;
 
 /**
@@ -33,6 +35,8 @@ import lombok.ToString;
  */
 @ToString
 @EqualsAndHashCode
+@Builder(toBuilder = true)
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 public final class CatalogField implements ValidatableEntity, Serializable {
 
     /**
@@ -60,64 +64,4 @@ public final class CatalogField implements ValidatableEntity, Serializable {
     @Getter
     @RequireNonEmpty
     private String description;
-
-    /**
-     * デフォルトコンストラクタ
-     */
-    private CatalogField() {
-    }
-
-    /**
-     * 引数として渡された情報を基に {@link CatalogField} クラスの新しいインスタンスを生成します。
-     *
-     * @param variableName 変数名
-     * @param dataType     データ型
-     * @param description  説明
-     *
-     * @exception NullPointerException 引数として {@code null} が渡された場合
-     */
-    private CatalogField(@NonNull String variableName, @NonNull String dataType, @NonNull String description) {
-        this.variableName = variableName;
-        this.dataType = dataType;
-        this.description = description;
-    }
-
-    /**
-     * 引数として渡された情報を基に {@link CatalogField} クラスの新しいインスタンスを生成します。
-     *
-     * @param catalogField カタログフィールド
-     *
-     * @exception NullPointerException 引数として {@code null} が渡された場合
-     */
-    private CatalogField(@NonNull CatalogField catalogField) {
-        this.variableName = catalogField.getVariableName();
-        this.dataType = catalogField.getDataType();
-        this.description = catalogField.getDescription();
-    }
-
-    /**
-     * 引数として渡された情報を基に {@link CatalogField} クラスの新しいインスタンスを生成し返却します。
-     *
-     * @param variableName 変数名
-     * @param dataType     データ型
-     * @param description  説明
-     * @return {@link CatalogField} クラスの新しいインスタンス
-     *
-     * @exception NullPointerException 引数として {@code null} が渡された場合
-     */
-    public static CatalogField of(@NonNull String variableName, @NonNull String dataType, @NonNull String description) {
-        return new CatalogField(variableName, dataType, description);
-    }
-
-    /**
-     * 引数として渡された情報を基に {@link CatalogField} クラスの新しいインスタンスを生成し返却します。
-     *
-     * @param catalogField カタログフィールド
-     * @return {@link CatalogField} クラスの新しいインスタンス
-     *
-     * @exception NullPointerException 引数として {@code null} が渡された場合
-     */
-    public static CatalogField of(@NonNull CatalogField catalogField) {
-        return new CatalogField(catalogField);
-    }
 }
