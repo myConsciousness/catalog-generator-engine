@@ -26,8 +26,7 @@ import lombok.ToString;
  * {@link #createResource()} メソッドを使用することで著作権を表現する文字列を取得することができます。
  *
  * @author Kato Shinya
- * @since 1.0
- * @version 1.0
+ * @since 1.0.0
  */
 @ToString
 @EqualsAndHashCode(callSuper = false)

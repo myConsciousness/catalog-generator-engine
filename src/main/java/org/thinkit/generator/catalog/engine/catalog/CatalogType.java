@@ -23,8 +23,7 @@ import lombok.RequiredArgsConstructor;
  * カタログ種別を管理するカタログです。
  *
  * @author Kato Shinya
- * @since 1.0
- * @version 1.0
+ * @since 1.0.0
  */
 @RequiredArgsConstructor
 public enum CatalogType implements BiCatalog<CatalogType, String> {
