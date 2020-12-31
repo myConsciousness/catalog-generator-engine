@@ -15,7 +15,7 @@
 <script type="text/javascript" src="../../../../../../script-dir/jquery-ui.min.js"></script>
 </head>
 <body class="class-declaration-page">
-<script type="text/javascript">var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":9,"i5":9,"i6":10};
+<script type="text/javascript">var data = {"i0":9,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10};
 var tabs = {65535:["t0","\u3059\u3079\u3066\u306E\u30E1\u30BD\u30C3\u30C9"],1:["t1","static\u30E1\u30BD\u30C3\u30C9"],2:["t2","\u30A4\u30F3\u30B9\u30BF\u30F3\u30B9\u30FB\u30E1\u30BD\u30C3\u30C9"],8:["t4","concrete\u30E1\u30BD\u30C3\u30C9"]};
 var altColor = "alt-color";
 var rowColor = "row-color";
@@ -46,7 +46,7 @@ loadScripts(document, 'script');</script>
 <div>
 <ul class="sub-nav-list">
 <li>概要:&nbsp;</li>
-<li>ネスト&nbsp;|&nbsp;</li>
+<li><a href="#nested.class.summary">ネスト</a>&nbsp;|&nbsp;</li>
 <li>フィールド&nbsp;|&nbsp;</li>
 <li>コンストラクタ&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">メソッド</a></li>
@@ -90,13 +90,38 @@ implements org.thinkit.generator.common.duke.dto.JavaResourceMatrix, org.thinkit
 <div class="block">カタログクラスのマトリクスを管理するデータクラスです。</div>
 <dl class="notes">
 <dt>導入されたバージョン:</dt>
-<dd>1.0</dd>
+<dd>1.0.0</dd>
 <dt>関連項目:</dt>
 <dd><a href="../../../../../../serialized-form.html#org.thinkit.generator.catalog.engine.dto.CatalogMatrix">直列化された形式</a></dd>
 </dl>
 </section>
 <section class="summary">
 <ul class="summary-list">
+<!-- ======== NESTED CLASS SUMMARY ======== -->
+<li>
+<section class="nested-class-summary" id="nested.class.summary">
+<h2>ネストされたクラスの概要</h2>
+<div class="member-summary">
+<table class="summary-table">
+<caption><span>ネストされたクラス</span></caption>
+<thead>
+<tr>
+<th class="col-first" scope="col">修飾子とタイプ</th>
+<th class="col-second" scope="col">クラス</th>
+<th class="col-last" scope="col">説明</th>
+</tr>
+</thead>
+<tbody>
+<tr class="alt-color">
+<td class="col-first"><code>static class&nbsp;</code></td>
+<th class="col-second" scope="row"><code><span class="member-name-link"><a href="CatalogMatrix.CatalogMatrixBuilder.html" title="org.thinkit.generator.catalog.engine.dto内のクラス">CatalogMatrix.CatalogMatrixBuilder</a></span></code></th>
+<td class="col-last">&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</li>
 <!-- ========== METHOD SUMMARY =========== -->
 <li>
 <section class="method-summary" id="method.summary">
@@ -114,43 +139,38 @@ implements org.thinkit.generator.common.duke.dto.JavaResourceMatrix, org.thinkit
 </thead>
 <tbody>
 <tr class="alt-color" id="i0">
+<td class="col-first"><code>static <a href="CatalogMatrix.CatalogMatrixBuilder.html" title="org.thinkit.generator.catalog.engine.dto内のクラス">CatalogMatrix.CatalogMatrixBuilder</a></code></td>
+<th class="col-second" scope="row"><code><span class="member-name-link"><a href="#builder()">builder</a></span>()</code></th>
+<td class="col-last">&nbsp;</td>
+</tr>
+<tr class="row-color" id="i1">
 <td class="col-first"><code>boolean</code></td>
 <th class="col-second" scope="row"><code><span class="member-name-link"><a href="#equals(java.lang.Object)">equals</a></span>&#8203;(<a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/Object.html" title="java.lang内のクラスまたはインタフェース" class="external-link">Object</a>&nbsp;o)</code></th>
 <td class="col-last">&nbsp;</td>
 </tr>
-<tr class="row-color" id="i1">
+<tr class="alt-color" id="i2">
 <td class="col-first"><code><a href="CatalogCreator.html" title="org.thinkit.generator.catalog.engine.dto内のクラス">CatalogCreator</a></code></td>
 <th class="col-second" scope="row"><code><span class="member-name-link"><a href="#getCatalogCreator()">getCatalogCreator</a></span>()</code></th>
 <td class="col-last">
 <div class="block">カタログ作成者</div>
 </td>
 </tr>
-<tr class="alt-color" id="i2">
+<tr class="row-color" id="i3">
 <td class="col-first"><code><a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/util/List.html" title="java.util内のクラスまたはインタフェース" class="external-link">List</a>&lt;<a href="CatalogDefinition.html" title="org.thinkit.generator.catalog.engine.dto内のクラス">CatalogDefinition</a>&gt;</code></td>
 <th class="col-second" scope="row"><code><span class="member-name-link"><a href="#getCatalogDefinitions()">getCatalogDefinitions</a></span>()</code></th>
 <td class="col-last">
 <div class="block">カタログ定義グループ</div>
 </td>
 </tr>
-<tr class="row-color" id="i3">
+<tr class="alt-color" id="i4">
 <td class="col-first"><code>int</code></td>
 <th class="col-second" scope="row"><code><span class="member-name-link"><a href="#hashCode()">hashCode</a></span>()</code></th>
 <td class="col-last">&nbsp;</td>
 </tr>
-<tr class="alt-color" id="i4">
-<td class="col-first"><code>static <a href="CatalogMatrix.html" title="org.thinkit.generator.catalog.engine.dto内のクラス">CatalogMatrix</a></code></td>
-<th class="col-second" scope="row"><code><span class="member-name-link"><a href="#of(org.thinkit.generator.catalog.engine.dto.CatalogCreator,java.util.List)">of</a></span>&#8203;(@NonNull <a href="CatalogCreator.html" title="org.thinkit.generator.catalog.engine.dto内のクラス">CatalogCreator</a>&nbsp;catalogCreator,
-@NonNull <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/util/List.html" title="java.util内のクラスまたはインタフェース" class="external-link">List</a>&lt;<a href="CatalogDefinition.html" title="org.thinkit.generator.catalog.engine.dto内のクラス">CatalogDefinition</a>&gt;&nbsp;catalogDefinitions)</code></th>
-<td class="col-last">
-<div class="block">引数として渡された情報を基に <a href="CatalogMatrix.html" title="org.thinkit.generator.catalog.engine.dto内のクラス"><code>CatalogMatrix</code></a> クラスの新しいインスタンスを生成し返却します。</div>
-</td>
-</tr>
 <tr class="row-color" id="i5">
-<td class="col-first"><code>static <a href="CatalogMatrix.html" title="org.thinkit.generator.catalog.engine.dto内のクラス">CatalogMatrix</a></code></td>
-<th class="col-second" scope="row"><code><span class="member-name-link"><a href="#of(org.thinkit.generator.catalog.engine.dto.CatalogMatrix)">of</a></span>&#8203;(@NonNull <a href="CatalogMatrix.html" title="org.thinkit.generator.catalog.engine.dto内のクラス">CatalogMatrix</a>&nbsp;catalogMatrix)</code></th>
-<td class="col-last">
-<div class="block">引数として渡されたカタログマトリクスの情報をコピーした <a href="CatalogMatrix.html" title="org.thinkit.generator.catalog.engine.dto内のクラス"><code>CatalogMatrix</code></a> クラスの新しいインスタンスを生成し返却します。</div>
-</td>
+<td class="col-first"><code><a href="CatalogMatrix.CatalogMatrixBuilder.html" title="org.thinkit.generator.catalog.engine.dto内のクラス">CatalogMatrix.CatalogMatrixBuilder</a></code></td>
+<th class="col-second" scope="row"><code><span class="member-name-link"><a href="#toBuilder()">toBuilder</a></span>()</code></th>
+<td class="col-last">&nbsp;</td>
 </tr>
 <tr class="alt-color" id="i6">
 <td class="col-first"><code><a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a></code></td>
@@ -179,38 +199,15 @@ implements org.thinkit.generator.common.duke.dto.JavaResourceMatrix, org.thinkit
 <h2>メソッドの詳細</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="of(org.thinkit.generator.catalog.engine.dto.CatalogCreator,java.util.List)">
-<h3>of</h3>
-<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="CatalogMatrix.html" title="org.thinkit.generator.catalog.engine.dto内のクラス">CatalogMatrix</a></span>&nbsp;<span class="member-name">of</span>&#8203;(<span class="parameters">@NonNull
-@NonNull <a href="CatalogCreator.html" title="org.thinkit.generator.catalog.engine.dto内のクラス">CatalogCreator</a>&nbsp;catalogCreator,
-@NonNull
-@NonNull <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/util/List.html" title="java.util内のクラスまたはインタフェース" class="external-link">List</a>&lt;<a href="CatalogDefinition.html" title="org.thinkit.generator.catalog.engine.dto内のクラス">CatalogDefinition</a>&gt;&nbsp;catalogDefinitions)</span></div>
-<div class="block">引数として渡された情報を基に <a href="CatalogMatrix.html" title="org.thinkit.generator.catalog.engine.dto内のクラス"><code>CatalogMatrix</code></a> クラスの新しいインスタンスを生成し返却します。</div>
-<dl class="notes">
-<dt>パラメータ:</dt>
-<dd><code>catalogCreator</code> - カタログ作成者</dd>
-<dd><code>catalogDefinitions</code> - カタログ定義グループ</dd>
-<dt>戻り値:</dt>
-<dd><a href="CatalogMatrix.html" title="org.thinkit.generator.catalog.engine.dto内のクラス"><code>CatalogMatrix</code></a> クラスの新しいインスタンス</dd>
-<dt>例外:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/NullPointerException.html" title="java.lang内のクラスまたはインタフェース" class="external-link">NullPointerException</a></code> - 引数として <code>null</code> が渡された場合</dd>
-</dl>
+<section class="detail" id="builder()">
+<h3>builder</h3>
+<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="CatalogMatrix.CatalogMatrixBuilder.html" title="org.thinkit.generator.catalog.engine.dto内のクラス">CatalogMatrix.CatalogMatrixBuilder</a></span>&nbsp;<span class="member-name">builder</span>()</div>
 </section>
 </li>
 <li>
-<section class="detail" id="of(org.thinkit.generator.catalog.engine.dto.CatalogMatrix)">
-<h3>of</h3>
-<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="CatalogMatrix.html" title="org.thinkit.generator.catalog.engine.dto内のクラス">CatalogMatrix</a></span>&nbsp;<span class="member-name">of</span>&#8203;(<span class="parameters">@NonNull
-@NonNull <a href="CatalogMatrix.html" title="org.thinkit.generator.catalog.engine.dto内のクラス">CatalogMatrix</a>&nbsp;catalogMatrix)</span></div>
-<div class="block">引数として渡されたカタログマトリクスの情報をコピーした <a href="CatalogMatrix.html" title="org.thinkit.generator.catalog.engine.dto内のクラス"><code>CatalogMatrix</code></a> クラスの新しいインスタンスを生成し返却します。</div>
-<dl class="notes">
-<dt>パラメータ:</dt>
-<dd><code>catalogMatrix</code> - カタログマトリクス</dd>
-<dt>戻り値:</dt>
-<dd><a href="CatalogMatrix.html" title="org.thinkit.generator.catalog.engine.dto内のクラス"><code>CatalogMatrix</code></a> クラスの新しいインスタンス</dd>
-<dt>例外:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/NullPointerException.html" title="java.lang内のクラスまたはインタフェース" class="external-link">NullPointerException</a></code> - 引数として <code>null</code> が渡された場合</dd>
-</dl>
+<section class="detail" id="toBuilder()">
+<h3>toBuilder</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="CatalogMatrix.CatalogMatrixBuilder.html" title="org.thinkit.generator.catalog.engine.dto内のクラス">CatalogMatrix.CatalogMatrixBuilder</a></span>&nbsp;<span class="member-name">toBuilder</span>()</div>
 </section>
 </li>
 <li>
@@ -283,7 +280,7 @@ implements org.thinkit.generator.common.duke.dto.JavaResourceMatrix, org.thinkit
 <div>
 <ul class="sub-nav-list">
 <li>概要:&nbsp;</li>
-<li>ネスト&nbsp;|&nbsp;</li>
+<li><a href="#nested.class.summary">ネスト</a>&nbsp;|&nbsp;</li>
 <li>フィールド&nbsp;|&nbsp;</li>
 <li>コンストラクタ&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">メソッド</a></li>
