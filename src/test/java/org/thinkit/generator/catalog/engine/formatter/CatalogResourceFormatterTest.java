@@ -19,6 +19,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -205,7 +206,7 @@ public final class CatalogResourceFormatterTest {
      */
     private static final String TEMPLATE_CATALOG_CLASS = """
             /*
-             * Copyright 2021 Shinya.
+             * Copyright %s Shinya.
              *
              * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
              * in compliance with the License. You may obtain a copy of the License at
@@ -260,14 +261,14 @@ public final class CatalogResourceFormatterTest {
                     return this.code;
                 }
             }
-            """;
+            """.formatted(String.valueOf(LocalDate.now().getYear()));
 
     /**
      * バイナリーカタログクラスのテンプレート
      */
     private static final String TEMPLATE_BICATALOG_CLASS = """
             /*
-             * Copyright 2021 Shinya.
+             * Copyright %s Shinya.
              *
              * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
              * in compliance with the License. You may obtain a copy of the License at
@@ -332,14 +333,14 @@ public final class CatalogResourceFormatterTest {
                     return this.tag;
                 }
             }
-            """;
+            """.formatted(String.valueOf(LocalDate.now().getYear()));
 
     /**
      * Lombokを使用したカタログクラスのテンプレート
      */
     private static final String TEMPLATE_LOMBOK_CATALOG_CLASS = """
             /*
-             * Copyright 2021 Shinya.
+             * Copyright %s Shinya.
              *
              * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
              * in compliance with the License. You may obtain a copy of the License at
@@ -383,14 +384,14 @@ public final class CatalogResourceFormatterTest {
                 /** The code */
                 @Getter private final int code;
             }
-            """;
+            """.formatted(String.valueOf(LocalDate.now().getYear()));
 
     /**
      * バイナリーカタログクラスのテンプレート
      */
     private static final String TEMPLATE_LOMBOK_BICATALOG_CLASS = """
             /*
-             * Copyright 2021 Shinya.
+             * Copyright %s Shinya.
              *
              * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
              * in compliance with the License. You may obtain a copy of the License at
@@ -437,5 +438,5 @@ public final class CatalogResourceFormatterTest {
                 /** The tag */
                 @Getter private final String tag;
             }
-            """;
+            """.formatted(String.valueOf(LocalDate.now().getYear()));
 }
