@@ -18,8 +18,12 @@ import java.io.Serializable;
 
 import org.thinkit.framework.content.entity.ContentEntity;
 
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.ToString;
 
@@ -31,6 +35,9 @@ import lombok.ToString;
  */
 @ToString
 @EqualsAndHashCode
+@Builder(toBuilder = true)
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor(access = AccessLevel.PRIVATE, force = true)
 public final class CatalogPackage implements ContentEntity, Serializable {
 
     /**
@@ -42,58 +49,6 @@ public final class CatalogPackage implements ContentEntity, Serializable {
      * パッケージ名
      */
     @Getter
+    @NonNull
     private String packageName;
-
-    /**
-     * デフォルトコンストラクタ
-     */
-    private CatalogPackage() {
-    }
-
-    /**
-     * コンストラクタ
-     *
-     * @param packageName パッケージ名
-     *
-     * @exception NullPointerException 引数として {@code null} が渡された場合
-     */
-    private CatalogPackage(@NonNull String packageName) {
-        this.packageName = packageName;
-    }
-
-    /**
-     * コピーコンストラクタ
-     *
-     * @param catalogPackage カタログパッケージ
-     *
-     * @exception NullPointerException 引数として {@code null} が渡された場合
-     */
-    private CatalogPackage(@NonNull CatalogPackage catalogPackage) {
-        this.packageName = catalogPackage.getPackageName();
-    }
-
-    /**
-     * 引数として渡された情報を基に {@link CatalogPackage} クラスの新しいインスタンスを生成し返却します。
-     *
-     * @param packageName パッケージ名
-     * @return {@link CatalogPackage} クラスの新しいインスタンス
-     *
-     * @exception NullPointerException 引数として {@code null} が渡された場合
-     */
-    public static CatalogPackage of(@NonNull String packageName) {
-        return new CatalogPackage(packageName);
-    }
-
-    /**
-     * 引数として渡された {@code catalogPackage} オブジェクトの情報を基に {@link CatalogPackage}
-     * クラスの新しいインスタンスを生成し返却します。
-     *
-     * @param catalogPackage カタログパッケージ
-     * @return {@link CatalogPackage} クラスの新しいインスタンス
-     *
-     * @exception NullPointerException 引数として {@code null} が渡された場合
-     */
-    public static CatalogPackage of(@NonNull CatalogPackage catalogPackage) {
-        return new CatalogPackage(catalogPackage);
-    }
 }

@@ -16,8 +16,12 @@ package org.thinkit.generator.catalog.engine.content.entity;
 
 import java.io.Serializable;
 
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.ToString;
 
@@ -28,7 +32,10 @@ import lombok.ToString;
  * @since 1.0.0
  */
 @ToString
-@EqualsAndHashCode(callSuper = false)
+@EqualsAndHashCode
+@Builder(toBuilder = true)
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor(access = AccessLevel.PRIVATE, force = true)
 public final class LombokPackage implements Serializable {
 
     /**
@@ -40,58 +47,6 @@ public final class LombokPackage implements Serializable {
      * パッケージ名
      */
     @Getter
+    @NonNull
     private String packageName;
-
-    /**
-     * デフォルトコンストラクタ
-     */
-    private LombokPackage() {
-    }
-
-    /**
-     * コンストラクタ
-     *
-     * @param packageName パッケージ名
-     *
-     * @exception NullPointerException 引数として {@code null} が渡された場合
-     */
-    private LombokPackage(@NonNull String packageName) {
-        this.packageName = packageName;
-    }
-
-    /**
-     * コピーコンストラクタ
-     *
-     * @param lombokPackage Lombokパッケージ
-     *
-     * @exception NullPointerException 引数として {@code null} が渡された場合
-     */
-    private LombokPackage(@NonNull LombokPackage lombokPackage) {
-        this.packageName = lombokPackage.getPackageName();
-    }
-
-    /**
-     * 引数として渡された情報を基に {@link LombokPackage} クラスの新しいインスタンスを生成し返却します。
-     *
-     * @param packageName パッケージ名
-     * @return {@link LombokPackage} クラスの新しいインスタンス
-     *
-     * @exception NullPointerException 引数として {@code null} が渡された場合
-     */
-    public static LombokPackage of(@NonNull String packageName) {
-        return new LombokPackage(packageName);
-    }
-
-    /**
-     * 引数として渡された {@code lombokPackage} オブジェクトの情報を基に {@link LombokPackage}
-     * クラスの新しいインスタンスを生成し返却します。
-     *
-     * @param lombokPackage Lombokパッケージ
-     * @return {@link LombokPackage} クラスの新しいインスタンス
-     *
-     * @exception NullPointerException 引数として {@code null} が渡された場合
-     */
-    public static LombokPackage of(@NonNull LombokPackage lombokPackage) {
-        return new LombokPackage(lombokPackage);
-    }
 }

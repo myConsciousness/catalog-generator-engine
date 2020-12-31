@@ -91,7 +91,8 @@ public final class LombokPackageLoader implements Content<LombokPackageGroup> {
         final LombokPackageGroup lombokPackageGroup = LombokPackageGroup.of(0);
 
         this.loadContent(this).forEach(content -> {
-            lombokPackageGroup.add(LombokPackage.of(content.get(ContentAttribute.LOMBOK_PACKAGE.getString())));
+            lombokPackageGroup.add(LombokPackage.builder()
+                    .packageName(content.get(ContentAttribute.LOMBOK_PACKAGE.getString())).build());
         });
 
         return lombokPackageGroup;

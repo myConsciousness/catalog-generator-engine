@@ -142,7 +142,8 @@ public final class CatalogPackageLoader implements Content<CatalogPackage> {
             throw new IllegalStateException();
         }
 
-        return CatalogPackage.of(content.get(0).get(ContentAttribute.CATALOG_PACKAGE.getString()));
+        return CatalogPackage.builder().packageName(content.get(0).get(ContentAttribute.CATALOG_PACKAGE.getString()))
+                .build();
     }
 
     @Override
