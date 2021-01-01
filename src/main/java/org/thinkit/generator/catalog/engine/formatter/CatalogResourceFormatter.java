@@ -50,6 +50,7 @@ import org.thinkit.generator.common.duke.factory.ResourceFactory;
 import org.thinkit.generator.common.duke.formatter.JavaResourceFormatter;
 
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.ToString;
 
@@ -79,27 +80,8 @@ import lombok.ToString;
  */
 @ToString
 @EqualsAndHashCode
+@NoArgsConstructor(staticName = "newInstance")
 public final class CatalogResourceFormatter implements JavaResourceFormatter<CatalogMatrix, CatalogResourceGroup> {
-
-    /**
-     * 雛形 : コンストラクタの説明
-     */
-    private static final String FMT_CONSTRUCTOR_DESCRIPTION = "A constructor that generates the catalog {@link %s} .";
-
-    /**
-     * デフォルトコンストラクタ
-     */
-    private CatalogResourceFormatter() {
-    }
-
-    /**
-     * {@link CatalogResourceFormatter} クラスの新しいインスタンスを生成し返却します。
-     *
-     * @return {@link CatalogResourceFormatter} クラスの新しいインスタンス
-     */
-    public static JavaResourceFormatter<CatalogMatrix, CatalogResourceGroup> newInstance() {
-        return new CatalogResourceFormatter();
-    }
 
     @Override
     public CatalogResourceGroup format(@NonNull CatalogMatrix catalogMatrix) {
@@ -195,8 +177,8 @@ public final class CatalogResourceFormatter implements JavaResourceFormatter<Cat
             }
 
             case NONE -> {
-                final Constructor constructor = factory.createConstructor(className,
-                        factory.createFunctionDescription(String.format(FMT_CONSTRUCTOR_DESCRIPTION, className)));
+                final Constructor constructor = factory.createConstructor(className, factory.createFunctionDescription(
+                        String.format("A constructor that generates the catalog {@link %s} .", className)));
 
                 catalogDefinition.getCatalogFields().forEach(catalogField -> {
                     classBody.add(this.createField(catalogField, lombokState));

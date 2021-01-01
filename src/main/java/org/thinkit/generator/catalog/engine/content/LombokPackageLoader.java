@@ -25,6 +25,7 @@ import org.thinkit.generator.catalog.engine.content.entity.LombokPackage;
 import org.thinkit.generator.catalog.engine.content.entity.LombokPackageGroup;
 
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 
@@ -36,25 +37,9 @@ import lombok.ToString;
  */
 @ToString
 @EqualsAndHashCode
+@NoArgsConstructor(staticName = "newInstance")
 @ContentMapping(content = "org/thinkit/generator/catalog/engine/LombokPackage")
 public final class LombokPackageLoader implements Content<LombokPackageGroup> {
-
-    /**
-     * デフォルトコンストラクタ
-     */
-    private LombokPackageLoader() {
-    }
-
-    /**
-     * {@link LombokPackageLoader} クラスの新しいインスタンスを生成し返却します。
-     *
-     * @return {@link LombokPackageLoader} クラスの新しいインスタンス
-     *
-     * @exception NullPointerException 引数として {@code null} が渡された場合
-     */
-    public static Content<LombokPackageGroup> newInstance() {
-        return new LombokPackageLoader();
-    }
 
     /**
      * コンテンツ要素定数

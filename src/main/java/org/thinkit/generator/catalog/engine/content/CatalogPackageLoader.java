@@ -25,8 +25,9 @@ import org.thinkit.framework.content.annotation.ContentMapping;
 import org.thinkit.generator.catalog.engine.catalog.CatalogType;
 import org.thinkit.generator.catalog.engine.content.entity.CatalogPackage;
 
+import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
-import lombok.NonNull;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 
@@ -38,42 +39,15 @@ import lombok.ToString;
  */
 @ToString
 @EqualsAndHashCode
+@NoArgsConstructor(access = AccessLevel.PRIVATE, force = true)
+@RequiredArgsConstructor(staticName = "of")
 @ContentMapping(content = "org/thinkit/generator/catalog/engine/CatalogPackage")
 public final class CatalogPackageLoader implements Content<CatalogPackage> {
 
     /**
      * カタログ種別
      */
-    private CatalogType catalogType;
-
-    /**
-     * デフォルトコンストラクタ
-     */
-    private CatalogPackageLoader() {
-    }
-
-    /**
-     * コンストラクタ
-     *
-     * @param catalogType カタログ種別
-     *
-     * @exception NullPointerException 引数として {@code null} が渡された場合
-     */
-    private CatalogPackageLoader(@NonNull CatalogType catalogType) {
-        this.catalogType = catalogType;
-    }
-
-    /**
-     * 引数として渡された情報を基に {@link CatalogPackageLoader} クラスの新しいインスタンスを生成し返却します。
-     *
-     * @param catalogType カタログ種別
-     * @return {@link CatalogPackageLoader} クラスの新しいインスタンス
-     *
-     * @exception NullPointerException 引数として {@code null} が渡された場合
-     */
-    public static Content<CatalogPackage> of(@NonNull CatalogType catalogType) {
-        return new CatalogPackageLoader(catalogType);
-    }
+    private final CatalogType catalogType;
 
     /**
      * コンテンツ要素定数
