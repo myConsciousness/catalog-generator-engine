@@ -18,6 +18,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import org.thinkit.framework.envali.annotation.NestedEntity;
+import org.thinkit.framework.envali.annotation.RequireNonEmpty;
 import org.thinkit.framework.envali.annotation.RequireNonNull;
 import org.thinkit.framework.envali.entity.ValidatableEntity;
 import org.thinkit.generator.common.duke.dto.JavaResourceMatrix;
@@ -60,7 +61,7 @@ public final class CatalogMatrix implements JavaResourceMatrix, ValidatableEntit
      * カタログ定義グループ
      */
     @Getter
-    @RequireNonNull
+    @RequireNonEmpty
     @NestedEntity
     private List<CatalogDefinition> catalogDefinitions;
 }

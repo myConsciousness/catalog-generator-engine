@@ -93,7 +93,7 @@ public final class CatalogResourceFormatter implements JavaResourceFormatter<Cat
         final ResourceFactory factory = CatalogResourceFactory.getInstance();
         final Copyright copyright = factory.createCopyright(creator);
 
-        final CatalogResourceGroup resources = CatalogResourceGroup.of();
+        final CatalogResourceGroup resources = CatalogResourceGroup.newInstance();
 
         catalogMatrix.getCatalogDefinitions().forEach(catalogDefinition -> {
             resources.add(this.createCatalogResource(copyright, creator, catalogDefinition));

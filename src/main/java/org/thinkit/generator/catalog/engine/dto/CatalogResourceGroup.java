@@ -72,7 +72,7 @@ public final class CatalogResourceGroup extends ArrayList<CatalogResource> imple
      *
      * @return {@link CatalogResourceGroup} クラスの新しいインスタンス
      */
-    public static CatalogResourceGroup of() {
+    public static CatalogResourceGroup newInstance() {
         return new CatalogResourceGroup();
     }
 
