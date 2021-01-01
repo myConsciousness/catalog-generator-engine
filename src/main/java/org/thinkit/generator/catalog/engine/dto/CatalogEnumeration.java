@@ -65,8 +65,8 @@ public final class CatalogEnumeration implements ValidatableEntity, Serializable
      * タグ
      */
     @Getter
-    @RequireNonNull
     @Builder.Default
+    @RequireNonNull
     private String tag = "";
 
     /**

@@ -28,6 +28,7 @@ import org.thinkit.generator.catalog.engine.content.entity.CatalogPackage;
 import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 
@@ -47,6 +48,7 @@ public final class CatalogPackageLoader implements Content<CatalogPackage> {
     /**
      * カタログ種別
      */
+    @NonNull
     private final CatalogType catalogType;
 
     /**

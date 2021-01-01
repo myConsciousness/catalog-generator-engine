@@ -75,6 +75,7 @@ public final class CatalogDefinition implements ValidatableEntity, Serializable 
      * タグのデータ型
      */
     @Getter
+    @RequireNonNull
     @Builder.Default
     private String tagDataType = "";
 
