@@ -75,11 +75,6 @@ public final class CatalogField extends Field {
             });
         }
 
-        field.append(returnCode);
-        field.append(returnCode);
-        field.append(returnCode);
-        field.append(returnCode);
-        field.append(returnCode);
         field.append(super.getFieldDefinition().createResource());
 
         return field.toString();
