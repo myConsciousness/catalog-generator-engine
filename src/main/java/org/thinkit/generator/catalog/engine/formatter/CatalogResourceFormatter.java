@@ -119,23 +119,41 @@ public final class CatalogResourceFormatter implements JavaResourceFormatter<Cat
         final String packageName = catalogDefinition.getPackageName();
         final String className = catalogDefinition.getClassName();
         final CatalogMeta catalogMeta = catalogDefinition.getCatalogMeta();
-        final CatalogType catalogType = catalogMeta.getCatalogType();
+
+        final ResourceFactory factory = CatalogResourceFactory.getInstance();
+        final Resource resource = factory.createResource(copyright, factory.createPackage(packageName),
+                this.createClassBody(creator, catalogDefinition, catalogMeta));
+
+        this.addDependentPackage(catalogMeta, resource);
+
+        return CatalogResource.builder().packageName(packageName).className(className)
+                .resource(resource.createResource()).build();
+    }
+
+    /**
+     * リソースに依存パッケージを追加します。
+     *
+     * @param catalogMeta カタログメタ
+     * @param resource    リソース
+     *
+     * @exception NullPointerException 引数として {@code null} が渡された場合
+     */
+    private void addDependentPackage(@NonNull CatalogMeta catalogMeta, @NonNull Resource resource) {
 
         final ResourceFactory factory = CatalogResourceFactory.getInstance();
 
-        final Resource resource = factory.createResource(copyright, factory.createPackage(packageName),
-                this.createClassBody(creator, catalogDefinition, catalogMeta));
         resource.add(factory.createDependentPackage(
-                ContentInvoker.of(CatalogPackageLoader.of(catalogType)).invoke().getPackageName()));
+                ContentInvoker.of(CatalogPackageLoader.of(catalogMeta.getCatalogType())).invoke().getPackageName()));
+
+        catalogMeta.getDependentPackages().forEach(dependentPckage -> {
+            resource.add(factory.createDependentPackage(dependentPckage));
+        });
 
         if (catalogMeta.getLombokState() == LombokState.LOMBOK) {
             ContentInvoker.of(LombokPackageLoader.newInstance()).invoke().forEach(lombokPackage -> {
                 resource.add(factory.createDependentPackage(lombokPackage.getPackageName()));
             });
         }
-
-        return CatalogResource.builder().packageName(packageName).className(className)
-                .resource(resource.createResource()).build();
     }
 
     /**
