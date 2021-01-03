@@ -72,21 +72,7 @@ public final class CatalogMethod extends Method {
                 @Override
                 %s %s %s(%s) {
                     %s
-                }""".formatted(super.getFunctionDescription().createResource(), this.getAccessLevel(),
+                }""".formatted(super.getFunctionDescription().createResource(), super.getAccessLevel(),
                 super.getReturnType(), super.getFunctionName(), super.getParameter(), super.getProcess());
-    }
-
-    /**
-     * アクセス修飾子に応じてアクセスレベルを表現する文字列を返却します。
-     *
-     * @return アクセス修飾子を表現する文字列
-     */
-    private String getAccessLevel() {
-        return switch (super.getModifier()) {
-            case PUBLIC -> "public";
-            case PROTECTED -> "protected";
-            case PRIVATE -> "private";
-            case PACKAGE, NONE -> "";
-        };
     }
 }
