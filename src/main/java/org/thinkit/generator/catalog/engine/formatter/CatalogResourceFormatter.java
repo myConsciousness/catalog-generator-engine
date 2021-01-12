@@ -32,6 +32,7 @@ import org.thinkit.generator.catalog.engine.factory.CatalogResourceFactory;
 import org.thinkit.generator.common.duke.catalog.AnnotationPattern;
 import org.thinkit.generator.common.duke.catalog.LombokState;
 import org.thinkit.generator.common.duke.catalog.Modifier;
+import org.thinkit.generator.common.duke.catalog.ParameterDataType;
 import org.thinkit.generator.common.duke.factory.ClassBody;
 import org.thinkit.generator.common.duke.factory.Constructor;
 import org.thinkit.generator.common.duke.factory.ConstructorProcess;
@@ -179,7 +180,7 @@ public final class CatalogResourceFormatter implements JavaResourceFormatter<Cat
         classBody.add(this.createInterface(catalogType, catalogDefinition));
 
         catalogDefinition.getCatalogEnumerations().forEach(catalogEnumeration -> {
-            classBody.add(this.createEnumeration(catalogType, catalogEnumeration));
+            classBody.add(this.createEnumeration(catalogType, catalogDefinition, catalogEnumeration));
         });
 
         final LombokState lombokState = catalogMeta.getLombokState();
@@ -251,24 +252,41 @@ public final class CatalogResourceFormatter implements JavaResourceFormatter<Cat
      * @exception NullPointerException 引数として {@code null} が渡された場合
      */
     private Enumeration createEnumeration(@NonNull CatalogType catalogType,
-            @NonNull CatalogEnumeration catalogEnumeration) {
+            @NonNull CatalogDefinition catalogDefinition, @NonNull CatalogEnumeration catalogEnumeration) {
 
         final ResourceFactory factory = CatalogResourceFactory.getInstance();
 
         return switch (catalogType) {
             case CATALOG -> {
                 final EnumDefinition enumDefinition = factory.createEnumDefinition(catalogEnumeration.getLiteral())
-                        .add(catalogEnumeration.getCode());
+                        .put(ParameterDataType.DEFAULT, catalogEnumeration.getCode());
                 yield factory.createEnumeration(enumDefinition,
                         factory.createDescription(catalogEnumeration.getDescription()));
             }
 
             case BI_CATALOG -> {
                 final EnumDefinition enumDefinition = factory.createEnumDefinition(catalogEnumeration.getLiteral())
-                        .add(catalogEnumeration.getCode()).add(catalogEnumeration.getTag());
+                        .put(ParameterDataType.DEFAULT, catalogEnumeration.getCode())
+                        .put(this.getParameterDataType(catalogDefinition), catalogEnumeration.getTag());
                 yield factory.createEnumeration(enumDefinition,
                         factory.createDescription(catalogEnumeration.getDescription()));
             }
+        };
+    }
+
+    /**
+     * カタログタグのデータ型から引数のデータ型を取得し返却します。
+     *
+     * @param catalogDefinition カタログ定義
+     * @return 引数のデータ型
+     *
+     * @exception NullPointerException 引数として {@code null} が渡された場合
+     */
+    private ParameterDataType getParameterDataType(@NonNull CatalogDefinition catalogDefinition) {
+        return switch (catalogDefinition.getTagDataType()) {
+            case "String" -> ParameterDataType.STRING;
+            case "Character" -> ParameterDataType.CHARACTER;
+            default -> ParameterDataType.DEFAULT;
         };
     }
 

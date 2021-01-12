@@ -128,7 +128,7 @@ public final class CatalogPackageLoader implements Content<CatalogPackage> {
     }
 
     @Override
-    public Map<Condition, String> getConditions() {
-        return Map.of(ContentCondition.CATALOG_TYPE_CODE, String.valueOf(this.catalogType.getCode()));
+    public List<Map<Condition, String>> getConditions() {
+        return List.of(Map.of(ContentCondition.CATALOG_TYPE_CODE, String.valueOf(this.catalogType.getCode())));
     }
 }

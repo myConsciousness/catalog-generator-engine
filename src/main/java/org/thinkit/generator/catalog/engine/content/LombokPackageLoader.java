@@ -14,6 +14,7 @@
 
 package org.thinkit.generator.catalog.engine.content;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -89,7 +90,7 @@ public final class LombokPackageLoader implements Content<LombokPackageGroup> {
     }
 
     @Override
-    public Map<Condition, String> getConditions() {
-        return Map.of();
+    public List<Map<Condition, String>> getConditions() {
+        return List.of();
     }
 }
