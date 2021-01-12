@@ -55,6 +55,6 @@ public final class CatalogAnnotationParameter extends AnnotationParameter {
 
     @Override
     public String createResource() {
-        return String.format("%s = %s", super.createParameter());
+        return String.format("%s = %s", super.getFieldName(), super.createParameter());
     }
 }
