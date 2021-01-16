@@ -1,5 +1,5 @@
 ![Build](https://img.shields.io/badge/Build-Automated-2980b9.svg?style=for-the-badge)
-![Latest Version](https://img.shields.io/badge/Latest_Version-v1.0.7-27ae60.svg?style=for-the-badge)
+![Latest Version](https://img.shields.io/badge/Latest_Version-v1.0.8-27ae60.svg?style=for-the-badge)
 ![License](https://img.shields.io/badge/License-Apache_2.0-e74c3c.svg?style=for-the-badge)</br>
 ![Java CI with Gradle](https://github.com/myConsciousness/catalog-generator-engine/workflows/Java%20CI%20with%20Gradle/badge.svg?branch=main)
 
@@ -7,6 +7,7 @@
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
 **Table of Contents**
 
 - [What is it?](#what-is-it)
@@ -35,7 +36,7 @@ Catalog Generator Engine main repository.
 <dependency>
   <groupId>org.thinkit.generator.catalog.engine</groupId>
   <artifactId>catalog-generator-engine</artifactId>
-  <version>v1.0.7</version>
+  <version>v1.0.8</version>
 </dependency>
 
 <servers>
@@ -62,7 +63,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'org.thinkit.generator.catalog.engine:catalog-generator-engine:v1.0.7'
+    implementation 'org.thinkit.generator.catalog.engine:catalog-generator-engine:v1.0.8'
 }
 ```
 
