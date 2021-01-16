@@ -58,9 +58,9 @@ public final class CatalogConstructorProcess extends ConstructorProcess {
     @Override
     public String createResource() {
 
-        final String variableName = super.getVariableName();
+        final String process = super.getProcess();
 
         return """
-                this.%s = %s;""".formatted(variableName, variableName);
+                this.%s = %s;""".formatted(process, process);
     }
 }

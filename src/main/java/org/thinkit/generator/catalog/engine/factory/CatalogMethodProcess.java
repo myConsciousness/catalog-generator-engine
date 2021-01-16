@@ -65,7 +65,7 @@ public final class CatalogMethodProcess extends MethodProcess {
             case SETTER -> throw new UnsupportedOperationException(
                     "This operation is not supported for generating catalog classes.");
             case GETTER -> new CatalogMethodProcessContext(new CatalogGetterMethodProcess())
-                    .toProcess(super.getVariableName());
+                    .toProcess(super.getProcess());
         };
     }
 }
